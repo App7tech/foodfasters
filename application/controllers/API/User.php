@@ -34,6 +34,7 @@ class User extends REST_Controller
 
 	public function user_register_post()
 	{
+		echo "string";
 		$user = $this->input->post();
 		$this->form_validation->set_rules('email', 'Email', 'required|valid_email|is_unique[user_registration.email]');
 		$this->form_validation->set_rules('name','Name','required');
