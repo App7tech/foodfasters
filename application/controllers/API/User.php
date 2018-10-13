@@ -14,7 +14,6 @@ class User extends REST_Controller
    	
    	public function user_login_post()
 	{	
-		echo "string";
 		$user_data = $this->input->post();
 		$this->form_validation->set_rules('email', 'Email', 'required|valid_email');
 		$this->form_validation->set_rules('password','Password','trim|required');
