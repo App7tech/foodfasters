@@ -23,15 +23,15 @@ class User_model extends CI_Model{
 		return $this->db->insert_id();		
 		
 	}
-	public function user_login($data){
+	public function user_login($post){
 	
 	//check email
-		$e_where = array('email'=>$data["email"]);
+		$e_where = array('email'=>$post["email"]);
 		$this->db->where($e_where);
 		$e_query = $this->db->get('user_registration');		
 		if($e_query->num_rows()!=0){
 			//check email with password
-			$where = array('email'=>$data["email"],'password'=>md5($data["password"]));
+			$where = array('email'=>$post["email"],'password'=>md5($post["password"]));
 			$this->db->where($where);
 			$query = $this->db->get('user_registration');
 			if($query->num_rows()!=0){
