@@ -210,7 +210,7 @@ class Home extends CI_Controller {
 	
 	public function seller_forgot_valid(){
 		$email = $this->input->post('email');
-		$link = "http://choteenews.com/foodfasters/Seller_admin/forgot_form/".base64_encode($email);
+		$link = base_url()."Seller_admin/forgot_form/".base64_encode($email);
 		$this->form_validation->set_rules('email','Email','required|valid_email');
 		if($this->form_validation->run() == FALSE){
 			$this->load->view('seller_admin/forgot_view');
@@ -232,7 +232,7 @@ class Home extends CI_Controller {
 		     			$this->session->set_flashdata('login_error',$err);
 		     			redirect('seller_admin/index');
 	     			}else{
-		     			$err = "Emailsent fail please try again.";
+		     			$err = "Email sent fail please try again.";
 		     			//echo $result['message'];exit();
 		     			$this->session->set_flashdata('login_error',$err);
 		     			$this->load->view('seller_admin/forgot_view');
@@ -253,7 +253,7 @@ class Home extends CI_Controller {
 	}
 
 	public function seller_forgot_submit(){
-		$lemail = $this->uri->segment(5);
+		$lemail = $this->uri->segment(3);
 		echo $lemail;exit();
 		$post = $this->input->post();
 		$this->form_validation->set_rules('password','Password','required|min_length[6]|trim');
