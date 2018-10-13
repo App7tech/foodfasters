@@ -6,10 +6,9 @@ class Home extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->database();
-		$this->load->helper('url');
-		$this->load->library('session');
-				
+		$this->load->model('Home_model');
 	}
+
 	public function index(){
 		$this->load->view('home_view');
 	}
@@ -21,9 +20,11 @@ class Home extends CI_Controller {
 	public function menu(){
 		$this->load->view('menu_view');
 	}
+
 	public function contact(){
 		$this->load->view('contact');
 	}
+
 	public function checkout(){
 		$this->load->view('checkout_view');
 	}
@@ -31,15 +32,15 @@ class Home extends CI_Controller {
 	public function login(){
 		if($this->session->userdata('email') == ''){
 			$this->load->view('login_view');
-	        }else{
-	        	redirect('Home/index');
-	        }
+        }else{
+        	redirect('Home/index');
+        }
 	}
 
 	public function register(){
 		$this->load->view('register_view');
 	}
-	
+
 	public function register_submit(){
 		$this->load->model('User_model');
 		
@@ -82,7 +83,6 @@ class Home extends CI_Controller {
 				$this->load->view('login_view');
 			}
 		}
-		
 	}
 
 	public function profile(){
@@ -145,6 +145,7 @@ class Home extends CI_Controller {
 				}
 		}
 	}
+
 	public function logout(){
 		$this->session->sess_destroy();
 		redirect("Home/index");
@@ -160,7 +161,6 @@ class Home extends CI_Controller {
 
 	public function super_admin_valid(){
 		$this->load->database();
-		$this->load->model('Home_model');
 		$post = $this->input->post();
 		$this->form_validation->set_rules('email', 'Email', 'required|valid_email');
 		$this->form_validation->set_rules('password', 'Password', 'required');
@@ -185,4 +185,95 @@ class Home extends CI_Controller {
 	public function seller_admin(){
 		$this->load->view('seller_admin/login_view');
 	}
+
+	public function seller_admin_valid(){
+		$post = $this->input->post();
+		$this->form_validation->set_rules('email','Email','required|valid_email');
+		$this->form_validation->set_rules('password','Password','required|min_length[6]');
+		$this->form_validation->set_error_delimiters('<div>', '</div>');
+		if($this->form_validation->run() == FALSE){
+			$this->load->view('seller_admin/login_view');
+		}else{
+			$data = $this->Home_model->seller_admin_login($post);
+			if($data['status'] == true){
+				redirect('se_dashboard');
+			}else{
+				$this->session->set_flashdata('login_error', $data['message']);
+				$this->load->view('seller_admin/login_view');
+			}
+		}
+	}
+
+	public function seller_forgot(){
+		$this->load->view('seller_admin/forgot_view');
+	}
+	
+	public function seller_forgot_valid(){
+		$email = $this->input->post('email');
+		$link = "http://choteenews.com/foodfasters/Seller_admin/forgot_form/".base64_encode($email);
+		$this->form_validation->set_rules('email','Email','required|valid_email');
+		if($this->form_validation->run() == FALSE){
+			$this->load->view('seller_admin/forgot_view');
+		}else{
+			$r_email = $this->session->userdata('email');
+			$res_email = $r_email[0]['restaurant_email'];
+			$to = $email;
+			$message_new= "Please click onbelow link to reset your password.".$link;
+			$subject="Password Reset Link";
+			$headers = "From: info@foodfasters.com\r\n";
+	   		$headers .= "Content-Type: text/html; charset=iso-8859-1\r\n";
+	     		$headers .= "Content-Transfer-Encoding: 8bit\r\n";
+	     		$this->load->model('seller_admin/Seller_model');
+	     		$result = $this->Seller_model->forgot($email);
+	     		if($result['status'] == 1)
+	     		{
+	     			if(mail($to, $subject, $message_new, $headers)){
+		     			$err = 'Forgot link sent to your email.';
+		     			$this->session->set_flashdata('login_error',$err);
+		     			redirect('seller_admin/index');
+	     			}else{
+		     			$err = "Emailsent fail please try again.";
+		     			//echo $result['message'];exit();
+		     			$this->session->set_flashdata('login_error',$err);
+		     			$this->load->view('seller_admin/forgot_view');
+	     			}
+	     		}else{
+	     			//$err = "Not a valid Email.";
+	     			//echo $result['message'];exit();
+	     			$this->session->set_flashdata('login_error',$result['message']);
+	     			$this->load->view('seller_admin/forgot_view');
+	     			//redirect('seller_admin/forgot');
+	     		}
+	 		
+		}
+	}
+	
+	public function seller_forgot_form(){
+		$this->load->view('seller_admin/forgot_form');
+	}
+
+	public function seller_forgot_submit(){
+		$lemail = $this->uri->segment(5);
+		echo $lemail;exit();
+		$post = $this->input->post();
+		$this->form_validation->set_rules('password','Password','required|min_length[6]|trim');
+		$this->form_validation->set_rules('cpassword','Confirm Password','required|min_length[6]|trim|matches[password]');
+		if($this->form_validation->run() == FALSE){
+			$this->load->view('seller_admin/forgot_form');
+		}else{
+			$this->load->model('seller_admin/Seller_model');
+			if($this->Seller_model->form_submit($post))
+			{
+				$this->session->set_flashdata('login_error', $data['message']);
+				$this->load->view('seller_admin/login_view');
+			}else{
+				$err = 'Password not updated please try again.';
+				$this->session->set_flashdata('login_error', $err);
+				$this->load->view('seller_admin/login_view');
+			}
+			
+		}
+	}
+
+	
 }

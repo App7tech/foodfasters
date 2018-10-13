@@ -63,7 +63,7 @@
                         <h3 class="p-t-b-20">Welcome Seller Admin</h3>
                         <?php echo $this->session->flashdata('login_error'); ?>
                     </div>
-                    <form action="<?=base_url();?>Seller_admin/forgot_valid" method="post">
+                    <form action="<?=base_url();?>seller_forgot_valid" method="post">
                     <?= form_error('email');?>
                         <div class="form-group has-icon"><i class="icon-envelope-o" style="color: #86939e !important;"></i>
                             <input type="text" class="form-control form-control-lg" placeholder="Email Address" name="email">

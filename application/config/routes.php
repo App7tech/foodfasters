@@ -56,6 +56,10 @@ $route['translate_uri_dashes'] = FALSE;
 //main page routes
 $route['super_admin'] = 'Home/super_admin';
 $route['super_admin_valid'] = 'Home/super_admin_valid';
+$route['seller_admin'] = 'Home/seller_admin';
+$route['seller_admin_valid'] = 'Home/seller_admin_valid';
+$route['seller_forgot'] = 'Home/seller_forgot';
+$route['seller_forgot_valid'] = 'Home/seller_forgot_valid';
 
 //super admin routes
 $route['su_dashboard'] = 'Super_admin/dashboard';
@@ -69,3 +73,8 @@ $route['su_users'] = 'super_admin/all_users';
 $route['su_sliders'] = 'super_admin/sliders';
 $route['su_slider_add'] = 'super_admin/slider_add';
 $route['su_logout'] = 'Super_admin/logout';
+
+//seller admin routes
+$route['se_dashboard'] = 'Seller_admin/dashboard';
+$route['se_profile'] = 'Seller_admin/restaurant_view';
+$route['se_change_pass'] = 'Seller_admin/change_password';

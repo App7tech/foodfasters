@@ -63,7 +63,7 @@
                         <h3 class="p-t-b-20">Reset Password</h3>
                         <?php echo $this->session->flashdata('login_error'); ?>
                     </div>
-                    <form action="<?=base_url();?>Seller_admin/forgot_submit" method="post">
+                    <form action="<?=base_url();?>seller_admin/seller_forgot_submit" method="post">
                     <?= form_error('password');?>
                         <div class="form-group has-icon"><i class="icon-envelope-o" style="color: #86939e !important;"></i>
                             <input type="password" class="form-control form-control-lg" placeholder="Password" name="password">
@@ -81,10 +81,6 @@
     <!-- #primary -->
 </main>
 
-<!-- Add the sidebar's background. This div must be placed
-         immediately after the control sidebar -->
-<!-- <div class="control-sidebar-bg shadow white fixed"></div>
-</div> -->
 <?php include 'includes/foot.php'; ?>
 </body>
 

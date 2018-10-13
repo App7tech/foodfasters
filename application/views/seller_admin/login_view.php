@@ -63,15 +63,17 @@
                         <h3 class="p-t-b-20">Welcome Seller Admin</h3>
                         <?php echo $this->session->flashdata('login_error'); ?>
                     </div>
-                    <form action="<?=base_url();?>Seller_admin/login_valid" method="post">
-                        <div class="form-group has-icon"><i class="icon-envelope-o" style="color: #86939e !important;"></i><?= form_error('email');?>
+                    <form action="<?=base_url();?>seller_admin_valid" method="post">
+                        <?= form_error('email');?>
+                        <div class="form-group has-icon"><i class="icon-envelope-o" style="color: #86939e !important;"></i>
                             <input type="text" class="form-control form-control-lg" placeholder="Email Address" name="email">
                         </div>
-                        <div class="form-group has-icon"><i class="icon-user-secret" style="color: #86939e !important;"></i><?= form_error('password');?>
+                        <?= form_error('password');?>
+                        <div class="form-group has-icon"><i class="icon-user-secret" style="color: #86939e !important;"></i>
                             <input type="password" class="form-control form-control-lg" placeholder="Password" name="password">
                         </div>
                         <input type="submit" class="btn btn-success btn-lg btn-block" value="Log In">
-                        <a href="<?=base_url();?>Seller_admin/forgot" class="forget-pass">Have you forgot your username or password ?</a>
+                        <a href="<?=base_url();?>seller_forgot" class="forget-pass pt4">Forgot Password ?</a>
                     </form>
                 </div>
             </div>
@@ -80,10 +82,6 @@
     <!-- #primary -->
 </main>
 
-<!-- Add the sidebar's background. This div must be placed
-         immediately after the control sidebar -->
-<!-- <div class="control-sidebar-bg shadow white fixed"></div>
-</div> -->
 <?php include 'includes/foot.php'; ?>
 </body>
 
