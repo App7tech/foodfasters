@@ -163,7 +163,7 @@
                 }
               ?>
           </div>
-      </div>
+      </div> 
     </div>
 </div>
 <div class="control-sidebar-bg shadow white fixed"></div>
