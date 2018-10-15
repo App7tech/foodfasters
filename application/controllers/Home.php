@@ -210,15 +210,17 @@ class Home extends CI_Controller {
 	
 	public function seller_forgot_valid(){
 		$email = $this->input->post('email');
-		$link = base_url()."Seller_admin/forgot_form/".base64_encode($email);
 		$this->form_validation->set_rules('email','Email','required|valid_email');
 		if($this->form_validation->run() == FALSE){
 			$this->load->view('seller_admin/forgot_view');
 		}else{
+			//get token
+			$token = $this->Home_model->seller_token($email);
+			$link = base_url()."seller_forgot_form/".$token[0]['token'];
 			$r_email = $this->session->userdata('email');
 			$res_email = $r_email[0]['restaurant_email'];
 			$to = $email;
-			$message_new= "Please click onbelow link to reset your password.".$link;
+			$message_new= "Please click on below link to reset your password.".$link;
 			$subject="Password Reset Link";
 			$headers = "From: info@foodfasters.com\r\n";
 	   		$headers .= "Content-Type: text/html; charset=iso-8859-1\r\n";
@@ -249,17 +251,17 @@ class Home extends CI_Controller {
 	}
 	
 	public function seller_forgot_form(){
-		$this->load->view('seller_admin/forgot_form');
+		$data['token'] = $this->uri->segment(2);
+		$this->load->view('seller_admin/forgot_form',$data);
 	}
 
 	public function seller_forgot_submit(){
-		$lemail = $this->uri->segment(3);
-		echo $lemail;exit();
+		$token = $this->uri->segment(2);
 		$post = $this->input->post();
 		$this->form_validation->set_rules('password','Password','required|min_length[6]|trim');
 		$this->form_validation->set_rules('cpassword','Confirm Password','required|min_length[6]|trim|matches[password]');
 		if($this->form_validation->run() == FALSE){
-			$this->load->view('seller_admin/forgot_form');
+			$this->seller_forgot_form();
 		}else{
 			$this->load->model('seller_admin/Seller_model');
 			if($this->Seller_model->form_submit($post))

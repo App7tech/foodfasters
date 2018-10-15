@@ -60,6 +60,8 @@ $route['seller_admin'] = 'Home/seller_admin';
 $route['seller_admin_valid'] = 'Home/seller_admin_valid';
 $route['seller_forgot'] = 'Home/seller_forgot';
 $route['seller_forgot_valid'] = 'Home/seller_forgot_valid';
+$route['seller_forgot_form/(:any)'] = 'Home/seller_forgot_form/$1';
+$route['seller_forgot_submit/(:any)'] = 'Home/seller_forgot_submit/$1';
 
 //super admin routes
 $route['su_dashboard'] = 'Super_admin/dashboard';

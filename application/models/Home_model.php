@@ -63,5 +63,12 @@ class Home_model extends CI_Model{
 			return $data;
 		}
 	}
+
+	public function seller_token($email){
+		$this->db->select('token');
+		$this->db->where('restaurant_email',$email);
+		$q = $this->db->get('restaurant_add');
+		return $q->result_array();
+	}
 }
 ?>
