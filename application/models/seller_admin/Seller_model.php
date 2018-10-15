@@ -1,4 +1,4 @@
-<?php  
+<?php     
 class Seller_model extends CI_Model{
 	public function login($post){
 		$this->load->database();
