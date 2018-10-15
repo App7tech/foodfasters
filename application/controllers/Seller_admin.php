@@ -128,7 +128,7 @@ class Seller_admin extends CI_Controller {
 			
 		}
 	}
-	
+//======================================Product Functionality================================================
 	public function productList()
 	{
 		$data['productArray']=$this->Seller_model->getAllProducts();
