@@ -101,4 +101,117 @@ class Seller_model extends CI_Model{
 		}
 	}
 	
+	public function getAllProducts()
+	{
+		$this->db->where('log_status <',3);
+		$this->db->where('log_active',1);
+		$q = $this->db->get('products');
+		return $q->result_array();
+	}
+	
+	public function addNewProduct()
+	{
+		$prodArray=array('product_name'=>$this->input->post('product_name'),
+						 'product_description'=>$this->input->post('product_description'),
+						 'price'=>$this->input->post('price'),
+						 'selling_price'=>$this->input->post('selling_price'),
+						 'category'=>$this->input->post('category'),
+						 'log_datetime'=>date('Y-m-d H:i:s')
+						);
+		if(!empty($_FILES['product_image']['name'])){
+                $config['upload_path'] = './images/products';
+                $config['allowed_types'] = 'jpg|jpeg|png|gif';
+                $config['file_name'] = $_FILES['product_image']['name'];
+                $config['encrypt_name'] = TRUE;
+                
+                //Load upload library and initialize configuration
+                $this->load->library('upload',$config);
+                $this->upload->initialize($config);
+                
+                if($this->upload->do_upload('product_image')){
+                    $uploadData = $this->upload->data();
+                    $picture = $uploadData['file_name'];
+                }else{
+                    $picture = '';
+                }
+            }else{
+                $picture = '';
+            }
+            $prodArray['product_image'] = $picture;	
+			
+			$query = $this->db->insert('products',$prodArray);			
+			if($query){
+				$msg['status']=true;
+				$msg['message'] = "Product Added Successfully";
+			}else{
+				$msg['status']=false;
+				$msg['message'] = 'Fail to insert Product.';				
+			}
+			return $msg;
+						
+	}
+	
+	public function getProductById($prodId)
+	{
+		$this->db->where('product_id',$prodId);
+		$q = $this->db->get('products');
+		return $q->result_array();
+	}
+	
+	public function updateProduct($prodId)
+	{
+			$prodArray=array('product_name'=>$this->input->post('product_name'),
+						 'product_description'=>$this->input->post('product_description'),
+						 'price'=>$this->input->post('price'),
+						 'selling_price'=>$this->input->post('selling_price'),
+						 'category'=>$this->input->post('category'),
+						 'log_status'=> 2,
+						 'log_datetime'=>date('Y-m-d H:i:s')
+						);
+		if(!empty($_FILES['product_image']['name'])){
+                $config['upload_path'] = './images/products';
+                $config['allowed_types'] = 'jpg|jpeg|png|gif';
+                $config['file_name'] = $_FILES['product_image']['name'];
+                $config['encrypt_name'] = TRUE;
+                
+                //Load upload library and initialize configuration
+                $this->load->library('upload',$config);
+                $this->upload->initialize($config);
+                
+                if($this->upload->do_upload('product_image')){
+                    $uploadData = $this->upload->data();
+                    $picture = $uploadData['file_name'];
+                }else{
+                    $picture = '';
+                }
+            }else{
+                $picture = '';
+            }
+            $prodArray['product_image'] = $picture;	
+			$this->db->where('product_id',$this->input->post('product_id'));			
+			$query = $this->db->update('products',$prodArray);			
+			if($query){
+				$msg['status']=true;
+				$msg['message'] = "Product Updated Successfully";
+			}else{
+				$msg['status']=false;
+				$msg['message'] = 'Fail to Update Product.';				
+			}
+			return $msg;
+		
+	}
+	
+	public function deleteProduct($prodId){
+		$data = array('log_status'=>3,'log_datetime'=>date('Y-m-d H:i:s'));
+		$this->db->where('product_id',$prodId);
+		$q = $this->db->update('products',$data);
+		if($q){
+			//unlink image file 
+			return true;
+		}else{
+			return false;
+		}
+	}
+	
+	
 }

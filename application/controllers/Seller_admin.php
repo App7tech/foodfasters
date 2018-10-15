@@ -8,10 +8,11 @@ class Seller_admin extends CI_Controller {
 		$this->load->helper('url');
 		$this->load->library('session');
 		$this->load->helper('form');
-		if($this->session->userdata('email') == ''){
-			$this->session->set_flashdata('login_error','Please Login to Continue!');
-			redirect('seller_admin');
-		}
+		$this->load->model('seller_admin/Seller_model');
+		// if($this->session->userdata('email') == ''){
+			// $this->session->set_flashdata('login_error','Please Login to Continue!');
+			// redirect('seller_admin');
+		// }
 	}
 
 	public function dashboard(){
@@ -125,6 +126,77 @@ class Seller_admin extends CI_Controller {
 				$this->load->view('seller_admin/login_view');
 			}
 			
+		}
+	}
+	
+	public function productList()
+	{
+		$data['productArray']=$this->Seller_model->getAllProducts();
+		$this->load->view('seller_admin/product_list',$data);
+	}
+	
+	public function addProduct()
+	{	
+		$data['page']="Add Product";
+		$this->load->view('seller_admin/add_product',$data);
+	}
+	
+	public function addNewProduct()
+	{
+		$this->form_validation->set_rules('product_name','Product Name','required');
+		$this->form_validation->set_rules('product_description','Product Description','required');
+		$this->form_validation->set_rules('price','Price','required|numeric');
+		$this->form_validation->set_rules('selling_price','Selling Price','required|numeric');
+		$this->form_validation->set_rules('category','Category','required');
+		
+		if (empty($_FILES['product_image']['name']))
+		{
+			$this->form_validation->set_rules('product_image','Product Image','required');
+		}
+		if($this->form_validation->run() == FALSE){
+			$this->load->view('seller_admin/add_product');
+		}else{		
+			$statusArray=$this->Seller_model->addNewProduct();
+			//print_r($statusArray);
+			if($statusArray['status'])
+			{
+				redirect('Seller_admin/productList');
+			}
+		}
+	}
+	
+	public function editProduct($prodId)
+	{
+		$data['page']="Edit Product";
+		$data['productData']=$this->Seller_model->getProductById($prodId);
+		$this->load->view('seller_admin/edit_product',$data);
+	}
+	
+	public function updateProduct($prodId)
+	{
+		$this->form_validation->set_rules('product_name','Product Name','required');
+		$this->form_validation->set_rules('product_description','Product Description','required');
+		$this->form_validation->set_rules('price','Price','required|numeric');
+		$this->form_validation->set_rules('selling_price','Selling Price','required|numeric');
+		$this->form_validation->set_rules('category','Category','required');
+		
+		if (empty($_FILES['product_image']['name']))
+		{
+			$this->form_validation->set_rules('product_image','Product Image','required');
+		}
+		if($this->form_validation->run() == FALSE){
+			$this->load->view('seller_admin/edit_product');
+		}else{	
+			echo $this->Seller_model->updateProduct($prodId);
+		}
+	}	
+	
+	public function deleteProduct($prodId)
+	{
+		$status= $this->Seller_model->deleteProduct($prodId);
+		if($status)
+		{
+			redirect('Seller_admin/productList');
 		}
 	}
 }
