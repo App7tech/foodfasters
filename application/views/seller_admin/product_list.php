@@ -74,9 +74,13 @@
         <div class="row">
           	<?php 
           		foreach($productArray as $product){
-                    $im = '../images/products/'.$product["product_image"];
-                    if(!is_file($im)){
-                        $im = '../images/products/'.$product["product_image"];
+                   // $imp = '././images/products/'.$product["product_image"];
+					$im = base_url().'images/products/'.$product["product_image"];
+					
+					//echo $im; 
+                    if(!is_file($imp)){
+						//echo "not a file";
+                        $im = base_url().'images/restaurants/placeholder.jpg';
                     }
           			?>
           			<div class="col-md-3" style="padding-top: 5px;">
