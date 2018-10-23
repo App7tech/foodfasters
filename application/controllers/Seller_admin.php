@@ -129,6 +129,19 @@ class Seller_admin extends CI_Controller {
 		}
 	}
 //======================================Product Functionality================================================
+	public function productCategories()
+	{
+		$data['categoryArray']=$this->Seller_model->getAllCategories();
+		$this->load->view('seller_admin/product_categories',$data);
+	}
+	
+	public function addNewCategory()
+	{
+		$statusArray=$this->Seller_model->addNewCategory();
+		echo json_encode($statusArray);
+		
+	}
+
 	public function productList()
 	{
 		$data['productArray']=$this->Seller_model->getAllProducts();

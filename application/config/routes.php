@@ -80,3 +80,9 @@ $route['su_logout'] = 'Super_admin/logout';
 $route['se_dashboard'] = 'Seller_admin/dashboard';
 $route['se_profile'] = 'Seller_admin/restaurant_view';
 $route['se_change_pass'] = 'Seller_admin/change_password';
+$route['se_products']='Seller_admin/productList';
+$route['se_addProduct']='Seller_admin/addProduct';
+$route['se_categories']='Seller_admin/productCategories';
+$route['se_addCategory']='Seller_admin/addCategory';
+
+
