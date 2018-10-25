@@ -77,7 +77,7 @@
 					  <div class="card-body b-b">
 						<?php echo $this->session->flashdata('res_reg_err'); ?>
 						  <h4>Add New Category</h4>
-						  <form class="form-material"  method="post">
+						  <form class="form-material"  method="post" action="<?=base_url()?>se_categorySubmit">
 							  <!-- Input -->
 							<div class="body">
 								 <div class="row clearfix">
@@ -98,7 +98,7 @@
 										  </div>
 									</div>
 								  </div>								  
-							  <input type="button" class="btn btn-primary" name="category_submit" id="category_submit" value="Submit">
+							  <input type="submit" class="btn btn-primary" name="category_submit" id="category_submit" value="Submit">
 							</div>
 						   </form>
 							  <!-- #END# Input -->
@@ -108,11 +108,11 @@
 			  <div class="col-md-5">
 				  <h3>Filling Guide</h3>
 				  <hr>
-				  <p>Please fill all the mandatory fields.</p>
-				  <div class='card card-body mt-2' id="errors" style="display:none">
-						<h4 style='color:red;font-weight:500;'>Errors</h4>
-						<span>Category Name is mandetory</span>
-				  </div>
+				  <div class='card card-body mt-2' id="errors">
+                        <p>Please fill all the mandatory fields.</p>
+                        <?php echo $this->session->flashdata('cat_err'); ?>
+                        <?php echo validation_errors(); ?>
+                </div>
 			  </div>
 		</div>
         <div class="tab-content my-3" id="v-pills-tabContent">
@@ -138,12 +138,12 @@
                                                 if($category["log_status"]==1){
                                                     $st = "text-success";
 													$status="Active";
-                                                    $del_link = base_url().'super_admin/del_user/inactive/'.$category["category_id"];
+                                                    $del_link = base_url().'seller_admin/delCategory/3/'.$category["category_id"];
                                                     $del_txt = "<span class='badge badge-danger'>Make Inactive</span>";
                                                 }else{
                                                     $st = "text-warning";
 													$status="InActive";
-                                                    $del_link = base_url().'super_admin/del_user/active/'.$category["category_id"];
+                                                    $del_link = base_url().'seller_admin/delCategory/1/'.$category["category_id"];
                                                     $del_txt = "<span class='badge badge-success'>Make Active</span>";
                                                 }
                                                 echo '
@@ -153,7 +153,6 @@
                                                     <td><span class="icon icon-circle s-12  mr-2 '.$st.'"></span>'.$status.'</td>
                                                     <td>'.$category["log_datetime"].'</td>
                                                     <td>
-                                                        <a href=""><i class="icon-eye mr-3"></i></a>
                                                         <a href="'.$del_link.'">'.$del_txt.'</a>
                                                     </td>
                                                 </tr>';
@@ -175,31 +174,4 @@
 </div>
 
 <?php include 'includes/foot.php'; ?>
-<script>
-var baseUrl="<?php echo base_url(); ?>";
-	$('#category_submit').click(function(){
-			$catName=$('#category_name').val();
-			$catDesc=$('#description').val();
-			
-			if($catName==""){
-				$("#errors").css("display", "block");
-				return false;
-			}else{
-				$("#errors").css("display", "none")
-				$.ajax({
-							 type: "POST",
-							 url: baseUrl+"Seller_admin/addNewCategory",
-							  data: {'category_name':$catName,'description':$catDesc},							  
-							  success: function(resultData){
-								  var parsedData=JSON.parse(resultData)
-								  alert(parsedData.message);
-								  if(parsedData.status){									  
-									  location.reload();
-								  }
-							  }
-						});
-			}
-			
-	});
-</script>
 </html>

@@ -9,10 +9,10 @@ class Seller_admin extends CI_Controller {
 		$this->load->library('session');
 		$this->load->helper('form');
 		$this->load->model('seller_admin/Seller_model');
-		// if($this->session->userdata('email') == ''){
-			// $this->session->set_flashdata('login_error','Please Login to Continue!');
-			// redirect('seller_admin');
-		// }
+		if($this->session->userdata('email') == ''){
+			$this->session->set_flashdata('login_error','Please Login to Continue!');
+			redirect('seller_admin');
+		}
 	}
 
 	public function dashboard(){
@@ -137,9 +137,36 @@ class Seller_admin extends CI_Controller {
 	
 	public function addNewCategory()
 	{
-		$statusArray=$this->Seller_model->addNewCategory();
-		echo json_encode($statusArray);
-		
+		$this->form_validation->set_rules('category_name','Category Name','required|is_unique[category.category_name]');
+		$this->form_validation->set_error_delimiters('<span class="text-danger"><b>','</b></span>');
+		if($this->form_validation->run() == FALSE){
+			$this->productCategories();
+		}else{
+			$statusArray=$this->Seller_model->addNewCategory();
+			if($statusArray['status']){
+				//true
+				$this->session->set_flashdata('cat_err',"Category Added Successfully!");
+				redirect('se_categories');
+			}else{
+				//false
+				$this->session->set_flashdata('cat_err',"Failed to Add Category");
+				$this->productCategories();
+			}
+		}
+	}
+
+	public function delCategory(){
+		$status = $this->uri->segment(3);
+		$catId = $this->uri->segment(4);
+		if($this->Seller_model->deleteCategory($status,$catId)){
+			//true
+			$this->session->set_flashdata('cat_err',"Category Deleted Successfully!");
+			redirect('se_categories');
+		}else{
+			//false
+			$this->session->set_flashdata('cat_err',"Failed to Delete Category");
+			$this->productCategories();
+		}
 	}
 
 	public function productList()
@@ -150,6 +177,7 @@ class Seller_admin extends CI_Controller {
 	
 	public function addProduct()
 	{	
+		$data['cat'] = $this->Seller_model->getAllCategories();
 		$data['page']="Add Product";
 		$this->load->view('seller_admin/add_product',$data);
 	}

@@ -103,7 +103,7 @@ class Seller_model extends CI_Model{
 		
 	public function getAllCategories()
 	{
-		$this->db->where('log_status <',3);
+		$this->db->where('log_status <',4);
 		$this->db->where('log_active',1);
 		$q = $this->db->get('category');
 		return $q->result_array();
@@ -125,6 +125,17 @@ class Seller_model extends CI_Model{
 			}
 			return $msg;
 						
+	}
+
+	public function deleteCategory($status,$catId){
+		$data = array('log_status'=>$status,'log_datetime'=>date('Y-m-d H:i:s'));
+		$this->db->where('category_id',$catId);
+		$q = $this->db->update('category',$data);
+		if($q){
+			return true;
+		}else{
+			return false;
+		}
 	}
 		
 	public function getAllProducts()
