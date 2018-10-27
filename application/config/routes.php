@@ -74,6 +74,8 @@ $route['su_erestaurant/(:any)'] = 'super_admin/edit_single_restaurant/$1';
 $route['su_users'] = 'super_admin/all_users';
 $route['su_sliders'] = 'super_admin/sliders';
 $route['su_slider_add'] = 'super_admin/slider_add';
+$route['su_banners'] = 'super_admin/banners';
+$route['su_banner_add'] = 'super_admin/banner_add';
 $route['su_logout'] = 'Super_admin/logout';
 
 //seller admin routes

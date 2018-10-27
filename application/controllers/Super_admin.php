@@ -223,6 +223,11 @@ class Super_admin extends CI_Controller {
 		$this->load->view('super_admin/sliders_view',$data);
 	}
 
+	public function banners(){
+		$data['banners'] = $this->Main_model->banner_data();
+		$this->load->view('super_admin/banners_view',$data);
+	}
+
 	public function slider_add(){
 
 		$user = $this->input->post();
@@ -263,6 +268,49 @@ class Super_admin extends CI_Controller {
 			redirect('su_sliders');
 		}else{
 			redirect('su_sliders');
+		}
+	}
+
+	public function banner_add(){
+
+		$user = $this->input->post();
+	
+		if(!empty($_FILES['banner_img']['name'])){
+            $config['upload_path'] = './images/banners';
+            $config['allowed_types'] = 'jpg|jpeg|png';
+            $config['file_name'] = $_FILES['banner_img']['name'];
+            $config['encrypt_name'] = TRUE;
+            
+            //Load upload library and initialize configuration
+            $this->load->library('upload',$config);
+            $this->upload->initialize($config);
+            
+            if($this->upload->do_upload('banner_img')){
+                $uploadData = $this->upload->data();
+                $picture = $uploadData['file_name'];
+            }else{
+                $picture = '';
+            }
+        }else{
+            $picture = '';
+        }
+        $user['picture'] = $picture;
+		if($this->Main_model->banner_add($user)){
+			$this->session->set_flashdata('banner_err', 'banner Added Successfully');
+			redirect('su_banners');
+		}else{
+			$this->session->set_flashdata('banner_err', 'Failed to add banner');
+			redirect('su_banners');
+		}
+	}
+
+	public function del_banner(){
+		$action = $this->uri->segment(3);
+		$id = $this->uri->segment(4);
+		if($this->Main_model->delete_banner($action,$id)){
+			redirect('su_banners');
+		}else{
+			redirect('su_banners');
 		}
 	}
 
