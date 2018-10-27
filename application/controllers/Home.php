@@ -17,6 +17,21 @@ class Home extends CI_Controller {
 		$this->load->view('restaurants_view');
 	}
 
+	function display_res(){
+		$post = $this->input->post();
+		$this->load->model('User_model');
+		if($restaurant['rest'] = $this->User_model->user_res($post)){
+
+				$this->load->view('restaurants_view',$restaurant);
+		}else{
+			$this->session->set_userdata('onload_status',true);
+			// print_r($restaurant);exit();
+			$err = 'something went wrong.';
+				$this->session->set_flashdata('login_error', $err);
+				$this->load->view('restaurants_view');
+		}
+	}
+
 	public function menu(){
 		$this->load->view('menu_view');
 	}

@@ -6,6 +6,38 @@
 </head>
 
 <body class="home">
+    <!-- form open -->
+        <script type="text/javascript">
+            
+            function getLocation(){
+                if(navigator.geolocation){
+                    navigator.geolocation.getCurrentPosition(showPosition);
+
+                }
+            }
+      
+
+            function showPosition(position){
+                document.getElementById("lat").value =+position.coords.latitude;
+                document.getElementById("lon").value =+position.coords.longitude;
+                var l1 = document.getElementById("lat").value;
+                var l2 = document.getElementById("lon").value;
+                if( l1 != '' && l2 !=''){
+                    document.getElementById('jsform').submit();
+                }else{
+                    alert('Internet Problem.!');
+                }
+                
+
+            }
+        </script>
+        <form action="<?=base_url();?>Home/display_res" method="post" id="jsform">
+            <input type="hidden" name="lat" id="lat">
+            <input type="hidden" name="lon" id="lon">
+
+            <!-- <button class="button" type="submit" name="sbmt" id="sbmt" class="sbmt">Find Nearest Restaurants</button> -->
+        </form>
+            <!-- end:Top links -->
     <div class="site-wrapper animsition" data-animsition-in="fade-in" data-animsition-out="fade-out">
         <!--header starts-->
         <?php
@@ -19,6 +51,7 @@
                     <h5 class="font-white space-xs">Find restaurants, specials, and coupons for free</h5>
                     <div class="banner-form">
                         <form class="form-inline">
+                            <button onclick="getLocation()" type="button" class="btn theme-btn btn-lg"><i class="fa fa-map-marker"></i></button>
                             <div class="form-group">
                                 <label class="sr-only" for="exampleInputAmount">I would like to eat....</label>
                                 <div class="form-group">
