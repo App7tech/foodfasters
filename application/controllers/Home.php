@@ -20,6 +20,7 @@ class Home extends CI_Controller {
 	function display_res(){
 		$post = $this->input->post();
 		$this->load->model('User_model');
+		// print_r($this->User_model->user_res($post));exit();
 		if($restaurant['rest'] = $this->User_model->user_res($post)){
 
 				$this->load->view('restaurants_view',$restaurant);

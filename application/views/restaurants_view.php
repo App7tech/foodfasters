@@ -158,14 +158,15 @@
                                 <?php
                                     foreach ($rest as $key){
                                         $im = '././images/restaurants/'.$key["image"];
+                                        $ima = base_url().'images/restaurants/'.$key["image"];
                                         if(!is_file($im)){
-                                            $im = base_url().'images/restaurants/placeholder.jpg';
+                                            $ima = base_url().'images/restaurants/placeholder.jpg';
                                         }
                                         echo'
                                         <div class="row">
                                     <div class="col-sm-12 col-md-12 col-lg-8 text-xs-center text-sm-left">
                                         <div class="entry-logo">
-                                            <a class="img-fluid" href="#"><img src="'.$im.'" alt="Food logo"></a>
+                                            <a class="img-fluid" href="#"><img src="'.$ima.'" alt="Food logo"></a>
                                         </div>
                                         <!-- end:Logo -->
                                         <div class="entry-dscr">
