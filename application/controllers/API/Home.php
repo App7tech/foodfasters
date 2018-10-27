@@ -25,5 +25,18 @@ class Home extends REST_Controller
 		$this->response($data, 200);
 	}
 
+	public function main_banners_post()
+	{	
+		$data['status'] = true;
+		$data['message'] = $this->Main_model->banner_data();
+		$path = base_url()."images/banners/";
+		$i = 0;
+		foreach ($data['message'] as $banner) {
+			$data['message'][$i]['image'] = $path.$banner['image'];
+			$i++;
+		}
+		$this->response($data, 200);
+	}
+
 }
 	
