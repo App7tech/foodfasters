@@ -184,6 +184,7 @@ class Main_model extends CI_Model {
 		return $q->result_array();
 	}
 
+	//sliders 
 	public function slider_add($data){
 		$im_data = array('image'=>$data['picture'],'text'=>$data['slider_txt'],'status'=>'active');
 		$q = $this->db->insert('sliders',$im_data);
@@ -199,6 +200,29 @@ class Main_model extends CI_Model {
 		$data = array('status'=>$action);
 		$this->db->where('id',$id);
 		$q = $this->db->update('sliders',$data);
+		if($q){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	// banners
+	public function banner_add($data){
+		$im_data = array('image'=>$data['picture'],'text'=>$data['banner_txt'],'status'=>'active');
+		$q = $this->db->insert('banners',$im_data);
+		return $this->db->insert_id();
+	}
+
+	public function banner_data(){
+		$q = $this->db->get('banners');
+		return $q->result_array();
+	}
+
+	public function delete_banner($action,$id){
+		$data = array('status'=>$action);
+		$this->db->where('id',$id);
+		$q = $this->db->update('banners',$data);
 		if($q){
 			return true;
 		}else{

@@ -74,9 +74,18 @@ $route['su_erestaurant/(:any)'] = 'super_admin/edit_single_restaurant/$1';
 $route['su_users'] = 'super_admin/all_users';
 $route['su_sliders'] = 'super_admin/sliders';
 $route['su_slider_add'] = 'super_admin/slider_add';
+$route['su_banners'] = 'super_admin/banners';
+$route['su_banner_add'] = 'super_admin/banner_add';
 $route['su_logout'] = 'Super_admin/logout';
 
 //seller admin routes
 $route['se_dashboard'] = 'Seller_admin/dashboard';
 $route['se_profile'] = 'Seller_admin/restaurant_view';
 $route['se_change_pass'] = 'Seller_admin/change_password';
+$route['se_products']='Seller_admin/productList';
+$route['se_addProduct']='Seller_admin/addProduct';
+$route['se_categories']='Seller_admin/productCategories';
+$route['se_addCategory']='Seller_admin/addCategory';
+$route['se_categorySubmit']='Seller_admin/addNewCategory';
+
+

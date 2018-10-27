@@ -126,16 +126,22 @@
                                   </div>
 								  
                                   <div class="col-sm-6">
-										<span style="font-size: 12px;font-weight: 400;">Category *</span>
+										                <span style="font-size: 12px;font-weight: 400;">Category *</span>
                                       <div class="form-group form-float">
                                           <div class="form-line">
-											  <select class="form-control" name="category" value="<?=set_value('category');?>" >
-												<option value="">Select Category</option>
-												<option value="1">Biryani</option>
-												<option value="2">Starter</option>
-												<option value="3">Soup</option>
-											  </select>										  
-                                              
+                    											  <select class="form-control" name="category" value="<?=set_value('category');?>" >
+                      												<option value="">Select Category</option>
+                                              <?php
+                                                $i = 0; 
+                                                foreach($cat as $category){
+                      												    echo '<option value="'.$category["category_id"].'">'.$category['category_name'].'</option>';
+                                                  $i++;
+                                                }
+                                                if($i == 0){
+                                                  echo '<option value="">No Categories Exists</option>';
+                                                }
+                                              ?>  
+                    											  </select>
                                           </div>
                                       </div>
                                   </div>
@@ -161,7 +167,7 @@
                   echo "</div>";
                 }
               ?>
-          </div>
+          </div>  
       </div>
     </div>
 </div>

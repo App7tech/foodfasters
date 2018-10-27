@@ -74,12 +74,10 @@
         <div class="row">
           	<?php 
           		foreach($productArray as $product){
-                   // $imp = '././images/products/'.$product["product_image"];
+                  
 					$im = base_url().'images/products/'.$product["product_image"];
 					
-					//echo $im; 
-                    if(!is_file($imp)){
-						//echo "not a file";
+                    if(!is_file($im)){
                         $im = base_url().'images/restaurants/placeholder.jpg';
                     }
           			?>
@@ -91,7 +89,7 @@
 				                    <?php echo $product['product_name'] ;?>
 				                    <span class="badge badge-primary float-right"><?php echo ($product['product_name']=1)?"active":"inactive"; ?></span>
 				                </h5>
-			                    <p class="card-text"><?php echo $product['product_name'].', '.$product['price'].', '.$product['product_name'] ;?></p>
+			                    <p class="card-text"><?php echo $product['product_name'].", ".$product['price'].", ".$product['product_name'] ;?></p>
 			                    <a href="<?php echo base_url();?>Seller_admin/viewProduct/<?php echo $product['product_id'] ?>" class="badge badge-primary">View</a>
 			                    <a href="<?php echo base_url();?>Seller_admin/editProduct/<?php echo $product['product_id'] ?>" class="badge badge-primary">Edit</a>
 			                    <a href="<?php echo base_url();?>Seller_admin/deleteProduct/<?php echo $product['product_id'] ?>" class="badge badge-primary">Delete</a>

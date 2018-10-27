@@ -66,7 +66,12 @@
                     <span>App Sliders</span>
                 </a>
             </li>
-            
+            <li class="treeview">
+                <a href="<?=base_url();?>su_banners">
+                    <i class="icon icon-image text-lime s-18"></i> 
+                    <span>App Banners</span>
+                </a>
+            </li>
             <li class="treeview">
                 <a href="<?=base_url()?>su_logout">
                     <i class="icon icon-sign-out text-lime s-18"></i> 

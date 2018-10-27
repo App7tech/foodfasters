@@ -100,7 +100,44 @@ class Seller_model extends CI_Model{
 			return $data;
 		}
 	}
-	
+		
+	public function getAllCategories()
+	{
+		$this->db->where('log_status <',4);
+		$this->db->where('log_active',1);
+		$q = $this->db->get('category');
+		return $q->result_array();
+	}
+		
+	public function addNewCategory()
+	{
+		$catArray=array('category_name'=>$this->input->post('category_name'),
+						 'description'=>$this->input->post('description'),						 
+						 'log_datetime'=>date('Y-m-d H:i:s')
+						);
+			$query = $this->db->insert('category',$catArray);			
+			if($query){
+				$msg['status']=true;
+				$msg['message'] = "Category Added Successfully";
+			}else{
+				$msg['status']=false;
+				$msg['message'] = 'Fail to insert Category.';				
+			}
+			return $msg;
+						
+	}
+
+	public function deleteCategory($status,$catId){
+		$data = array('log_status'=>$status,'log_datetime'=>date('Y-m-d H:i:s'));
+		$this->db->where('category_id',$catId);
+		$q = $this->db->update('category',$data);
+		if($q){
+			return true;
+		}else{
+			return false;
+		}
+	}
+		
 	public function getAllProducts()
 	{
 		$this->db->where('log_status <',3);
