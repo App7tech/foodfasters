@@ -28,19 +28,22 @@
                     </ul>
                 </div>
             </div>
-            
-            <!-- start: Inner page hero -->
-            <div class="inner-page-hero bg-image" data-image-src="<?=base_url();?>/main_assets/images/profile-banner.jpg">  
-                <div class="container"> </div>
-                <!-- end:Container -->
-            </div>
+
             <div class="result-show">
                 <div class="container">
                     <div class="row">
                         <div class="col-sm-3">
-                            <p><span class="primary-color"><strong>124</strong></span> Results so far </div>
-                        </p>
-                        <div class="col-sm-9">
+                            <p><span class="primary-color"><strong>124</strong></span> Results so far </p>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="input-group">
+                                <input type="text" class="form-control search-field" placeholder="Search your Restaurant / Favourite Food"> 
+                                <span class="input-group-btn"> 
+                                    <button class="btn btn-secondary search-btn" type="button"><i class="fa fa-search" style="font-size: 17px !important;margin: 0px !important;"></i></button> 
+                                </span> 
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
                             <select class="custom-select pull-right">
                                 <option selected>Open this select menu</option>
                                 <option value="1">One</option>
@@ -60,10 +63,6 @@
                                 <div class="main-block">
                                     <div class="sidebar-title white-txt">
                                         <h6>Choose Cusine</h6> <i class="fa fa-cutlery pull-right"></i> </div>
-                                    <div class="input-group">
-                                        <input type="text" class="form-control search-field" placeholder="Search your favorite food"> <span class="input-group-btn"> 
-                                 <button class="btn btn-secondary search-btn" type="button"><i class="fa fa-search"></i></button> 
-                                 </span> </div>
                                     <form>
                                         <ul>
                                             <li>
