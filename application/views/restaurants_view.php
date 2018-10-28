@@ -156,6 +156,7 @@
                            
                             <div class="bg-gray restaurant-entry">
                                 <?php
+                                if(!empty($rest)){
                                     foreach ($rest as $key){
                                         $im = '././images/restaurants/'.$key["image"];
                                         $ima = base_url().'images/restaurants/'.$key["image"];
@@ -164,31 +165,42 @@
                                         }
                                         echo'
                                         <div class="row">
-                                    <div class="col-sm-12 col-md-12 col-lg-8 text-xs-center text-sm-left">
-                                        <div class="entry-logo">
-                                            <a class="img-fluid" href="#"><img src="'.$ima.'" alt="Food logo"></a>
+                                            <div class="col-sm-12 col-md-12 col-lg-8 text-xs-center text-sm-left">
+                                                <div class="entry-logo">
+                                                    <a class="img-fluid" href="#"><img src="'.$ima.'" alt="Food logo"></a>
+                                                </div>
+                                                <!-- end:Logo -->
+                                                <div class="entry-dscr">
+                                                    <h5><a href="#">'.$key['restaurant_name'].'</a></h5> <span>'.$key['restaurant_address'].','.$key['restaurant_city'].'<a href="#">...</a></span>
+                                                    <ul class="list-inline">
+                                                        <li class="list-inline-item"><i class="fa fa-check"></i> Min $ 10,00</li>
+                                                        <li class="list-inline-item"><i class="fa fa-motorcycle"></i> 30 min</li>
+                                                    </ul>
+                                                </div>
+                                                <!-- end:Entry description -->
+                                            </div>
+                                            <div class="col-sm-12 col-md-12 col-lg-4 text-xs-center">
+                                                <div class="right-content bg-white">
+                                                    <div class="right-review">
+                                                        <div class="rating-block"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star-o"></i> </div>
+                                                        <p> 245 Reviews</p> <a href="profile.html" class="btn theme-btn-dash">View Menu</a> </div>
+                                                </div>
+                                                <!-- end:right info -->
+                                            </div>
                                         </div>
-                                        <!-- end:Logo -->
-                                        <div class="entry-dscr">
-                                            <h5><a href="#">'.$key['restaurant_name'].'</a></h5> <span>'.$key['restaurant_address'].','.$key['restaurant_city'].'<a href="#">...</a></span>
-                                            <ul class="list-inline">
-                                                <li class="list-inline-item"><i class="fa fa-check"></i> Min $ 10,00</li>
-                                                <li class="list-inline-item"><i class="fa fa-motorcycle"></i> 30 min</li>
-                                            </ul>
-                                        </div>
-                                        <!-- end:Entry description -->
-                                    </div>
-                                    <div class="col-sm-12 col-md-12 col-lg-4 text-xs-center">
-                                        <div class="right-content bg-white">
-                                            <div class="right-review">
-                                                <div class="rating-block"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star-o"></i> </div>
-                                                <p> 245 Reviews</p> <a href="profile.html" class="btn theme-btn-dash">View Menu</a> </div>
-                                        </div>
-                                        <!-- end:right info -->
-                                    </div>
-                                </div>
-                                <!--end:row -->';
-                                    
+                                        <!--end:row -->';
+                                    } //for close
+                                } //if close
+                                else{
+                                    echo'<div class="row">
+                                            <div class="col-sm-12 col-md-12 col-lg-8 text-xs-center text-sm-left">
+                                                <div class="entry-dscr">
+                                                    <h3>Sorry! No Restaurants found near to your Location</h3>
+                                                    <a href="'.base_url().'home">Try with another Location</a>
+                                                </div>
+                                                <!-- end:Entry description -->
+                                            </div>
+                                        </div>';
                                 }
                                 ?>
                                
