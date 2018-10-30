@@ -10,6 +10,7 @@ class Home extends REST_Controller
 		header("Access-Control-Request-Headers: *");
 		header("Access-Control-Allow-Headers: Origin, Content-type, X-Auth-Token, Authorization");
 		$this->load->model('super_admin/Main_model');
+		$this->load->model('api_models/Rest_model');
 	}	
 
 	public function main_sliders_post()
@@ -36,6 +37,26 @@ class Home extends REST_Controller
 			$i++;
 		}
 		$this->response($data, 200);
+	}
+
+	public function get_restaurants_post()
+	{
+		$data = $this->input->post();
+		$msg = "";
+		if($data['lat']==''){
+			$msg .= "Latitude, ";
+		}
+		if($data['lon']==''){
+			$msg .= "Longitude";
+		}  
+		if($msg != ""){
+			$result['status'] = false;
+			$result['message'] = $msg." Missing";
+		}else{
+			$result['status'] = true;
+			$result['message'] = $this->Rest_model->restaurants($data);
+		}
+		$this->response($result, 200);
 	}
 
 }
