@@ -10,6 +10,7 @@ class User extends REST_Controller
 		header("Access-Control-Request-Headers: *");
 		header("Access-Control-Allow-Headers: Origin, Content-type, X-Auth-Token, Authorization");
 		$this->load->model('User_model');
+		$this->load->model('api_models/Rest_model');
 	}	
    	
    	public function user_login_post()
@@ -40,9 +41,11 @@ class User extends REST_Controller
 		$this->form_validation->set_rules('mobile','Mobile','required|is_unique[user_registration.phone]|regex_match[/^[0-9]{10}$/]');
 		$this->form_validation->set_rules('password','Password','trim|required|min_length[6]');
 		$this->form_validation->set_rules('cpassword', 'Password Confirmation', 'trim|required|matches[password]');
+		$this->form_validation->set_rules('device_token', 'Device Token', 'trim|required');
 		$this->form_validation->set_error_delimiters('', '');
 		if($this->form_validation->run() == FALSE){
 			$data1['status'] = false;
+			$data1['message'] = "";
 			if(form_error('email')){
 				$data1['message'] .= form_error('email');
 			}
@@ -58,10 +61,14 @@ class User extends REST_Controller
 			if(form_error('cpassword')){
 				$data1['message'] .= " ".form_error('cpassword');
 			}
+			if(form_error('device_token')){
+				$data1['message'] .= " ".form_error('device_token');
+			}
 		}else{
-			if($this->User_model->user_register($user)){
+			$data = $this->Rest_model->user_register($user);
+			if($data['status']){
 				$data1['status'] = true;
-				$data1['message'] = 'Registration success.';
+				$data1['message'] = $data['data'];
 			}else{
 				$data1['status'] = false;
 				$data1['message'] = 'Registration Fail...Please try again.';
