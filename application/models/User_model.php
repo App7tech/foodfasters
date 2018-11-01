@@ -140,7 +140,8 @@ class User_model extends CI_Model{
 		$v1 = doubleval($post['lat']);
 		$v2 = doubleval($post['lon']);
 		$q=$this->db->query("select * , (6371 * acos( cos( radians($v1)) * cos( radians( Latitude ) ) * cos( radians( longitude ) - radians($v2))  + sin( radians($v1) ) * sin( radians( Latitude ) ) ) ) AS distance FROM  restaurant_add HAVING distance < 25 ORDER BY distance LIMIT 0 , 20");
-		$r=$q->result_array();
+		$r['data']=$q->result_array();
+		$r['num']=$q->num_rows();
 		return $r;
 	}
 }

@@ -33,7 +33,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-sm-3">
-                            <p><span class="primary-color"><strong>124</strong></span> Results so far </p>
+                            <p><span class="primary-color"><strong><?php if(isset($rest['num'])){echo $rest['num'];}else{ echo '0';}?></strong></span> Results so far </p>
                         </div>
                         <div class="col-sm-6">
                             <div class="input-group">
@@ -43,14 +43,14 @@
                                 </span> 
                             </div>
                         </div>
-                        <div class="col-sm-3">
+                        <!-- <div class="col-sm-3">
                             <select class="custom-select pull-right">
                                 <option selected>Open this select menu</option>
                                 <option value="1">One</option>
                                 <option value="2">Two</option>
                                 <option value="3">Three</option>
                             </select>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
@@ -58,7 +58,7 @@
             <section class="restaurants-page">
                 <div class="container">
                     <div class="row">
-                        <div class="col-xs-12 col-sm-5 col-md-5 col-lg-3">
+                        <!--<div class="col-xs-12 col-sm-5 col-md-5 col-lg-3">
                             <div class="sidebar clearfix m-b-20">
                                 <div class="main-block">
                                     <div class="sidebar-title white-txt">
@@ -90,7 +90,7 @@
                                     <div class="clearfix"></div>
                                 </div>
                                 <!-- end:Sidebar nav -->
-                                <div class="widget-delivery">
+                               <!-- <div class="widget-delivery">
                                     <form>
                                         <div class="col-xs-6 col-sm-12 col-md-6 col-lg-6">
                                             <label class="custom-control custom-radio">
@@ -105,7 +105,7 @@
                             </div>
                             <div class="widget clearfix">
                                 <!-- /widget heading -->
-                                <div class="widget-heading">
+                               <!-- <div class="widget-heading">
                                     <h3 class="widget-title text-dark">
                                  Price range
                               </h3>
@@ -118,9 +118,9 @@
                                 </div>
                             </div>
                             <!-- end:Pricing widget -->
-                            <div class="widget clearfix">
+                           <!-- <div class="widget clearfix">
                                 <!-- /widget heading -->
-                                <div class="widget-heading">
+                               <!-- <div class="widget-heading">
                                     <h3 class="widget-title text-dark">
                                  Popular tags
                               </h3>
@@ -150,13 +150,13 @@
                                 </div>
                             </div>
                             <!-- end:Widget -->
-                        </div>
-                        <div class="col-xs-12 col-sm-7 col-md-7 col-lg-9">
+                       <!-- </div>-->
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                            
                             <div class="bg-gray restaurant-entry">
                                 <?php
                                 if(!empty($rest)){
-                                    foreach ($rest as $key){
+                                    foreach ($rest['data'] as $key){
                                         $im = '././images/restaurants/'.$key["image"];
                                         $ima = base_url().'images/restaurants/'.$key["image"];
                                         if(!is_file($im)){
@@ -173,7 +173,8 @@
                                                     <h5><a href="#">'.$key['restaurant_name'].'</a></h5> <span>'.$key['restaurant_address'].','.$key['restaurant_city'].'<a href="#">...</a></span>
                                                     <ul class="list-inline">
                                                         <li class="list-inline-item"><i class="fa fa-check"></i> Min $ 10,00</li>
-                                                        <li class="list-inline-item"><i class="fa fa-motorcycle"></i> 30 min</li>
+                                                        <li class="list-inline-item"><i class="fa fa-clock-o"></i> 30 min</li>
+                                                        <li class="list-inline-item"><i class="fa fa-motorcycle"></i> '.ceil($key['distance']).'KM</li>
                                                     </ul>
                                                 </div>
                                                 <!-- end:Entry description -->

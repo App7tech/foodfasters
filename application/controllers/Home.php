@@ -22,6 +22,8 @@ class Home extends CI_Controller {
 		$this->load->model('User_model');
 		// print_r($this->User_model->user_res($post));exit();
 		if($restaurant['rest'] = $this->User_model->user_res($post)){
+			// echo "<pre>";
+			// print_r($restaurant['rest']['num']);exit();
 
 				$this->load->view('restaurants_view',$restaurant);
 		}else{
