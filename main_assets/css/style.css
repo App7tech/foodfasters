@@ -372,7 +372,7 @@ hr {
 }
 
 .navbar {
-    background-image: url("../images/menu-bg.jpg");
+    /*background-image: url("../images/menu-bg.jpg");*/
     padding: .95rem 1rem;
     border-radius: 0;
 }
@@ -975,10 +975,10 @@ How it works section
 -----------------------------------*/
 
 .how-it-works {
-    background-image: url(../images/city.png), url(../images/pattern.png);
+    /*background-image: url(../images/city.png), url(../images/pattern.png);*/
     background-repeat: repeat-x, repeat;
     background-position: bottom, center;
-    padding: 90px 0;
+    padding: 30px 0;
     position: relative;
 }
 
@@ -993,7 +993,7 @@ How it works section
 }
 
 .how-it-works .text-xs-center>h2 {
-    color: #d8bea5;
+    color: #000;
     margin-bottom: 50px;
 }
 
@@ -1023,7 +1023,7 @@ How it works section
 }
 
 .how-it-works h3 {
-    color: #fff
+    color: #000
 }
 
 
@@ -1067,8 +1067,8 @@ Steps
 .step .icon svg {
     display: inline-block;
     vertical-align: middle;
-    width: 34px;
-    height: 34px;
+    width: 90px;
+    height: 80px;
 }
 
 .how-it-works .step-2 {
