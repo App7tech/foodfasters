@@ -1432,7 +1432,7 @@ App section
 ============================*/
 
 footer {
-    background: url(../images/pattern.png)center repeat;
+    background-color: #000;
     padding: 50px 0 10px 0;
     z-index: 1;
     position: relative;
