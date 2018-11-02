@@ -53,9 +53,9 @@
                         <form class="form-inline">
                             <button onclick="getLocation()" type="button" class="btn theme-btn btn-lg"><i class="fa fa-map-marker"></i></button>
                             <div class="form-group">
-                                <label class="sr-only" for="exampleInputAmount">I would like to eat....</label>
+                                <label class="sr-only" for="exampleInputAmount">Enter your Location</label>
                                 <div class="form-group">
-                                    <input type="text" class="form-control form-control-lg" id="exampleInputAmount" placeholder="I would like to eat...."> </div>
+                                    <input type="text" class="form-control form-control-lg" id="exampleInputAmount" placeholder="Enter your Location" style="padding: .75rem 5.5rem !important;"> </div>
                             </div>
                             <button onclick="location.href='restaurants.html'" type="button" class="btn theme-btn btn-lg">Search food</button>
                         </form>
@@ -117,11 +117,11 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-xs-12 col-sm-3 add-title">
-                                <h4>Add Your Restaurant</h4> </div>
+                                <h4>Are you a Restaurant ?</h4> </div>
                             <div class="col-xs-12 col-sm-5 join-text">
-                                <p>Join the thousands of other restaurants who benefit from having their menus on <a href="#"><strong> Foodfasters directory</strong></a> </p>
+                                <p>Join the thousands of other restaurants who benefit from having their menus on <strong> Foodfasters </strong> </p>
                             </div>
-                            <div class="col-xs-12 col-sm-4 join-btn text-xs-right"><a href="#" class="btn theme-btn btn-lg">I‘m restaurant</a> </div>
+                            <div class="col-xs-12 col-sm-4 join-btn text-xs-right"><a href="#" class="btn theme-btn btn-lg">Join Us</a> </div>
                         </div>
                     </div>
                 </section>
@@ -138,8 +138,8 @@
                                 <figure> <img src="<?=base_url();?>/main_assets/images/app.png" alt="Right Image" class="img-fluid"> </figure>
                             </div>
                             <div class="col-xs-12 col-sm-7 left-text">
-                                <h3>The Best Food Delivery App</h3>
-                                <p>Now you can make food happen pretty much wherever you are thanks to the free easy-to-use Food Delivery &amp; Takeout App.</p>
+                                <h3>Foodfaster Delivery App</h3>
+                                <p>Now you can order your food in your favourate plateform with Live Tracking.</p>
                                 <div class="social-btns">
                                     <a href="#" class="app-btn apple-button clearfix">
                                         <div class="pull-left"><i class="fa fa-apple"></i> </div>
