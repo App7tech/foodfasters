@@ -2,6 +2,11 @@
 <html lang="en">
 
 <head>
+    <style type="text/css">
+        .navbar{
+            background-color: unset !important;
+        }
+    </style>
 	<?php include"includes/head.php" ?>	
 </head>
 
@@ -41,8 +46,8 @@
     <div class="site-wrapper animsition" data-animsition-in="fade-in" data-animsition-out="fade-out">
         <!--header starts-->
         <?php
-		include"includes/header.php";
-	?>
+                include"includes/header.php";
+        ?>
         <!-- banner part starts -->
         <section class="hero bg-image" data-image-src="https://images.pexels.com/photos/1095550/pexels-photo-1095550.jpeg?auto=compress&cs=tinysrgb&h=650&w=940">
             <div class="hero-inner">
@@ -50,14 +55,14 @@
                     <h1>Order your Food Online</h1>
                     <h5 class="font-white space-xs">Enter your delivery location to get restaurants</h5>
                     <div >
-                        <form class="form-inline">
+                        <form class="form-inline inl">
                             <button onclick="getLocation()" type="button" class="btn theme-btn btn-lg"><i class="fa fa-map-marker"></i></button>
                             <div class="form-group">
                                 <label class="sr-only" for="exampleInputAmount">Enter your Location</label>
                                 <div class="form-group">
-                                    <input type="text" class="form-control form-control-lg" id="exampleInputAmount" placeholder="Enter your Location" style="padding: .75rem 5.5rem !important;"> </div>
+                                    <input type="text" class="form-control form-control-lg" id="exampleInputAmount" placeholder="Enter your Location" > </div>
                             </div>
-                            <button onclick="location.href='restaurants.html'" type="button" class="btn theme-btn btn-lg">Search food</button>
+                            <button onclick="location.href='restaurants.html'" type="button" class="btn theme-btn btn-lg"><i class="fa fa-search"></i></button>
                         </form>
                     </div>
                    
@@ -129,40 +134,27 @@
             </div>
         </section>
         <!-- Featured restaurants ends -->
-        <section class="app-section">
-            <div class="app-wrap">
-                <div class="container">
-                    <div class="row text-img-block text-xs-left">
-                        <div class="container">
-                            <div class="col-xs-12 col-sm-5 right-image text-center">
-                                <figure> <img src="<?=base_url();?>/main_assets/images/app.png" alt="Right Image" class="img-fluid"> </figure>
-                            </div>
-                            <div class="col-xs-12 col-sm-7 left-text">
-                                <h3>Foodfaster Delivery App</h3>
-                                <p>Now you can order your food in your favourate plateform with Live Tracking.</p>
-                                <div class="social-btns">
-                                    <a href="#" class="app-btn apple-button clearfix">
-                                        <div class="pull-left"><i class="fa fa-apple"></i> </div>
-                                        <div class="pull-right"> <span class="text">Available on the</span> <span class="text-2">App Store</span> </div>
-                                    </a>
-                                    <a href="#" class="app-btn android-button clearfix">
-                                        <div class="pull-left"><i class="fa fa-android"></i> </div>
-                                        <div class="pull-right"> <span class="text">Available on the</span> <span class="text-2">Play store</span> </div>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+        
         <!-- start: FOOTER -->
         <?php include"includes/footer.php" ?>	
         <!-- end:Footer -->
     </div>
-    <!--/end:Site wrapper -->
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            var s = $("#header");
+            var pos = s.position();                    
+            $(window).scroll(function() {
+                var windowpos = $(window).scrollTop();
+                if (windowpos >= pos.top & windowpos <=10) {
+                    s.removeClass("c-black");
+                } else {
+                    s.addClass("c-black"); 
+                }
+            });
+        });
+    </script>
 	<?php include"includes/foot.php" ?>	
 </body>
 

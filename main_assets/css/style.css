@@ -372,7 +372,7 @@ hr {
 }
 
 .navbar {
-    /*background-image: url("../images/menu-bg.jpg");*/
+    background-color: #000;
     padding: .95rem 1rem;
     border-radius: 0;
 }
@@ -454,7 +454,7 @@ hr {
 }
 
 .link-item.active span {
-    background-color: #f30;
+    background-color: #000;
     color: #fff
 }
 
@@ -478,7 +478,7 @@ hr {
 }
 
 .links li:hover span {
-    background-color: #e8500e;
+    background-color: #000000;
     color: #fff
 }
 

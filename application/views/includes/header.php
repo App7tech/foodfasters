@@ -12,9 +12,22 @@
                             <li class="nav-item"> 
                                 <a class="nav-link" href="<?=base_url();?>Home/Restaurants">Restaurants <span class="sr-only">(current)</span></a> 
                             </li>
-                            <li class="nav-item"> 
-                                <a class="nav-link" href="<?=base_url();?>Home/Login">Login <span class="sr-only">(current)</span></a> 
-                            </li>
+                            <?php
+                                $e = $this->session->userdata('email');
+                                if($d = $e[0]['email']){
+                                    echo'
+                                    <li class="nav-item dropdown"> <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">MyAccount</a>
+                                        <div class="dropdown-menu"> <a class="dropdown-item" href="'.base_url().'Home/Profile">Profile</a> <a class="dropdown-item" href="'.base_url().'Home/Logout">Logout</a></div>
+                                    </li>
+                                    ';
+                                }else{
+                                    echo'
+                                    <li class="nav-item"> 
+                                        <a class="nav-link" href="'.base_url().'Home/Login">Login <span class="sr-only">(current)</span></a> 
+                                    </li>
+                                    ';
+                                }
+                            ?>
                             <li class="nav-item"> 
                                 <a class="nav-link" href="<?=base_url();?>Home/Contact">Contact <span class="sr-only">(current)</span></a> 
                             </li>
