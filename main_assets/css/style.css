@@ -982,7 +982,7 @@ How it works section
     position: relative;
 }
 
-.how-it-works:after {
+/*.how-it-works:after {
     position: absolute;
     right: 20px;
     top: -30px;
@@ -990,7 +990,7 @@ How it works section
     width: 150px;
     height: 51px;
     content: "";
-}
+}*/
 
 .how-it-works .text-xs-center>h2 {
     color: #000;
@@ -1135,7 +1135,7 @@ Steps
 /****** featured restaurants block *******/
 
 .featured-restaurants {
-    padding: 100px 0 20px;
+    /*padding: 100px 0 20px;*/
     position: relative;
 }
 
@@ -1152,7 +1152,7 @@ Steps
     }
 }
 
-.featured-restaurants:before {
+/*.featured-restaurants:before {
     position: absolute;
     top: -81px;
     left: 50px;
@@ -1161,7 +1161,7 @@ Steps
     height: 151px;
     content: "";
 }
-
+*/
 @media (min-width: 280px) and (max-width: 580px) {
     .featured-restaurants:before {
         display: none
