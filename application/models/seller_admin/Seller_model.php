@@ -103,16 +103,20 @@ class Seller_model extends CI_Model{
 		
 	public function getAllCategories()
 	{
+		$rest_id = $this->session->userdata('email');
 		$this->db->where('log_status <',4);
 		$this->db->where('log_active',1);
+		$this->db->where('restaurant_id',$rest_id[0]['id']);
 		$q = $this->db->get('category');
 		return $q->result_array();
 	}
 		
 	public function addNewCategory()
 	{
+		$rest_id = $this->session->userdata('email');
 		$catArray=array('category_name'=>$this->input->post('category_name'),
-						 'description'=>$this->input->post('description'),						 
+						 'description'=>$this->input->post('description'),
+						 'restaurant_id'=>$rest_id[0]['id'],						 
 						 'log_datetime'=>date('Y-m-d H:i:s')
 						);
 			$query = $this->db->insert('category',$catArray);			
@@ -140,19 +144,23 @@ class Seller_model extends CI_Model{
 		
 	public function getAllProducts()
 	{
+		$rest_id = $this->session->userdata('email');
 		$this->db->where('log_status <',3);
 		$this->db->where('log_active',1);
+		$this->db->where('restaurant_id',$rest_id[0]['id']);
 		$q = $this->db->get('products');
 		return $q->result_array();
 	}
 	
 	public function addNewProduct()
 	{
+		$rest_id = $this->session->userdata('email');
 		$prodArray=array('product_name'=>$this->input->post('product_name'),
 						 'product_description'=>$this->input->post('product_description'),
 						 'price'=>$this->input->post('price'),
 						 'selling_price'=>$this->input->post('selling_price'),
-						 'category'=>$this->input->post('category'),
+						 'category_id'=>$this->input->post('category'),
+						 'restaurant_id'=>$rest_id[0]['id'],
 						 'log_datetime'=>date('Y-m-d H:i:s')
 						);
 		if(!empty($_FILES['product_image']['name'])){

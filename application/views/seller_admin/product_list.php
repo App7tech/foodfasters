@@ -75,10 +75,11 @@
           	<?php 
           		foreach($productArray as $product){
                   
+                    $ima = '././images/products/'.$product["product_image"];
 					$im = base_url().'images/products/'.$product["product_image"];
 					
-                    if(!is_file($im)){
-                        $im = base_url().'images/restaurants/placeholder.jpg';
+                    if(!is_file($ima)){
+                       $im = base_url().'images/restaurants/placeholder.jpg';
                     }
           			?>
           			<div class="col-md-3" style="padding-top: 5px;">

@@ -189,11 +189,7 @@ class Seller_admin extends CI_Controller {
 		$this->form_validation->set_rules('price','Price','required|numeric');
 		$this->form_validation->set_rules('selling_price','Selling Price','required|numeric');
 		$this->form_validation->set_rules('category','Category','required');
-		
-		if (empty($_FILES['product_image']['name']))
-		{
-			$this->form_validation->set_rules('product_image','Product Image','required');
-		}
+
 		if($this->form_validation->run() == FALSE){
 			$this->load->view('seller_admin/add_product');
 		}else{		
