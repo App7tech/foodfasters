@@ -409,6 +409,24 @@ class Super_admin extends CI_Controller
             redirect('su_DeliveryBoys');
         }
     }
+	
+	public function restaurantRequests()
+	{
+		$data['resReqData']=$this->Main_model->getRestaurantReqs();
+		$this->load->view('super_admin/restaurant-request-list', $data);
+	}
+	
+	public function changeReqStatus($resReqId,$status)
+	{
+		$opnStatus=$this->Main_model->changeReqStatus($resReqId,$status);
+		if($opnStatus=="success")
+		{
+			redirect('restaurantRequests');
+		}else{
+			echo "unable to change status";
+			}		
+	}
+	
 
     public function imageUpload($path, $fileName)
     {

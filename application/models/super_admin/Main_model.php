@@ -438,8 +438,30 @@ class Main_model extends CI_Model
 	
 	}
 	
+	public function getRestaurantReqs()
+	{
+		$this->db->where('log_status <', 3);
+        $q = $this->db->get('restaurant_request');
+        return $q->result_array();
+	}
 	
-
+	public function changeReqStatus($resReqId,$status)
+	{
+		$data = array('log_status' => 2, 'log_datetime' => date('Y-m-d H:i:s'));
+		if($status==1){
+			$data['log_active']=0;
+		}else{
+			$data['log_active']=1;
+		}
+        $this->db->where('res_req_id', $resReqId);
+        $q = $this->db->update('restaurant_request', $data);
+        if ($q) {
+            return "success";
+        } else {
+            return "fail";
+        }
+	}
+	
     public function imageUpload($path, $fileName)
     {
         $config['upload_path'] = $path;

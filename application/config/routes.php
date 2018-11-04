@@ -79,6 +79,7 @@ $route['su_slider_add'] = 'super_admin/slider_add';
 $route['su_banners'] = 'super_admin/banners';
 $route['su_banner_add'] = 'super_admin/banner_add';
 $route['su_logout'] = 'Super_admin/logout';
+$route['restaurantRequests'] = 'Super_admin/restaurantRequests';
 
 //seller admin routes
 $route['se_dashboard'] = 'Seller_admin/dashboard';

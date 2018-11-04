@@ -317,7 +317,7 @@ class Home extends CI_Controller {
 			 if($status['status']){
 				 $err = 'Registration success.';
 				 $this->session->set_flashdata('login_error', $err);
-				 redirect('Home/login');
+				 redirect('Home');
 			 }else{
 				 $err = 'Registration Fail...Please try again.';
 				 $this->session->set_flashdata('login_error', $err);
