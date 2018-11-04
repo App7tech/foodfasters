@@ -298,5 +298,5 @@ class Home extends CI_Controller {
 	//==== for display food/restuarent results===//
 	// public function food_results(){
 	// 	$post = $this->input->post();
-	}
+	// }
 }
