@@ -117,7 +117,7 @@
                               </div>
 							  <div class="row clearfix">
                                   <div class="col-sm-6">
-                                  		<span style="font-size: 12px;font-weight: 400;">Product Image *</span>
+                                  		<span style="font-size: 12px;font-weight: 400;">Product Image</span>
                                       <div class="form-group form-float">
                                           <div class="form-line">
                                               <input type="file" class="form-control" name="product_image" >

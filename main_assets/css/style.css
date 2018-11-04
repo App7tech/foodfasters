@@ -27,7 +27,7 @@ Contact: info@codenpixel.com
 */
 
 body {
-    background: rgba(252, 251, 249, 0.68);
+    background: #fff;
     font-size: 16px;
     color: #4d4f56;
     font-weight: 400;
@@ -206,9 +206,9 @@ hr {
 }
 
 .theme-btn {
-    background-color: #f30;
-    border-color: #f30;
-    color: #fff
+    background-color: #fff;
+    border-color: #fff;
+    color: #000
 }
 
 .theme-btn-dash {
@@ -221,9 +221,9 @@ hr {
 .theme-btn,
 .theme-btn.btn-lg:hover,
 .btn-secondary:hover {
-    background-color: #f30;
-    color: #fff;
-    border: 1px solid #f30
+    background-color: #fff;
+    color: #000;
+    border: 1px solid #fff
 }
 
 .theme-btn-dash:hover {
@@ -372,7 +372,7 @@ hr {
 }
 
 .navbar {
-    background-image: url("../images/menu-bg.jpg");
+    background-color: #000;
     padding: .95rem 1rem;
     border-radius: 0;
 }
@@ -454,7 +454,7 @@ hr {
 }
 
 .link-item.active span {
-    background-color: #f30;
+    background-color: #000;
     color: #fff
 }
 
@@ -478,7 +478,7 @@ hr {
 }
 
 .links li:hover span {
-    background-color: #e8500e;
+    background-color: #000000;
     color: #fff
 }
 
@@ -975,14 +975,14 @@ How it works section
 -----------------------------------*/
 
 .how-it-works {
-    background-image: url(../images/city.png), url(../images/pattern.png);
+    /*background-image: url(../images/city.png), url(../images/pattern.png);*/
     background-repeat: repeat-x, repeat;
     background-position: bottom, center;
-    padding: 90px 0;
+    padding: 30px 0;
     position: relative;
 }
 
-.how-it-works:after {
+/*.how-it-works:after {
     position: absolute;
     right: 20px;
     top: -30px;
@@ -990,10 +990,10 @@ How it works section
     width: 150px;
     height: 51px;
     content: "";
-}
+}*/
 
 .how-it-works .text-xs-center>h2 {
-    color: #d8bea5;
+    color: #000;
     margin-bottom: 50px;
 }
 
@@ -1023,7 +1023,7 @@ How it works section
 }
 
 .how-it-works h3 {
-    color: #fff
+    color: #000
 }
 
 
@@ -1055,7 +1055,7 @@ Steps
     width: 32px;
     height: 32px;
     line-height: 38px;
-    background-color: #f30;
+    background-color: #000;
     border-radius: 50%;
     font-size: 1.5em;
     font-family: "Give You Glory", cursive;
@@ -1067,8 +1067,8 @@ Steps
 .step .icon svg {
     display: inline-block;
     vertical-align: middle;
-    width: 34px;
-    height: 34px;
+    width: 90px;
+    height: 80px;
 }
 
 .how-it-works .step-2 {
@@ -1135,7 +1135,7 @@ Steps
 /****** featured restaurants block *******/
 
 .featured-restaurants {
-    padding: 100px 0 20px;
+    /*padding: 100px 0 20px;*/
     position: relative;
 }
 
@@ -1152,7 +1152,7 @@ Steps
     }
 }
 
-.featured-restaurants:before {
+/*.featured-restaurants:before {
     position: absolute;
     top: -81px;
     left: 50px;
@@ -1161,7 +1161,7 @@ Steps
     height: 151px;
     content: "";
 }
-
+*/
 @media (min-width: 280px) and (max-width: 580px) {
     .featured-restaurants:before {
         display: none
@@ -1315,7 +1315,7 @@ App section
 .app-section:after {
     content: "";
     background: url(../images/city-2.png) center bottom;
-    background-color: #f30;
+    background-color: #fff;
     display: block;
     position: absolute;
     top: 100px;
@@ -1348,7 +1348,7 @@ App section
 
 .app-wrap .left-text h3,
 .app-wrap .left-text p {
-    color: #fff;
+    color: #000;
 }
 
 
@@ -1360,11 +1360,11 @@ App section
     color: #FFFFFF;
     float: left;
     margin-right: 15px;
-    background: #81858b;
+    background: #000;
     margin-top: 5px;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
-    border-radius: 2px;
+    border-radius: 5px;
     transition: all .3s;
 }
 
@@ -1389,7 +1389,6 @@ App section
 .app-btn:active,
 .app-btn:focus {
     color: #FFFFFF;
-    background: #111111;
 }
 
 .android-button {
@@ -1433,7 +1432,7 @@ App section
 ============================*/
 
 footer {
-    background: url(../images/pattern.png)center repeat;
+    background-color: #000;
     padding: 50px 0 10px 0;
     z-index: 1;
     position: relative;
