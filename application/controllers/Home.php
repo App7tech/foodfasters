@@ -294,6 +294,38 @@ class Home extends CI_Controller {
 			
 		}
 	}
+	
+	public function restaurantRequest()
+	{
+		$this->load->view('restaurant_request'); // request to place a new restaurant.
+	}
+	
+	public function addNewRestaurantReqest(){
+		$this->load->model('super_admin/Main_model');
+		
+		$this->form_validation->set_rules('contact_email', 'Email', 'required|valid_email|is_unique[restaurant_request.contact_email]');
+		$this->form_validation->set_rules('restaurant_name','Restaurant Name','required');
+		$this->form_validation->set_rules('contact_name','Contact Person Name','required');
+		$this->form_validation->set_rules('contact_address','Restaurant Address','required');
+		$this->form_validation->set_rules('contact_mobile','Mobile','required|is_unique[restaurant_request.contact_mobile]|regex_match[/^[0-9]{10}$/]');
+		$this->form_validation->set_error_delimiters('<div style="color:red">', '</div>');
+		if($this->form_validation->run() == FALSE){
+			$this->load->view('restaurant_request');
+		}else{
+			$status=$this->Main_model->addNewRestaurantReqest();
+			
+			 if($status['status']){
+				 $err = 'Registration success.';
+				 $this->session->set_flashdata('login_error', $err);
+				 redirect('Home/login');
+			 }else{
+				 $err = 'Registration Fail...Please try again.';
+				 $this->session->set_flashdata('login_error', $err);
+				 $this->load->view('restaurant_request');
+			}
+		}
+
+	}
 
 	//==== for display food/restuarent results===//
 	public function food_results(){
