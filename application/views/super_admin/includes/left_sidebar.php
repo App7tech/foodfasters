@@ -72,6 +72,12 @@
                 </ul>
             </li>
             <li class="treeview">
+                <a href="<?= base_url(); ?>restaurantRequests">
+                    <i class="icon icon-users text-lime s-18"></i>
+                    <span>Requests</span>
+                </a>
+            </li>
+			<li class="treeview">
                 <a href="<?= base_url(); ?>su_users">
                     <i class="icon icon-users text-lime s-18"></i>
                     <span>Users</span>
