@@ -144,5 +144,13 @@ class User_model extends CI_Model{
 		$r['num']=$q->num_rows();
 		return $r;
 	}
+	//=============for fetching food/rstuarants results=======//
+	public function food($post){
+		$this->db->select('*');
+		$this->db->form('products');
+		$this->db->like('product_name',$post['name']);
+		$qiery = $this->db->get();
+		return $result = $query->result_array();
+	}
 }
 ?>
