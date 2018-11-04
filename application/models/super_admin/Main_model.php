@@ -303,7 +303,7 @@ class Main_model extends CI_Model
         }
 
         //code for email to send Delivery Boy login details.
-        $message = "Please find bellow Details for login to your restaurant, if you want to reset your password please login with this details and change.<br>
+        $message = "Please find bellow Details for login, if you want to reset your password please login with this details and change.<br>
 		Username : " . $this->input->post('dboy_name') . "<br>Password: " . $password;
         $subject = "Delivery Boy Login Details";
         $to = $this->input->post('dboy_email');
@@ -340,7 +340,6 @@ class Main_model extends CI_Model
         $q = $this->db->get('delivery_boys');
         return $q->result_array();
     }
-
     public function updateDeliveryBoy($dboyId)
     {
         $dboyArray = array('dboy_name' => $this->input->post('dboy_name'),
@@ -393,6 +392,53 @@ class Main_model extends CI_Model
             return "fail";
         }
     }
+	
+	/*=======================================Restaurant Requests	=========================================*/
+	public function addNewRestaurantReqest()
+	{
+		
+        $reqArray = array('contact_name' => $this->input->post('contact_name'),
+						   'restaurant_name' => $this->input->post('restaurant_name'),
+						   'contact_email' => $this->input->post('contact_email'),
+						   'contact_mobile' => $this->input->post('contact_mobile'),
+						   'contact_address' => $this->input->post('contact_address'),
+						   'message' => $this->input->post('message'),
+						   'log_datetime' => date('Y-m-d H:i:s')
+						);
+
+        
+        //code for email to send Delivery Boy login details.
+        $message = "Thank You For Your Interest In FOod Fasters..<br> Your Request to place Restaurant is recieved, Food fasters admin will contact you shortly .<br>";
+        $subject = "New Restaurant Request";
+        $to = $this->input->post('dboy_email');
+
+        $headers = "From: info@foodfasters.com\r\n";
+
+        $headers .= "Content-Type: text/html; charset=iso-8859-1\r\n";
+        $headers .= "Content-Transfer-Encoding: 8bit\r\n";
+        $query = $this->db->insert('restaurant_request', $reqArray);
+        $id = $this->db->insert_id();
+        $msg['status'] = false;
+        if ($query) {
+            if (mail($to, $subject, $message, $headers)) {
+                $msg['message'] = 'Restaurant Request details Sent to mail';
+                $msg['last_id'] = $id;
+                $msg['status'] = true;
+                $msg['message'] = "Restaurant Request Raised Successfully";
+                return $msg;
+            } else {
+                $msg['message'] = 'Mail sent fail';
+                return $msg;
+            }
+        } else {
+            $msg['message'] = 'Fail to insert Restaurant Request.';
+            return $msg;
+        }
+        return $msg;
+	
+	}
+	
+	
 
     public function imageUpload($path, $fileName)
     {
