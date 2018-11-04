@@ -34,7 +34,7 @@
                             <p><span class="primary-color"><strong><?php if(isset($rest['num'])){echo $rest['num'];}else{ echo '0';}?></strong></span> Results so far </p>
                         </div>
                         <div class="col-sm-6">
-                            <form action="<?=base_url();?>/Home/food_results" method="post">
+                            <form action="<?=base_url();?>results" method="post">
                             <div class="input-group">
                                 <input type="text" class="form-control search-field" placeholder="Search your Restaurant / Favourite Food" name="name"> 
                                 <span class="input-group-btn"> 
@@ -43,14 +43,13 @@
                             </div>
                         </form>
                         </div>
-                        <!-- <div class="col-sm-3">
+                        <div class="col-sm-3">
                             <select class="custom-select pull-right">
-                                <option selected>Open this select menu</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
+                                <option selected>Restaurants</option>
+                                <option value="1">Food</option>
+                                
                             </select>
-                        </div> -->
+                        </div>
                     </div>
                 </div>
             </div>

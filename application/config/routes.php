@@ -55,6 +55,7 @@ $route['translate_uri_dashes'] = FALSE;
 
 //main page routes
 $route['super_admin'] = 'Home/super_admin';
+$route['results'] = 'Home/food_results';
 $route['super_admin_valid'] = 'Home/super_admin_valid';
 $route['seller_admin'] = 'Home/seller_admin';
 $route['seller_admin_valid'] = 'Home/seller_admin_valid';
