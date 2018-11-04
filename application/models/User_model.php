@@ -146,11 +146,22 @@ class User_model extends CI_Model{
 	}
 	//=============for fetching food/rstuarants results=======//
 	public function food($post){
+		
+		$this->db->select('*');
+		$this->db->from('restaurant_add');
+		$this->db->like('restaurant_name',$post['name']);
+		$query = $this->db->get();
+		$restaurent = $query->result_array();
+		echo "<pre>";
+
+		print_r($restaurent);
+		exit();
+
 		$this->db->select('*');
 		$this->db->form('products');
 		$this->db->like('product_name',$post['name']);
 		$qiery = $this->db->get();
-		return $result = $query->result_array();
+		return $food = $query->result_array();
 	}
 }
 ?>
