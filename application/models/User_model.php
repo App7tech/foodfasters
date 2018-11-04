@@ -140,28 +140,50 @@ class User_model extends CI_Model{
 		$v1 = doubleval($post['lat']);
 		$v2 = doubleval($post['lon']);
 		$q=$this->db->query("select * , (6371 * acos( cos( radians($v1)) * cos( radians( Latitude ) ) * cos( radians( longitude ) - radians($v2))  + sin( radians($v1) ) * sin( radians( Latitude ) ) ) ) AS distance FROM  restaurant_add HAVING distance < 25 ORDER BY distance LIMIT 0 , 20");
-		$r['data']=$q->result_array();
+		$r['restaurant'] = $q->result_array();
+		$r['products'] = array();
 		$r['num']=$q->num_rows();
+		// echo "<pre>";
+		// print_r($r);
+		// exit();
 		return $r;
 	}
 	//=============for fetching food/rstuarants results=======//
 	public function food($post){
-		
-		$this->db->select('*');
-		$this->db->from('restaurant_add');
-		$this->db->like('restaurant_name',$post['name']);
-		$query = $this->db->get();
-		$restaurent = $query->result_array();
-		echo "<pre>";
-
-		print_r($restaurent);
-		exit();
+		$name = $post['name'];
+		$v1 = 17.5020354;
+		$v2 = 78.4731573;
+		$like = "%".$name."%";
+		$q=$this->db->query("select * , (6371 * acos( cos( radians($v1)) * cos( radians( Latitude ) ) * cos( radians( longitude ) - radians($v2))  + sin( radians($v1) ) * sin( radians( Latitude ) ) ) ) AS distance FROM  restaurant_add  WHERE restaurant_name LIKE '$like' HAVING distance < 25 ORDER BY distance LIMIT 0 , 20");
+		$data['restaurant'] = $q->result_array();
+		$data['num']=$q->num_rows();
+		// echo "<pre>";
 
 		$this->db->select('*');
-		$this->db->form('products');
+		$this->db->from('products');
 		$this->db->like('product_name',$post['name']);
-		$qiery = $this->db->get();
-		return $food = $query->result_array();
+		$query = $this->db->get();
+		$food = $query->result_array();
+
+		$i = 0;
+		foreach($food as $foo){
+			$rest_id = $foo['restaurant_id'];
+			$q=$this->db->query("select * , (6371 * acos( cos( radians($v1)) * cos( radians( Latitude ) ) * cos( radians( longitude ) - radians($v2))  + sin( radians($v1) ) * sin( radians( Latitude ) ) ) ) AS distance FROM  restaurant_add WHERE id = '$rest_id' HAVING distance < 25 ORDER BY distance LIMIT 0 , 20");
+			$f_rest = $q->result_array();
+			//if not = empty array take product
+			if(!empty($f_rest)){
+				$data['products'][$i] = $foo;
+				$data['products'][$i]['restaurant_name'] = $f_rest[0]['restaurant_name'];
+				$data['products'][$i]['restaurant_address'] = $f_rest[0]['restaurant_address'];
+				$data['products'][$i]['Latitude'] = $f_rest[0]['Latitude'];
+				$data['products'][$i]['longitude'] = $f_rest[0]['longitude'];
+				$data['products'][$i]['distance'] = $f_rest[0]['distance'];
+			}
+			$i++;
+		}
+		return $data;
+
+
 	}
 }
 ?>

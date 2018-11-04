@@ -34,14 +34,14 @@
                             <p><span class="primary-color"><strong><?php if(isset($rest['num'])){echo $rest['num'];}else{ echo '0';}?></strong></span> Results so far </p>
                         </div>
                         <div class="col-sm-6">
-                            <form action="<?=base_url();?>Home/food_results" method="post">
-                                <div class="input-group">
-                                    <input type="text" class="form-control search-field" placeholder="Search your Restaurant / Favourite Food" name="name"> 
-                                    <span class="input-group-btn"> 
-                                        <button class="btn btn-secondary search-btn" type="button"><i class="fa fa-search" style="font-size: 17px !important;margin: 0px !important;"></i></button> 
-                                    </span> 
-                                </div>
-                            </form>
+                            <form action="<?=base_url();?>/Home/food_results" method="post">
+                            <div class="input-group">
+                                <input type="text" class="form-control search-field" placeholder="Search your Restaurant / Favourite Food" name="name"> 
+                                <span class="input-group-btn"> 
+                                    <button class="btn btn-secondary search-btn" type="submit"><i class="fa fa-search" style="font-size: 17px !important;margin: 0px !important;"></i></button> 
+                                </span> 
+                            </div>
+                        </form>
                         </div>
                         <!-- <div class="col-sm-3">
                             <select class="custom-select pull-right">
@@ -156,7 +156,7 @@
                             <div class="bg-gray restaurant-entry">
                                 <?php
                                 if(!empty($rest)){
-                                    foreach ($rest['data'] as $key){
+                                    foreach ($rest['restaurant'] as $key){
                                         $im = '././images/restaurants/'.$key["image"];
                                         $ima = base_url().'images/restaurants/'.$key["image"];
                                         if(!is_file($im)){
