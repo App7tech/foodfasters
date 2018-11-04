@@ -328,7 +328,11 @@ class Home extends CI_Controller {
 	}
 
 	//==== for display food/restuarent results===//
-	// public function food_results(){
-	// 	$post = $this->input->post();
-	// }
+	public function food_results(){
+		// echo "ok";
+		$post = $this->input->post();
+		// echo $post['name'];exit();
+		$this->load->model('User_model');
+		$this->User_model->food($post);
+	}
 }
