@@ -139,20 +139,21 @@ class User_model extends CI_Model{
 	function user_res($post){
 		$v1 = doubleval($post['lat']);
 		$v2 = doubleval($post['lon']);
+		//get post values by session
 		$q=$this->db->query("select * , (6371 * acos( cos( radians($v1)) * cos( radians( Latitude ) ) * cos( radians( longitude ) - radians($v2))  + sin( radians($v1) ) * sin( radians( Latitude ) ) ) ) AS distance FROM  restaurant_add HAVING distance < 25 ORDER BY distance LIMIT 0 , 20");
 		$r['restaurant'] = $q->result_array();
 		$r['products'] = array();
 		$r['num']=$q->num_rows();
-		// echo "<pre>";
-		// print_r($r);
-		// exit();
 		return $r;
 	}
 	//=============for fetching food/rstuarants results=======//
 	public function food($post){
 		$name = $post['name'];
-		$v1 = 17.5020354;
-		$v2 = 78.4731573;
+		// $v1 = 17.5020354;
+		// $v2 = 78.4731573;
+		
+		$v1 = $this->session->userdata('lat');
+		$v2 = $this->session->userdata('long'); 
 		$like = "%".$name."%";
 		$q=$this->db->query("select * , (6371 * acos( cos( radians($v1)) * cos( radians( Latitude ) ) * cos( radians( longitude ) - radians($v2))  + sin( radians($v1) ) * sin( radians( Latitude ) ) ) ) AS distance FROM  restaurant_add  WHERE restaurant_name LIKE '$like' HAVING distance < 25 ORDER BY distance LIMIT 0 , 20");
 		$data['restaurant'] = $q->result_array();

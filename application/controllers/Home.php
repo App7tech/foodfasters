@@ -12,13 +12,19 @@ class Home extends CI_Controller {
 	public function index(){
 		$this->load->view('home_view');
 	}
-	
+
 	public function restaurants(){
 		$this->load->view('restaurants_view');
 	}
 
 	function display_res(){
 		$post = $this->input->post();
+		$v1 = doubleval($post['lat']);
+		$v2 = doubleval($post['lon']);
+		$this->session->set_userdata('lat',$v1);
+		$this->session->set_userdata('long',$v2);
+
+		//put post in session
 		$this->load->model('User_model');
 		// print_r($this->User_model->user_res($post));exit();
 		if($restaurant['rest'] = $this->User_model->user_res($post)){

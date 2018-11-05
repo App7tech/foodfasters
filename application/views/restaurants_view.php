@@ -44,9 +44,9 @@
                         </form>
                         </div>
                         <div class="col-sm-3">
-                            <select class="custom-select pull-right">
-                                <option selected>Restaurants</option>
-                                <option value="1">Food</option>
+                            <select class="custom-select pull-right" id="froption">
+                                <option  value="restaurant" onclick="restaurantsel()">Restaurants</option>
+                                <option  value="food" id="foodsel">Food</option>
                                 
                             </select>
                         </div>
@@ -150,15 +150,15 @@
                             </div>
                             <!-- end:Widget -->
                        <!-- </div>-->
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" id="restaurantDiv">
                            
                             <div class="bg-gray restaurant-entry">
                                 <?php
-                                if(!empty($rest)){
+                                if(!empty($rest['restaurant'])){
                                     foreach ($rest['restaurant'] as $key){
                                         $im = '././images/restaurants/'.$key["image"];
-                                        $ima = base_url().'images/restaurants/'.$key["image"];
-                                        if(!is_file($im)){
+                                        $ima = base_url().'/images/restaurants/'.$key["image"];
+                                        if(!is_file($ima)){
                                             $ima = base_url().'images/restaurants/placeholder.jpg';
                                         }
                                         echo'
@@ -206,6 +206,64 @@
                             </div>
                             <!-- end:Restaurant entry -->
                         </div>
+                        <!-- for food list start-->
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" id="foodDiv">
+                           
+                            <div class="bg-gray restaurant-entry">
+                                <?php
+                                if(!empty($rest['products'])){
+                                    foreach ($rest['products'] as $key){
+                                        $im = '././images/products/'.$key["product_image"];
+                                        $ima = base_url().'images/products/'.$key["product_image"];
+                                        if(!is_file($im)){
+                                            
+                                            $ima = base_url().'images/restaurants/placeholder.jpg';
+                                        }
+                                        echo'
+                                        <div class="row">
+                                            <div class="col-sm-12 col-md-12 col-lg-8 text-xs-center text-sm-left">
+                                                <div class="entry-logo">
+                                                    <a class="img-fluid" href="#"><img src="'.$ima.'" alt="Food logo"></a>
+                                                </div>
+                                                <!-- end:Logo -->
+                                                <div class="entry-dscr">
+                                                    <h5><a href="#">'.$key['product_name'].'</a></h5> <span>'.$key['restaurant_address'].','.$key['restaurant_address'].'<a href="#">...</a></span>
+                                                    <ul class="list-inline">
+                                                        <li class="list-inline-item"><i class="fa fa-check"></i> $'.$key['selling_price'].'</li>
+                                                        <li class="list-inline-item"><i class="fa fa-clock-o"></i> 30 min</li>
+                                                        <li class="list-inline-item"><i class="fa fa-motorcycle"></i> '.ceil($key['distance']).'KM</li>
+                                                    </ul>
+                                                </div>
+                                                <!-- end:Entry description -->
+                                            </div>
+                                            <div class="col-sm-12 col-md-12 col-lg-4 text-xs-center">
+                                                <div class="right-content bg-white">
+                                                    <div class="right-review">
+                                                        <div class="rating-block"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star-o"></i> </div>
+                                                        <p> 245 Reviews</p> <a href="profile.html" class="btn theme-btn-dash">View Menu</a> </div>
+                                                </div>
+                                                <!-- end:right info -->
+                                            </div>
+                                        </div>
+                                        <!--end:row -->';
+                                    } //for close
+                                } //if close
+                                else{
+                                    echo'<div class="row">
+                                            <div class="col-sm-12 col-md-12 col-lg-8 text-xs-center text-sm-left">
+                                                <div class="entry-dscr">
+                                                    <h3>Please serach food...</a>
+                                                </div>
+                                                <!-- end:Entry description -->
+                                            </div>
+                                        </div>';
+                                }
+                                ?>
+                               
+                            </div>
+                            <!-- end:Restaurant entry -->
+                        </div>
+                        <!-- close food list here-->
                     </div>
                 </div>
             </section>
@@ -232,6 +290,23 @@
         }
     });
 </script> -->
+<script>
+    $(document).ready(function(){
+        //alert('ok');
+        $('#foodDiv').hide();
+        $('#froption').change(function(){
+            var v = this.value;
+            if(v == 'restaurant'){
+                $('#restaurantDiv').show();
+                $('#foodDiv').hide();
+            }
+           if(v == 'food'){
+                $('#restaurantDiv').hide();
+                $('#foodDiv').show();
+            }
+        });
+    });
+</script>
 </body>
 
 
