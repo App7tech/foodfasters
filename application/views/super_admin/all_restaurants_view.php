@@ -88,9 +88,9 @@
 				                    <span class="badge badge-primary float-right">'.$rest['status'].'</span>
 				                </h5>
 			                    <p class="card-text">'.$rest['restaurant_address'].', '.$rest['restaurant_city'].', '.$rest['restaurant_state'].'</p>
-			                    <a href="su_srestaurant/'.$rest['id'].'" class="badge badge-primary">View</a>
-			                    <a href="su_erestaurant/'.$rest['id'].'" class="badge badge-primary">Edit</a>
-			                    <a href="su_drestaurant/'.$rest['id'].'" class="badge badge-primary">Delete</a>
+			                    <a href="su_srestaurant/'.$rest['restaurant_id'].'" class="badge badge-primary">View</a>
+			                    <a href="su_erestaurant/'.$rest['restaurant_id'].'" class="badge badge-primary">Edit</a>
+			                    <a href="su_drestaurant/'.$rest['restaurant_id'].'" class="badge badge-primary">Delete</a>
 			                </div>
 			            </div>
 			        </div>
