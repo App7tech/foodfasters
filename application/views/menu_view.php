@@ -25,16 +25,25 @@
                <div class="profile">
                   <div class="container">
                      <div class="row">
+                        <?php 
+                        foreach ($rest['restaurant'] as $restaurant) {
+                           // print_r($result);exit();
+                            $im = '././images/restaurants/'.$restaurant["image"];
+                            $ima = base_url().'/images/restaurants/'.$restaurant["image"];
+                            if(!is_file($im)){
+                                $ima = base_url().'images/restaurants/placeholder.jpg';
+                            }
+                        echo'
                         <div class="col-xs-12 col-sm-12  col-md-4 col-lg-4 profile-img">
                            <div class="image-wrap">
-                              <figure><img src="<?=base_url();?>main_assets/images/profile-image.jpg" alt="Profile Image"></figure>
+                              <figure><img src="'.$ima.'" alt="Profile Image"></figure>
                            </div>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 profile-desc">
                            <div class="pull-left right-text white-txt">
-                              <h6><a href="#">Maenaam Thai Restaurant</a></h6>
+                              <h6><a href="#">'.$restaurant['restaurant_name'].'</a></h6>
                               <a class="btn btn-small btn-green">Open</a>
-                              <p>Burgers, American, Sandwiches, Fast Food, BBQ</p>
+                              <p>'.$restaurant['restaurant_address'].','.$restaurant['restaurant_city'].','.$restaurant['restaurant_state'].'</p>
                               <ul class="nav nav-inline">
                                  <li class="nav-item"> <a class="nav-link active" href="#"><i class="fa fa-check"></i> Min $ 10,00</a> </li>
                                  <li class="nav-item"> <a class="nav-link" href="#"><i class="fa fa-motorcycle"></i> 30 min</a> </li>
@@ -50,7 +59,10 @@
                               </ul>
                            </div>
                         </div>
-                     </div>
+                     
+                     </div>';
+                     }
+                     ?>
                   </div>
                </div>
             </section>
@@ -165,82 +177,37 @@
                            <div class="clearfix"></div>
                         </div>
                         <div class="collapse in" id="1">
-                           <div class="food-item white">
+                           <?php 
+                           foreach ($rest['food'] as $food) {
+                              $im = '././images/products/'.$food["product_image"];
+                               $ima = base_url().'images/products/'.$food["product_image"];
+                               if(!is_file($im)){
+                                   
+                                   $ima = base_url().'images/restaurants/placeholder.jpg';
+                               }
+                           echo'<div class="food-item white">
                               <div class="row">
                                  <div class="col-xs-12 col-sm-12 col-lg-8">
                                     <div class="rest-logo pull-left">
-                                       <a class="restaurant-logo pull-left" href="#"><img src="<?=base_url();?>main_assets/images/food4.jpg" alt="Food logo"></a>
+                                       <a class="restaurant-logo pull-left" href="#"><img src="'.$ima.'" alt="Food logo"></a>
                                     </div>
                                     <!-- end:Logo -->
                                     <div class="rest-descr">
-                                       <h6><a href="#">Veg Extravaganza</a></h6>
-                                       <p> Burgers, American, Sandwiches, Fast Food, BBQ</p>
+                                       <h6><a href="#">'.$food['product_name'].'</a></h6>
+                                       <p>'.$food['product_description'].'</p>
                                     </div>
                                     <!-- end:Description -->
                                  </div>
                                  <!-- end:col -->
-                                 <div class="col-xs-12 col-sm-12 col-lg-4 pull-right item-cart-info"> <span class="price pull-left">$ 19.99</span> <a href="#" class="btn btn-small btn btn-secondary pull-right" data-toggle="modal" data-target="#order-modal">&#43;</a> </div>
+                                 <div class="col-xs-12 col-sm-12 col-lg-4 pull-right item-cart-info"> <span class="price pull-left">$'.$food['selling_price'].'</span> <a href="#" class="btn btn-small btn btn-secondary pull-right" data-toggle="modal" data-target="#order-modal">&#43;</a> </div>
                               </div>
                               <!-- end:row -->
                            </div>
-                           <!-- end:Food item -->
-                           <div class="food-item">
-                              <div class="row">
-                                 <div class="col-xs-12 col-sm-12 col-lg-8">
-                                    <div class="rest-logo pull-left">
-                                       <a class="restaurant-logo pull-left" href="#"><img src="<?=base_url();?>main_assets/images/food5.jpg" alt="Food logo"></a>
-                                    </div>
-                                    <!-- end:Logo -->
-                                    <div class="rest-descr">
-                                       <h6><a href="#">Veg Extravaganza</a></h6>
-                                       <p> Burgers, American, Sandwiches, Fast Food, BBQ</p>
-                                    </div>
-                                    <!-- end:Description -->
-                                 </div>
-                                 <!-- end:col -->
-                                 <div class="col-xs-12 col-sm-12 col-lg-4 pull-right item-cart-info"> <span class="price pull-left">$ 19.99</span> <a href="#" class="btn btn-small btn btn-secondary pull-right" data-toggle="modal" data-target="#order-modal">&#43;</a> </div>
-                              </div>
-                              <!-- end:row -->
-                           </div>
-                           <!-- end:Food item -->
-                           <div class="food-item white">
-                              <div class="row">
-                                 <div class="col-xs-12 col-sm-12 col-lg-8">
-                                    <div class="rest-logo pull-left">
-                                       <a class="restaurant-logo pull-left" href="#"><img src="<?=base_url();?>main_assets/images/food6.jpg" alt="Food logo"></a>
-                                    </div>
-                                    <!-- end:Logo -->
-                                    <div class="rest-descr">
-                                       <h6><a href="#">Veg Extravaganza</a></h6>
-                                       <p> Burgers, American, Sandwiches, Fast Food, BBQ</p>
-                                    </div>
-                                    <!-- end:Description -->
-                                 </div>
-                                 <!-- end:col -->
-                                 <div class="col-xs-12 col-sm-12 col-lg-4 pull-right item-cart-info"> <span class="price pull-left">$ 19.99</span> <a href="#" class="btn btn-small btn btn-secondary pull-right" data-toggle="modal" data-target="#order-modal">&#43;</a> </div>
-                              </div>
-                              <!-- end:row -->
-                           </div>
-                           <!-- end:Food item -->
-                           <div class="food-item">
-                              <div class="row">
-                                 <div class="col-xs-12 col-sm-12 col-lg-8">
-                                    <div class="rest-logo pull-left">
-                                       <a class="restaurant-logo pull-left" href="#"><img src="<?=base_url();?>main_assets/images/food7.jpg" alt="Food logo"></a>
-                                    </div>
-                                    <!-- end:Logo -->
-                                    <div class="rest-descr">
-                                       <h6><a href="#">Veg Extravaganza</a></h6>
-                                       <p> Burgers, American, Sandwiches, Fast Food, BBQ</p>
-                                    </div>
-                                    <!-- end:Description -->
-                                 </div>
-                                 <!-- end:col -->
-                                 <div class="col-xs-12 col-sm-12 col-lg-4 pull-right item-cart-info"> <span class="price pull-left">$ 19.99</span> <a href="#" class="btn btn-small btn btn-secondary pull-right" data-toggle="modal" data-target="#order-modal">&#43;</a> </div>
-                              </div>
-                              <!-- end:row -->
-                           </div>
-                           <!-- end:Food item -->
+                           <!-- end:Food item -->';
+                           }
+                           ?>
+                           
+                           
                         </div>
                         <!-- end:Collapse -->
                      </div>

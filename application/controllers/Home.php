@@ -340,4 +340,14 @@ class Home extends CI_Controller {
 		$restaurant['rest'] = $this->User_model->food($post);
 		$this->load->view('restaurants_view',$restaurant);
 	}
+
+	//===for menu displaying ====//
+	public function check_menu(){
+		$restaurant_id = $this->uri->segment(3);
+		$this->load->model('User_model');
+		$result['rest'] = $this->User_model->check_menu($restaurant_id);
+
+		$this->load->view('menu_view',$result);
+		
+	}
 }

@@ -142,6 +142,12 @@ class User_model extends CI_Model{
 		//get post values by session
 		$q=$this->db->query("select * , (6371 * acos( cos( radians($v1)) * cos( radians( Latitude ) ) * cos( radians( longitude ) - radians($v2))  + sin( radians($v1) ) * sin( radians( Latitude ) ) ) ) AS distance FROM  restaurant_add HAVING distance < 25 ORDER BY distance LIMIT 0 , 20");
 		$r['restaurant'] = $q->result_array();
+		// echo "<pre>";
+	 //    $restaurant_id = $r['restaurant'][0]['id']."<br>";
+	 //    $restaurant_id;
+	 //    $r['restaurant']['restaurant_id'] = $restaurant_id;
+		// print_r($r);exit();
+		// $r['restaurant'] = 
 		$r['products'] = array();
 		$r['num']=$q->num_rows();
 		return $r;
@@ -169,7 +175,7 @@ class User_model extends CI_Model{
 		$i = 0;
 		foreach($food as $foo){
 			$rest_id = $foo['restaurant_id'];
-			$q=$this->db->query("select * , (6371 * acos( cos( radians($v1)) * cos( radians( Latitude ) ) * cos( radians( longitude ) - radians($v2))  + sin( radians($v1) ) * sin( radians( Latitude ) ) ) ) AS distance FROM  restaurant_add WHERE id = '$rest_id' HAVING distance < 25 ORDER BY distance LIMIT 0 , 20");
+			$q=$this->db->query("select * , (6371 * acos( cos( radians($v1)) * cos( radians( Latitude ) ) * cos( radians( longitude ) - radians($v2))  + sin( radians($v1) ) * sin( radians( Latitude ) ) ) ) AS distance FROM  restaurant_add WHERE restaurant_id = '$rest_id' HAVING distance < 25 ORDER BY distance LIMIT 0 , 20");
 			$f_rest = $q->result_array();
 			//if not = empty array take product
 			if(!empty($f_rest)){
@@ -185,6 +191,20 @@ class User_model extends CI_Model{
 		return $data;
 
 
+	}
+	//==== for displaying menu items ===//
+	public function check_menu($rest_id){
+		$this->db->where('restaurant_id',$rest_id);
+		$q = $this->db->get('restaurant_add');
+		$query['restaurant'] = $q->result_array();
+
+		//for fod details query==//
+		$this->db->where('restaurant_id',$rest_id);
+		$p = $this->db->get('products');
+		$query['food'] = $p->result_array();
+		return $query;
+		// echo "<pre>";
+		// print_r($query);exit();
 	}
 }
 ?>

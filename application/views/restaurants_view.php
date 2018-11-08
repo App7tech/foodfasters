@@ -45,8 +45,8 @@
                         </div>
                         <div class="col-sm-3">
                             <select class="custom-select pull-right" id="froption">
-                                <option  value="restaurant" onclick="restaurantsel()">Restaurants</option>
-                                <option  value="food" id="foodsel">Food</option>
+                                <option  value="restaurant">Restaurants</option>
+                                <option  value="food">Food</option>
                                 
                             </select>
                         </div>
@@ -158,7 +158,7 @@
                                     foreach ($rest['restaurant'] as $key){
                                         $im = '././images/restaurants/'.$key["image"];
                                         $ima = base_url().'/images/restaurants/'.$key["image"];
-                                        if(!is_file($ima)){
+                                        if(!is_file($im)){
                                             $ima = base_url().'images/restaurants/placeholder.jpg';
                                         }
                                         echo'
@@ -182,7 +182,7 @@
                                                 <div class="right-content bg-white">
                                                     <div class="right-review">
                                                         <div class="rating-block"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star-o"></i> </div>
-                                                        <p> 245 Reviews</p> <a href="profile.html" class="btn theme-btn-dash">View Menu</a> </div>
+                                                        <p> 245 Reviews</p> <a href="'.base_url().'home/check_menu/'.$key['restaurant_id'].'" class="btn theme-btn-dash">View Menu</a> </div>
                                                 </div>
                                                 <!-- end:right info -->
                                             </div>
@@ -240,7 +240,7 @@
                                                 <div class="right-content bg-white">
                                                     <div class="right-review">
                                                         <div class="rating-block"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star-o"></i> </div>
-                                                        <p> 245 Reviews</p> <a href="profile.html" class="btn theme-btn-dash">View Menu</a> </div>
+                                                        <p> 245 Reviews</p> <a href="'.base_url().'home/check_menu/'.$key['restaurant_id'].'" class="btn theme-btn-dash">View Menu</a> </div>
                                                 </div>
                                                 <!-- end:right info -->
                                             </div>

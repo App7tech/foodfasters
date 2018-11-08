@@ -27,7 +27,7 @@
                            <div class="widget-body">
                               <?php echo $this->session->flashdata('login_error'); ?>
                               <form action="<?=base_url();?>Home/register_submit" method="post">
-                                       <div class="row">
+                                 <div class="row">
                                     <div class="form-group col-sm-12">
                                        <label for="exampleInputEmail1">Name <?= form_error('name');?></label>
                                        <input type="text" class="form-control" id="name" placeholder="Enter Name" name="name" value="<?php echo set_value('name')?>"> 
