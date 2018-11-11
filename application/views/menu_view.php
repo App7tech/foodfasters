@@ -418,7 +418,7 @@
                <!-- end:row -->
             </div>
             <!-- end:Container -->
-            <section class="app-section">
+            <!-- <section class="app-section">
                <div class="app-wrap">
                   <div class="container">
                      <div class="row text-img-block text-xs-left">
@@ -444,7 +444,7 @@
                      </div>
                   </div>
                </div>
-            </section>
+            </section> -->
 			<?php include"includes/footer.php" ?>
          </div>
          <!-- end:page wrapper -->
