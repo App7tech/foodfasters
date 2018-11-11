@@ -418,7 +418,7 @@
                <!-- end:row -->
             </div>
             <!-- end:Container -->
-<<<<<<< HEAD
+
             <!-- <section class="app-section">
                <div class="app-wrap">
                   <div class="container">
@@ -447,9 +447,7 @@
                </div>
             </section> -->
 			<?php include"includes/footer.php" ?>
-=======
-           <?php include"includes/footer.php" ?>
->>>>>>> 145145f04fc692b8ad865146b3a3c1593e97a44e
+
          </div>
          <!-- end:page wrapper -->
       </div>

@@ -9,9 +9,9 @@
                             <li class="nav-item"> 
                                 <a class="nav-link active" href="<?=base_url();?>">Home <span class="sr-only">(current)</span></a> 
                             </li>
-                            <li class="nav-item"> 
+                            <!-- <li class="nav-item"> 
                                 <a class="nav-link" href="<?=base_url();?>Home/Restaurants">Restaurants <span class="sr-only">(current)</span></a> 
-                            </li>
+                            </li> -->
                             <?php
                                 $e = $this->session->userdata('email');
                                 if($d = $e[0]['email']){

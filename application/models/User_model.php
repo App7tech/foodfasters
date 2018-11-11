@@ -136,9 +136,9 @@ class User_model extends CI_Model{
 		
 	}
 	//================for resturants list ===========//
-	function user_res($post){
-		$v1 = doubleval($post['lat']);
-		$v2 = doubleval($post['lon']);
+	function user_res(){
+		$v1 = $this->session->userdata('lat');
+		$v2 = $this->session->userdata('long'); 
 		//get post values by session
 		$q=$this->db->query("select * , (6371 * acos( cos( radians($v1)) * cos( radians( Latitude ) ) * cos( radians( longitude ) - radians($v2))  + sin( radians($v1) ) * sin( radians( Latitude ) ) ) ) AS distance FROM  restaurant_add HAVING distance < 25 ORDER BY distance LIMIT 0 , 20");
 		$r['restaurant'] = $q->result_array();
@@ -147,8 +147,8 @@ class User_model extends CI_Model{
 		return $r;
 	}
 	//=============for fetching food/rstuarants results=======//
-	public function food($post){
-		$name = $post['name'];
+	public function food(){
+		$name = $this->session->userdata('rest_name');
 		$v1 = $this->session->userdata('lat');
 		$v2 = $this->session->userdata('long'); 
 		$like = "%".$name."%";
@@ -159,7 +159,7 @@ class User_model extends CI_Model{
 
 		$this->db->select('*');
 		$this->db->from('products');
-		$this->db->like('product_name',$post['name']);
+		$this->db->like('product_name',$name);
 		$query = $this->db->get();
 		$food = $query->result_array();
 		$i = 0;

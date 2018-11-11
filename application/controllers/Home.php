@@ -16,18 +16,20 @@ class Home extends CI_Controller {
 	public function restaurants(){
 		$this->load->view('restaurants_view');
 	}
-
-	function display_res(){
+	public function display_res(){
 		$post = $this->input->post();
 		$v1 = doubleval($post['lat']);
 		$v2 = doubleval($post['lon']);
 		$this->session->set_userdata('lat',$v1);
 		$this->session->set_userdata('long',$v2);
-
+		redirect("Home/display_results_submit");
+	}
+	function display_results_submit(){
+		
 		//put post in session
 		$this->load->model('User_model');
 		// print_r($this->User_model->user_res($post));exit();
-		if($restaurant['rest'] = $this->User_model->user_res($post)){
+		if($restaurant['rest'] = $this->User_model->user_res()){
 			// echo "<pre>";
 			// print_r($restaurant['rest']['num']);exit();
 
@@ -335,9 +337,13 @@ class Home extends CI_Controller {
 
 	//==== for display food/restuarent results===//
 	public function food_results(){
-		$post = $this->input->post();
+		$name = $this->input->post('name');
+		$this->session->set_userdata('rest_name',$name);
+		redirect("Home/food_results_submit");
+	}
+	public function food_results_submit(){
 		$this->load->model('User_model');
-		$restaurant['rest'] = $this->User_model->food($post);
+		$restaurant['rest'] = $this->User_model->food();
 		$this->load->view('restaurants_view',$restaurant);
 	}
 
