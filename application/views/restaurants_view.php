@@ -169,7 +169,7 @@
                                                 </div>
                                                 <!-- end:Logo -->
                                                 <div class="entry-dscr">
-                                                    <h5><a href="#">'.$key['restaurant_name'].'</a></h5> <span>'.$key['restaurant_address'].','.$key['restaurant_city'].'<a href="#">...</a></span>
+                                                    <h5><a href="'.base_url().'home/check_menu/'.$key['restaurant_id'].'">'.$key['restaurant_name'].'</a></h5> <span>'.$key['restaurant_address'].','.$key['restaurant_city'].'<a href="#">...</a></span>
                                                     <ul class="list-inline">
                                                         <li class="list-inline-item"><i class="fa fa-check"></i> Min $ 10,00</li>
                                                         <li class="list-inline-item"><i class="fa fa-clock-o"></i> 30 min</li>
