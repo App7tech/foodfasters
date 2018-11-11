@@ -63,5 +63,64 @@ class Rest_model extends CI_Model{
 		
 		return $data;
 	}
+
+	public function categories($post){
+		$id = $post['restaurant_id'];
+		$this->db->where('restaurant_id',$id);
+		$this->db->where('log_status <',3);
+		$this->db->where('log_active',1);
+		$query = $this->db->get('category');
+		return $query->result_array();
+	}
+
+	public function products($post){
+		$id = $post['restaurant_id'];
+		$this->db->where('restaurant_id',$id);
+		$this->db->where('log_status <',3);
+		$this->db->where('log_active',1);
+		$query = $this->db->get('products');
+		$r = $query->result_array();
+		$data = $r;
+		$i = 0;
+		if(!empty($r)){
+			foreach ($r as $row) {
+				if($row['product_image'] == ''){
+					$data[$i]['product_image'] = '';
+				}else{
+					$data[$i]['product_image'] = base_url()."images/products/".$row['product_image'];
+				}
+				$i++;
+			}
+		}else{
+			$data = array();
+		}
+		return $data;
+	}
+
+	public function category_products($post){
+		$id = $post['restaurant_id'];
+		$id = $post['category_id'];
+		$this->db->where('restaurant_id',$id);
+		$this->db->where('category_id',$id);
+		$this->db->where('log_status <',3);
+		$this->db->where('log_active',1);
+		$query = $this->db->get('products');
+		$r = $query->result_array();
+		$data = $r;
+		$i = 0;
+		if(!empty($r)){
+			foreach ($r as $row) {
+				if($row['product_image'] == ''){
+					$data[$i]['product_image'] = '';
+				}else{
+					$data[$i]['product_image'] = base_url()."images/products/".$row['product_image'];
+				}
+				$i++;
+			}
+		}else{
+			$data = array();
+		}
+		return $data;
+	}
 }
 ?>
