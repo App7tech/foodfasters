@@ -59,5 +59,47 @@ class Home extends REST_Controller
 		$this->response($result, 200);
 	}
 
+	public function get_categories_post(){
+		$data = $this->input->post();
+		if($data['restaurant_id']==''){
+			$result['status'] = false;
+			$result['message'] = "Restaurant Id Missing";
+		}else{
+			$result['status'] = true;
+			$result['message'] = $this->Rest_model->categories($data);
+		}
+		$this->response($result, 200);
+	}
+
+	public function get_products_post(){
+		$data = $this->input->post();
+		if($data['restaurant_id']==''){
+			$result['status'] = false;
+			$result['message'] = "Restaurant Id Missing";
+		}else{
+			$result['status'] = true;
+			$result['message'] = $this->Rest_model->products($data);
+		}
+		$this->response($result, 200);
+	}
+
+	public function get_category_products_post(){
+		$data = $this->input->post();
+		$msg = "";
+		if($data['restaurant_id']==''){
+			$msg .= "Restaurant Id, ";
+		}
+		if($data['category_id']==''){
+			$msg .= "Category Id";
+		}  
+		if($msg != ""){
+			$result['status'] = false;
+			$result['message'] = $msg." Missing";
+		}else{
+			$result['status'] = true;
+			$result['message'] = $this->Rest_model->category_products($data);
+		}
+		$this->response($result, 200);
+	}
 }
 	

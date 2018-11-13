@@ -190,6 +190,14 @@ class User_model extends CI_Model{
 		$this->db->where('restaurant_id',$rest_id);
 		$p = $this->db->get('products');
 		$query['food'] = $p->result_array();
+
+		//for category details query==//
+		$this->db->where('restaurant_id',$rest_id);
+		$this->db->where('log_status <',3);
+		$this->db->where('log_active',1);
+		$c = $this->db->get('category');
+		$query['categories'] = $c->result_array();
+
 		return $query;
 	}
 }

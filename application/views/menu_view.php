@@ -82,37 +82,26 @@
                      <div class="sidebar clearfix m-b-20">
                         <div class="main-block">
                            <div class="sidebar-title white-txt">
-                              <h6>Choose Cusine</h6>
+                              <h6>Choose Category</h6>
                               <i class="fa fa-cutlery pull-right"></i> 
                            </div>
-                           <ul>
-                              <li><a href="#1" class="scroll active">Pizza</a></li>
-                              <li><a href="#2" class="scroll">Barbecuing and Grilling</a></li>
-                              <li><a href="#3" class="scroll">Appetizers</a></li>
-                              <li><a href="#4" class="scroll">Soup and salads</a></li>
-                              <li><a href="#5" class="scroll">Pasta</a></li>
-                              <li><a href="#6" class="scroll">Seafood</a></li>
-                              <li><a href="#7" class="scroll">Beverages</a></li>
-                           </ul>
+                           <?php
+                              if(sizeof($rest['categories']) != 0 ){
+                                 echo "<ul>";
+                                 foreach($rest['categories'] as $category){
+                                    echo '<li><a href="#'.$category["category_id"].'" class="scroll active">'.$category["category_name"].'</a></li>';
+                                 }
+                                 echo "</ul>";
+                              }else{
+                                 echo "<ul><li>No Categories Found!</li></ul>";
+                              } 
+                           ?>
                            <div class="clearfix"></div>
                         </div>
                         <!-- end:Sidebar nav -->
-                        <div class="widget-delivery">
-                           <form>
-                              <div class="col-xs-6 col-sm-12 col-md-6 col-lg-6">
-                                 <label class="custom-control custom-radio">
-                                 <input id="radio1" name="radio" type="radio" class="custom-control-input" checked=""> <span class="custom-control-indicator"></span> <span class="custom-control-description">Delivery</span> </label>
-                              </div>
-                              <div class="col-xs-6 col-sm-12 col-md-6 col-lg-6">
-                                 <label class="custom-control custom-radio">
-                                 <input id="radio2" name="radio" type="radio" class="custom-control-input"> <span class="custom-control-indicator"></span> <span class="custom-control-description">Takeout</span> </label>
-                              </div>
-                           </form>
-                        </div>
                      </div>
                      <!-- end:Left Sidebar -->
-                     <div class="widget clearfix">
-                        <!-- /widget heading -->
+                     <!-- <div class="widget clearfix">
                         <div class="widget-heading">
                            <h3 class="widget-title text-dark">
                               Popular tags
@@ -163,7 +152,7 @@
                               </li>
                            </ul>
                         </div>
-                     </div>
+                     </div> -->
                   </div>
                   <div class="col-xs-12 col-sm-8 col-md-8 col-lg-6">
                      <div class="menu-widget m-b-30">
