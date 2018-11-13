@@ -23,12 +23,19 @@ class Home extends CI_Controller {
 			$latlong    =   $this->get_lat_long($location2); // call afunction with the name "get_lat_long" given as below
 	        $map        =   explode(',' ,$latlong);
 	        $v1		    =   $map[0];
-	        $v2    		=   $map[1];    
+	        $v2    		=   $map[1]; 
+	        $faddress2  =	$map[2];
 		}else{
-			$v1 = doubleval($post['lat']);
-			$v2 = doubleval($post['lon']);
+			$v1 = doubleval($this->input->post('lat'));
+			$v2 = doubleval($this->input->post('lon'));
+			$latlng = $v1.','.$v2;
+			$fdd = $this->get_address($latlng);
+			$full_address = explode(',', $fdd);
+			// print_r($full_address);exit();
+			$faddress2 = $full_address[2];
 		}
-		
+		$adrs = $faddress2;
+		$this->session->set_userdata('address',$adrs);
 		$this->session->set_userdata('lat',$v1);
 		$this->session->set_userdata('long',$v2);
 		redirect("Home/display_results_submit");
@@ -36,11 +43,20 @@ class Home extends CI_Controller {
 	function get_lat_long($address){
 		$address = str_replace(" ", "+", $address);
 	    $json = file_get_contents("https://maps.googleapis.com/maps/api/geocode/json?address=$address&key=AIzaSyBBnv4MziSkxZ-JVIcOUT4A5T3NiVz-Qzc");
-	    // https://maps.googleapis.com/maps/api/geocode/json?address=quthbullapur+hyderabad&key=AIzaSyBBnv4MziSkxZ-JVIcOUT4A5T3NiVz-Qzc
 	    $json = json_decode($json);
 	    $lat = $json->{'results'}[0]->{'geometry'}->{'location'}->{'lat'};
 	    $long = $json->{'results'}[0]->{'geometry'}->{'location'}->{'lng'};
-	    return $lat.','.$long;
+	    $faddress = $json->{'results'}[0]->{'formatted_address'};
+	    return $lat.','.$long.','.$faddress;
+	}
+	
+	function get_address($latlng){
+		// $address = str_replace(" ", "+", $address);
+	    $json = file_get_contents("https://maps.googleapis.com/maps/api/geocode/json?latlng=$latlng&key=AIzaSyBBnv4MziSkxZ-JVIcOUT4A5T3NiVz-Qzc");
+	    $json = json_decode($json);
+	    $faddress = $json->{'results'}[0]->{'formatted_address'};
+	    
+	    return $faddress;
 	}
 	function display_results_submit(){
 		

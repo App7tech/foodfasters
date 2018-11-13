@@ -39,7 +39,7 @@
         <form action="<?=base_url();?>Home/display_res" method="post" id="jsform">
             <input type="hidden" name="lat" id="lat">
             <input type="hidden" name="lon" id="lon">
-
+            <!-- <input type="hidden" name="location_search" value=" "> -->
             <!-- <button class="button" type="submit" name="sbmt" id="sbmt" class="sbmt">Find Nearest Restaurants</button> -->
         </form>
             <!-- end:Top links -->
