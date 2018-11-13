@@ -39,7 +39,7 @@
         <form action="<?=base_url();?>Home/display_res" method="post" id="jsform">
             <input type="hidden" name="lat" id="lat">
             <input type="hidden" name="lon" id="lon">
-
+            <!-- <input type="hidden" name="location_search" value=" "> -->
             <!-- <button class="button" type="submit" name="sbmt" id="sbmt" class="sbmt">Find Nearest Restaurants</button> -->
         </form>
             <!-- end:Top links -->
@@ -55,14 +55,14 @@
                     <h1>Order your Food Online</h1>
                     <h5 class="font-white space-xs">Enter your delivery location to get restaurants</h5>
                     <div >
-                        <form class="form-inline inl">
-                            <button onclick="getLocation()" type="button" class="btn theme-btn btn-lg"><i class="fa fa-map-marker"></i></button>
+                        <form class="form-inline inl" action="<?=base_url();?>Home/display_res" method="post">
+                            <button onclick="getLocation()"  class="btn theme-btn btn-lg"><i class="fa fa-map-marker"></i></button>
                             <div class="form-group">
                                 <label class="sr-only" for="exampleInputAmount">Enter your Location</label>
                                 <div class="form-group">
-                                    <input type="text" class="form-control form-control-lg" id="exampleInputAmount" placeholder="Enter your Location" > </div>
+                                    <input type="text" class="form-control form-control-lg" id="exampleInputAmount" placeholder="Enter your Location" name="location_search"> </div>
                             </div>
-                            <button onclick="location.href='restaurants.html'" type="button" class="btn theme-btn btn-lg"><i class="fa fa-search"></i></button>
+                            <button  type="submit" class="btn theme-btn btn-lg"><i class="fa fa-search"></i></button>
                         </form>
                     </div>
                    

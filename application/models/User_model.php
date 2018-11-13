@@ -146,7 +146,7 @@ class User_model extends CI_Model{
 		$r['num']=$q->num_rows();
 		return $r;
 	}
-	//=============for fetching food/rstuarants results=======//
+	//=============for fetching food/restuarants results=======//
 	public function food(){
 		$name = $this->session->userdata('rest_name');
 		$v1 = $this->session->userdata('lat');
