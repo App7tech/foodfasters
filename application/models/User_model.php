@@ -120,8 +120,8 @@ class User_model extends CI_Model{
 			$this->db->where('token',$token);
 			$query = $this->db->get('user_registration');
 			if($query->num_rows() !=0){
-				$a_data = array('password',$password);
-				$this->db->where($token);
+				$a_data = array('password'=>md5($password));
+				$this->db->where('token',$token);
 				$result = $this->db->update('user_registration',$a_data);
 				$data['message'] = $result;
 				return $data;
@@ -135,6 +135,19 @@ class User_model extends CI_Model{
 		}
 		
 	}
+	
+	public function forgot_check($email,$token){
+		$this->db->where('email',$email);
+		$this->db->where('token',$token);
+		$this->db->select('username');
+		$q = $this->db->get('user_registration');
+		if($q->num_rows()!=0){
+			return $q->result_array();
+		}else{
+			return false;
+		}
+	}
+	
 	//================for resturants list ===========//
 	function user_res(){
 		$v1 = $this->session->userdata('lat');

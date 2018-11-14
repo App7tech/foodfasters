@@ -109,7 +109,7 @@ class Main_model extends CI_Model
         $days3 = serialize($days2);
 
         $data_details = array('name' => $name, 'mobile' => $phone, 'restaurant_name' => $r_name, 'restaurant_email' => $r_email, 'restaurant_address' => $r_address, 'restaurant_city' => $r_city, 'restaurant_state' => $r_state, 'latitude' => $latitute, 'longitude' => $longitute, 'open_days' => $days3, 'open_time' => $s_time, 'close_time' => $e_time);
-        $this->db->where('id', $id);
+        $this->db->where('restaurant_id', $id);
         $query = $this->db->update('restaurant_add', $data_details);
         $msg['status'] = false;
         if ($query) {
@@ -130,7 +130,7 @@ class Main_model extends CI_Model
 
     public function get_single_restaurant($id)
     {
-        $this->db->where('id', $id);
+        $this->db->where('restaurant_id', $id);
         $q = $this->db->get('restaurant_add');
         return $q->result_array();
     }
@@ -170,7 +170,7 @@ class Main_model extends CI_Model
     public function c_status($action, $id)
     {
         $data = array('status' => $action);
-        $this->db->where('id', $id);
+        $this->db->where('restaurant_id', $id);
         $q = $this->db->update('restaurant_add', $data);
         if ($q) {
             return true;

@@ -13,9 +13,14 @@ class Home extends CI_Controller {
 		$this->load->view('home_view');
 	}
 
+	public function coming_soon(){
+		$this->load->view('coming_soon_view');
+	}
+
 	public function restaurants(){
 		$this->load->view('restaurants_view');
 	}
+
 	public function display_res(){
 		$post = $this->input->post();
 		$location2 = $this->input->post('location_search');

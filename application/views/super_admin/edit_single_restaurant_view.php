@@ -76,7 +76,7 @@
                   <div class="card-body b-b">
                     <?php echo $this->session->flashdata('res_edit_err'); ?>
                       <h4>Personal Info</h4>
-                      <form class="form-material" action="<?=base_url();?>su_restaurant_edit_sub/<?=$data[0]['id']?>" method="post" enctype="multipart/form-data">
+                      <form class="form-material" action="<?=base_url();?>su_restaurant_edit_sub/<?=$data[0]['restaurant_id']?>" method="post" enctype="multipart/form-data">
                       <?php //echo form_open_multipart(base_url().'su_restaurant_add_sub');?>
                           <!-- Input -->
                           <div class="body">

@@ -8,7 +8,7 @@ class Rest_model extends CI_Model{
 		$i = 0;
 		if(!empty($r)){
 			foreach ($r as $row) {
-				$data[$i]['id'] = $row['id'];
+				$data[$i]['id'] = $row['restaurant_id'];
 				$data[$i]['name'] = $row['name'];
 				$data[$i]['mobile'] = $row['mobile'];
 				$data[$i]['restaurant_name'] = $row['restaurant_name'];
