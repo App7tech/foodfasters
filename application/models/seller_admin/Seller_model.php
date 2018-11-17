@@ -164,6 +164,42 @@ class Seller_model extends CI_Model
         return $q->result_array();
     }
 
+    public function getProductsBySearchKey()
+    {
+        $restaurant_id=$this->input->post('restaurant_id');
+        $this->db->where('restaurant_id',$restaurant_id);
+        $q = $this->db->get('restaurant_add');
+        $query['restaurant'] = $q->result_array();
+        $query['categories']=$this->getCategoriesByRestaurantId($restaurant_id);
+
+        $keyword = $this->input->post('product_search_key');
+        $this->db->where('log_status <', 3);
+        $this->db->where('log_active', 1);
+        $this->db->where("product_name LIKE '%$keyword%'");
+        $this->db->where('restaurant_id', $this->input->post('restaurant_id'));
+        $q = $this->db->get('products');
+        // return $this->db->last_query();
+        $query['food'] = $q->result_array();
+        return $query;
+    }
+
+    public function getProductsByRestaurantId($restaurant_id)
+    {
+        $this->db->where('restaurant_id', $restaurant_id);
+        $p = $this->db->get('products');
+        $query['food'] = $p->result_array();
+        return $query;
+    }
+
+    public function getCategoriesByRestaurantId($restaurant_id)
+    {
+        $this->db->where('restaurant_id',$restaurant_id);
+        $this->db->where('log_status <',3);
+        $this->db->where('log_active',1);
+        $c = $this->db->get('category');
+        return  $c->result_array();
+    }
+
     public function addNewProduct()
     {
         $rest_id = $this->session->userdata('email');
