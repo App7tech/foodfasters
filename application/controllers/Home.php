@@ -94,11 +94,20 @@ class Home extends CI_Controller
 
     public function productSearchResults()
     {
-        $restaurant_id = $this->input->post('restaurant_id');
+    	$restaurant_id = $this->input->post('restaurant_id');
+    	$productSearchResults_name = $this->input->post('product_search_key');
+    	$this->session->set_userdata('restaurant_id_products',$restaurant_id);
+    	$this->session->set_userdata('psrn',$productSearchResults_name);
+    	redirect("Home/productSearchResults2");
+    }
+    public function productSearchResults2()
+    {
+    	
+        
         $this->load->model('seller_admin/Seller_model');
         $result['rest'] = $this->Seller_model->getProductsBySearchKey();
 
-        $result['restaurantId'] = $restaurant_id;
+        $result['restaurantId'] = $this->session->userdata('restaurant_id_products');
    //        echo "<pre>";print_r($result);
         if (count($result['rest']) > 0) {
 

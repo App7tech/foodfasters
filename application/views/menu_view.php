@@ -98,8 +98,7 @@
                                 <input type="text" class="form-control search-field"
                                        placeholder="Search your Favourite Food" name="product_search_key">
                                 <span class="input-group-btn">
-                                    <button class="btn btn-secondary search-btn" type="submit"><i class="fa fa-search"
-                                                                                                  style="font-size: 17px !important;margin: 0px !important;"></i></button>
+                                    <button class="btn btn-secondary search-btn" type="submit"><i class="fa fa-search" style="font-size: 17px !important;margin: 0px !important;"></i></button>
                                 </span>
                                 <?php echo $this->session->flashdata('search_error'); ?>
                             </div>

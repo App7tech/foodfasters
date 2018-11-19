@@ -166,17 +166,17 @@ class Seller_model extends CI_Model
 
     public function getProductsBySearchKey()
     {
-        $restaurant_id=$this->input->post('restaurant_id');
+        $restaurant_id=$this->session->userdata('restaurant_id_products');
         $this->db->where('restaurant_id',$restaurant_id);
         $q = $this->db->get('restaurant_add');
         $query['restaurant'] = $q->result_array();
         $query['categories']=$this->getCategoriesByRestaurantId($restaurant_id);
 
-        $keyword = $this->input->post('product_search_key');
+        $keyword = $this->session->userdata('psrn');
         $this->db->where('log_status <', 3);
         $this->db->where('log_active', 1);
         $this->db->where("product_name LIKE '%$keyword%'");
-        $this->db->where('restaurant_id', $this->input->post('restaurant_id'));
+        $this->db->where('restaurant_id', $restaurant_id);
         $q = $this->db->get('products');
         // return $this->db->last_query();
         $query['food'] = $q->result_array();
