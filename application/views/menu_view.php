@@ -112,7 +112,7 @@
                             if (sizeof($rest['categories']) != 0) {
                                 echo "<ul>";
                                 foreach ($rest['categories'] as $category) {
-                                    echo '<li><a href="#' . $category["category_id"] . '" class="scroll active">' . $category["category_name"] . '</a></li>';
+                                    echo '<li><a href="#category-' . $category["category_id"] . '" class="scroll active">' . ucfirst($category["category_name"]) . '</a></li>';
                                 }
                                 echo "</ul>";
                             } else {
@@ -178,20 +178,27 @@
                     </div> -->
                 </div>
                 <div class="col-xs-12 col-sm-8 col-md-8 col-lg-5">
-                    <div class="menu-widget m-b-30">
+
+                	<?php
+                	$id = 1;
+                	foreach ($rest['food'] as $category) {
+                		
+                	?>
+                    <div class="menu-widget m-b-30" style="text-transform: capitalize;">
                         <div class="widget-heading">
                             <h3 class="widget-title text-dark">
-                                 <a class="btn btn-link" data-toggle="collapse" href="#popular" aria-expanded="true">POPULAR ORDERS Delicious hot food!</a>
-															<a class="btn btn-link pull-right" data-toggle="collapse" href="#popular" aria-expanded="true"> 
+                                 <a class="btn btn-link" data-toggle="collapse" href="#category-<?=$category['category_id'];?>" aria-expanded="true"><?= $category['category_name'];?></a>
+															<a class="btn btn-link pull-right" data-toggle="collapse" href="#category-<?=$category['category_id'];?>" aria-expanded="true"> 
 																<i class="fa fa-angle-right pull-right"></i>
                                 <i class="fa fa-angle-down pull-right"></i>
                               </a>
                             </h3>
                             <div class="clearfix"></div>
                         </div>
-                        <div class="collapse" id="popular">
+                        <div class="collapse <?php if($id == 1){ echo 'in';}?>" id="category-<?= $category['category_id'];?>">
+	
                             <?php
-                            foreach ($rest['food'] as $food) {
+                            foreach ($category['food'] as $food) {
                                 $im = '././images/products/' . $food["product_image"];
                                 $ima = base_url() . 'images/products/' . $food["product_image"];
                                 if (!is_file($im)) {
@@ -224,7 +231,10 @@
                         </div>
                         <!-- end:Collapse -->
                     </div>
-                    
+                    <?php
+                    $id++;
+                  }
+                    ?>
                     
                 </div>
                 <!-- end:Bar -->
