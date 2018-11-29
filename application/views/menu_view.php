@@ -177,7 +177,7 @@
                        </div>
                     </div> -->
                 </div>
-                <div class="col-xs-12 col-sm-8 col-md-8 col-lg-6">
+                <div class="col-xs-12 col-sm-8 col-md-8 col-lg-5">
                     <div class="menu-widget m-b-30">
                         <div class="widget-heading">
                             <h3 class="widget-title text-dark">
@@ -228,7 +228,7 @@
                     
                 </div>
                 <!-- end:Bar -->
-                <div class="col-xs-12 col-md-12 col-lg-3">
+                <div class="col-xs-12 col-md-12 col-lg-4">
                     <div class="sidebar-wrap">
                         <div class="widget widget-cart">
                             <div class="widget-heading">
@@ -239,58 +239,26 @@
                             </div>
                             <div class="order-row bg-white">
                                 <div class="widget-body">
-                                    <div class="title-row">Pizza Quatro Stagione <a href="#"><i
-                                                    class="fa fa-trash pull-right"></i></a></div>
+                                    <!-- <div class="title-row">Pizza Quatro Stagione <a href="#"><i
+                                                    class="fa fa-trash pull-right"></i></a></div> -->
                                     <div class="form-group row no-gutter">
                                         <div class="col-xs-8">
-                                            <select class="form-control b-r-0" id="exampleSelect1">
-                                                <option>Size SM</option>
-                                                <option>Size LG</option>
-                                                <option>Size XL</option>
-                                            </select>
+                                            <div class="title-row">Pizza Quatro Stagione </div>
                                         </div>
-                                        <div class="col-xs-4">
+                                        <div class="col-xs-3">
                                             <input class="form-control" type="number" value="2"
                                                    id="example-number-input">
+                                             
+                                        </div>
+                                        <div class="col-xs-1">
+																						<a href="#"><i class="fa fa-trash pull-right"></i></a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="order-row">
-                                <div class="widget-body">
-                                    <div class="title-row">Carlsberg Beer <a href="#"><i
-                                                    class="fa fa-trash pull-right"></i></a></div>
-                                    <div class="form-group row no-gutter">
-                                        <div class="col-xs-8">
-                                            <select class="form-control b-r-0">
-                                                <option>Size SM</option>
-                                                <option>Size LG</option>
-                                                <option>Size XL</option>
-                                            </select>
-                                        </div>
-                                        <div class="col-xs-4">
-                                            <input class="form-control" value="4" id="quant-input">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            
                             <!-- end:Order row -->
-                            <div class="widget-delivery clearfix">
-                                <form>
-                                    <div class="col-xs-6 col-sm-12 col-md-6 col-lg-6 b-t-0">
-                                        <label class="custom-control custom-radio">
-                                            <input id="radio4" name="radio" type="radio" class="custom-control-input"
-                                                   checked=""> <span class="custom-control-indicator"></span> <span
-                                                    class="custom-control-description">Delivery</span> </label>
-                                    </div>
-                                    <div class="col-xs-6 col-sm-12 col-md-6 col-lg-6 b-t-0">
-                                        <label class="custom-control custom-radio">
-                                            <input id="radio3" name="radio" type="radio" class="custom-control-input">
-                                            <span class="custom-control-indicator"></span> <span
-                                                    class="custom-control-description">Takeout</span> </label>
-                                    </div>
-                                </form>
-                            </div>
+                            
                             <div class="widget-body">
                                 <div class="price-wrap text-xs-center">
                                     <p>TOTAL</p>
