@@ -253,20 +253,16 @@
                                                     class="fa fa-trash pull-right"></i></a></div> -->
                                     <div class="form-group row no-gutter">
                                         <div class="col-xs-8">
-<<<<<<< HEAD
-                                            <label>Quantity </label> 
-                                                
                                             
-=======
                                             <div class="title-row">Pizza Quatro Stagione </div>
->>>>>>> 3c29ff0be5852debf8a8ff83a5e302f2a2232cd3
                                         </div>
                                         <div class="col-xs-3">
                                             <input class="form-control" type="number" value="2"
                                                    id="example-number-input">
-                                             
                                         </div>
-<<<<<<< HEAD
+                                        <div class="col-xs-1">
+                                            <a href="#"><i class="fa fa-trash pull-right"></i></a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -305,17 +301,12 @@
                                     </div>
                                 </form>
                             </div> -->
-=======
-                                        <div class="col-xs-1">
-																						<a href="#"><i class="fa fa-trash pull-right"></i></a>
-                                        </div>
+                                        
                                     </div>
                                 </div>
                             </div>
                             
                             <!-- end:Order row -->
-                            
->>>>>>> 3c29ff0be5852debf8a8ff83a5e302f2a2232cd3
                             <div class="widget-body">
                                 <div class="price-wrap text-xs-center">
                                     <p>TOTAL</p>
