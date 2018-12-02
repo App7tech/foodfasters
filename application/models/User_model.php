@@ -233,7 +233,29 @@ class User_model extends CI_Model{
 		$product_id = $post['product_id'];
 		$customer_id = $post['customer_id'];
 		$quantity = $post['quantity'];
-		$this->db->where('');
+		$restaurant_id = $post['restaurant_id'];
+		$this->db->where('customer_id',$customer_id);
+		$query = $this->db->get('cart');
+		$result = $query->result_array();
+		$num_rows =$result->num_rows();
+		if($num_rows != 0){
+			$this->db->where('customer_id',$customer_id);
+			$this->db->where('restaurant_id',$restaurant_id);
+			$query2 = $this->db->get('cart');
+			$result2 = $query2->result2_array();
+			$num_rows2 = $result2->num_rows();
+			if($num_rows2 != 0){
+				$data['status'] = 'restaurant_id different';
+			}//inner if close
+			else{
+				if($num_rows != 0 && $num_rows2 !=0){
+
+				}
+			}
+		}//if close
+		else{
+			//store data into cart
+		}
 
 	}
 }
