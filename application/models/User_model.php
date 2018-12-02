@@ -199,10 +199,25 @@ class User_model extends CI_Model{
 		$q = $this->db->get('restaurant_add');
 		$query['restaurant'] = $q->result_array();
 
-		//for fod details query==//
+		//for category details query==//
 		$this->db->where('restaurant_id',$rest_id);
-		$p = $this->db->get('products');
-		$query['food'] = $p->result_array();
+		$this->db->where('log_status <',3);
+		$this->db->where('log_active',1);
+		$c = $this->db->get('category');
+		$categories = $c->result_array();
+		$i =0;
+		foreach ($categories as $category) {
+			$category_id = $category['category_id'];
+			//for fod details query==//
+			$this->db->where('restaurant_id',$rest_id);
+			$this->db->where('category_id',$category_id);
+			$p = $this->db->get('products');
+			$food_arr = $p->result_array();
+			$categories[$i]['food'] = $food_arr;
+			$i++;
+		}
+		
+		$query['food'] = $categories;
 
 		//for category details query==//
 		$this->db->where('restaurant_id',$rest_id);

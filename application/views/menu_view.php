@@ -72,24 +72,12 @@
                 </div>
         </section>
         <!-- end:Inner page hero -->
-        <div class="breadcrumb">
-            <div class="container">
-                <ul>
-                    <li><a href="#" class="active">Home</a></li>
-                    <li><a href="#">Search results</a></li>
-                    <li>Profile</li>
-                </ul>
-            </div>
-        </div>
+        
         <div class="result-show">
             <div class="container">
                 <div class="row">
                     <div class="col-sm-3">
-                        <p><span class="primary-color"><strong><?php if (isset($rest['num'])) {
-                                        echo $rest['num'];
-                                    } else {
-                                        echo '0';
-                                    } ?></strong></span> Results so far </p>
+                        <!-- for lefet side search results -->
                     </div>
                     <div class="col-sm-6">
                         <form action="<?= base_url(); ?>Home/productSearchResults" method="post">
@@ -105,11 +93,7 @@
                         </form>
                     </div>
                     <div class="col-sm-3">
-                        <select class="custom-select pull-right" id="froption">
-                            <option value="restaurant">Restaurants</option>
-                            <option value="food">Food</option>
-
-                        </select>
+                        <!--for right side menu-->
                     </div>
                 </div>
             </div>
@@ -128,7 +112,7 @@
                             if (sizeof($rest['categories']) != 0) {
                                 echo "<ul>";
                                 foreach ($rest['categories'] as $category) {
-                                    echo '<li><a href="#' . $category["category_id"] . '" class="scroll active">' . $category["category_name"] . '</a></li>';
+                                    echo '<li><a href="#category-' . $category["category_id"] . '" class="scroll active">' . ucfirst($category["category_name"]) . '</a></li>';
                                 }
                                 echo "</ul>";
                             } else {
@@ -193,22 +177,28 @@
                        </div>
                     </div> -->
                 </div>
-                <div class="col-xs-12 col-sm-8 col-md-8 col-lg-6">
-                    <div class="menu-widget m-b-30">
+                <div class="col-xs-12 col-sm-8 col-md-8 col-lg-5">
+
+                	<?php
+                	$id = 1;
+                	foreach ($rest['food'] as $category) {
+                		
+                	?>
+                    <div class="menu-widget m-b-30" style="text-transform: capitalize;">
                         <div class="widget-heading">
                             <h3 class="widget-title text-dark">
-                                POPULAR ORDERS Delicious hot food! <a class="btn btn-link pull-right"
-                                                                      data-toggle="collapse" href="#popular"
-                                                                      aria-expanded="true">
-                                    <i class="fa fa-angle-right pull-right"></i>
-                                    <i class="fa fa-angle-down pull-right"></i>
-                                </a>
+                                 <a class="btn btn-link" data-toggle="collapse" href="#category-<?=$category['category_id'];?>" aria-expanded="true"><?= $category['category_name'];?></a>
+															<a class="btn btn-link pull-right" data-toggle="collapse" href="#category-<?=$category['category_id'];?>" aria-expanded="true"> 
+																<i class="fa fa-angle-right pull-right"></i>
+                                <i class="fa fa-angle-down pull-right"></i>
+                              </a>
                             </h3>
                             <div class="clearfix"></div>
                         </div>
-                        <div class="collapse in" id="1">
+                        <div class="collapse <?php if($id == 1){ echo 'in';}?>" id="category-<?= $category['category_id'];?>">
+	
                             <?php
-                            foreach ($rest['food'] as $food) {
+                            foreach ($category['food'] as $food) {
                                 $im = '././images/products/' . $food["product_image"];
                                 $ima = base_url() . 'images/products/' . $food["product_image"];
                                 if (!is_file($im)) {
@@ -241,212 +231,14 @@
                         </div>
                         <!-- end:Collapse -->
                     </div>
-                    <!-- end:Widget menu -->
-                    <div class="menu-widget" id="2">
-                        <div class="widget-heading">
-                            <h3 class="widget-title text-dark">
-                                POPULAR ORDERS Delicious hot food! <a class="btn btn-link pull-right"
-                                                                      data-toggle="collapse" href="#popular2"
-                                                                      aria-expanded="true">
-                                    <i class="fa fa-angle-right pull-right"></i>
-                                    <i class="fa fa-angle-down pull-right"></i>
-                                </a>
-                            </h3>
-                            <div class="clearfix"></div>
-                        </div>
-                        <div class="collapse in" id="popular2">
-                            <div class="food-item">
-                                <div class="row">
-                                    <div class="col-xs-12 col-sm-12 col-lg-8">
-                                        <div class="rest-logo pull-left">
-                                            <a class="restaurant-logo pull-left" href="#"><img
-                                                        src="<?= base_url(); ?>main_assets/images/food4.jpg"
-                                                        alt="Food logo"></a>
-                                        </div>
-                                        <!-- end:Logo -->
-                                        <div class="rest-descr">
-                                            <h6><a href="#">Veg Extravaganza</a></h6>
-                                            <p> Burgers, American, Sandwiches, Fast Food, BBQ</p>
-                                        </div>
-                                        <!-- end:Description -->
-                                    </div>
-                                    <!-- end:col -->
-                                    <div class="col-xs-12 col-sm-12 col-lg-4 pull-right item-cart-info"><span
-                                                class="price pull-left">$ 19.99</span> <a href="#"
-                                                                                          class="btn btn-small btn btn-secondary pull-right"
-                                                                                          data-toggle="modal"
-                                                                                          data-target="#order-modal">&#43;</a>
-                                    </div>
-                                </div>
-                                <!-- end:row -->
-                            </div>
-                            <!-- end:Food item -->
-                            <div class="food-item white">
-                                <div class="row">
-                                    <div class="col-xs-12 col-sm-12 col-lg-8">
-                                        <div class="rest-logo pull-left">
-                                            <a class="restaurant-logo pull-left" href="#"><img
-                                                        src="<?= base_url(); ?>main_assets/images/food5.jpg"
-                                                        alt="Food logo"></a>
-                                        </div>
-                                        <!-- end:Logo -->
-                                        <div class="rest-descr">
-                                            <h6><a href="#">Veg Extravaganza</a></h6>
-                                            <p> Burgers, American, Sandwiches, Fast Food, BBQ</p>
-                                        </div>
-                                        <!-- end:Description -->
-                                    </div>
-                                    <!-- end:col -->
-                                    <div class="col-xs-12 col-sm-12 col-lg-4 pull-right item-cart-info"><span
-                                                class="price pull-left">$ 19.99</span> <a href="#"
-                                                                                          class="btn btn-small btn btn-secondary pull-right"
-                                                                                          data-toggle="modal"
-                                                                                          data-target="#order-modal">&#43;</a>
-                                    </div>
-                                </div>
-                                <!-- end:row -->
-                            </div>
-                            <!-- end:Food item -->
-                            <div class="food-item">
-                                <div class="row">
-                                    <div class="col-xs-12 col-sm-12 col-lg-8">
-                                        <div class="rest-logo pull-left">
-                                            <a class="restaurant-logo pull-left" href="#"><img
-                                                        src="<?= base_url(); ?>main_assets/images/food6.jpg"
-                                                        alt="Food logo"></a>
-                                        </div>
-                                        <!-- end:Logo -->
-                                        <div class="rest-descr">
-                                            <h6><a href="#">Veg Extravaganza</a></h6>
-                                            <p> Burgers, American, Sandwiches, Fast Food, BBQ</p>
-                                        </div>
-                                        <!-- end:Description -->
-                                    </div>
-                                    <!-- end:col -->
-                                    <div class="col-xs-12 col-sm-12 col-lg-4 pull-right item-cart-info"><span
-                                                class="price pull-left">$ 19.99</span> <a href="#"
-                                                                                          class="btn btn-small btn btn-secondary pull-right"
-                                                                                          data-toggle="modal"
-                                                                                          data-target="#order-modal">&#43;</a>
-                                    </div>
-                                </div>
-                                <!-- end:row -->
-                            </div>
-                            <!-- end:Food item -->
-                            <div class="food-item white">
-                                <div class="row">
-                                    <div class="col-xs-12 col-sm-12 col-lg-8">
-                                        <div class="rest-logo pull-left">
-                                            <a class="restaurant-logo pull-left" href="#"><img
-                                                        src="<?= base_url(); ?>main_assets/images/food7.jpg"
-                                                        alt="Food logo"></a>
-                                        </div>
-                                        <!-- end:Logo -->
-                                        <div class="rest-descr">
-                                            <h6><a href="#">Veg Extravaganza</a></h6>
-                                            <p> Burgers, American, Sandwiches, Fast Food, BBQ</p>
-                                        </div>
-                                        <!-- end:Description -->
-                                    </div>
-                                    <!-- end:col -->
-                                    <div class="col-xs-12 col-sm-12 col-lg-4 pull-right item-cart-info"><span
-                                                class="price pull-left">$ 19.99</span> <a href="#"
-                                                                                          class="btn btn-small btn btn-secondary pull-right"
-                                                                                          data-toggle="modal"
-                                                                                          data-target="#order-modal">&#43;</a>
-                                    </div>
-                                </div>
-                                <!-- end:row -->
-                            </div>
-                            <!-- end:Food item -->
-                        </div>
-                        <!-- end:Collapse -->
-                    </div>
-                    <!-- end:Widget menu -->
-                    <div class="row m-t-30">
-                        <div class="col-sm-12 col-xs-12">
-                            <div class="panel">
-                                <div class="panel-heading">
-                                    <h4 class="panel-title"><a data-parent="#accordion" data-toggle="collapse"
-                                                               class="panel-toggle collapsed" href="#faq1"
-                                                               aria-expanded="false">Can I viverra sit amet quam eget
-                                            lacinia?</a></h4>
-                                </div>
-                                <div class="panel-collapse collapse" id="faq1" aria-expanded="false" role="article"
-                                     style="height: 0px;">
-                                    <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                        Etiam rutrum ut erat a ultricies. Phasellus non auctor nisi, id aliquet lectus.
-                                        Vestibulum libero eros, aliquet at tempus ut, scelerisque sit amet nunc. Vivamus
-                                        id porta neque, in pulvinar ipsum. Vestibulum sit amet quam sem. Pellentesque
-                                        accumsan consequat venenatis. Pellentesque sit amet justo dictum, interdum odio
-                                        non, dictum nisi. Fusce sit amet turpis eget nibh elementum sagittis. Nunc
-                                        consequat lacinia purus, in consequat neque consequat id.
-                                    </div>
-                                </div>
-                            </div>
-                            <!--//panel-->
-                            <div class="panel">
-                                <div class="panel-heading">
-                                    <h4 class="panel-title"><a data-parent="#accordion" data-toggle="collapse"
-                                                               class="panel-toggle" href="#faq2"><i
-                                                    class="ti-info-alt"></i>What is the ipsum dolor sit amet quam
-                                            tortor?</a></h4>
-                                </div>
-                                <div class="panel-collapse collapse" id="faq2">
-                                    <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                        Etiam rutrum ut erat a ultricies. Phasellus non auctor nisi, id aliquet lectus.
-                                        Vestibulum libero eros, aliquet at tempus ut, scelerisque sit amet nunc. Vivamus
-                                        id porta neque, in pulvinar ipsum. Vestibulum sit amet quam sem. Pellentesque
-                                        accumsan consequat venenatis. Pellentesque sit amet justo dictum, interdum odio
-                                        non, dictum nisi. Fusce sit amet turpis eget nibh elementum sagittis. Nunc
-                                        consequat lacinia purus, in consequat neque consequat id.
-                                    </div>
-                                </div>
-                            </div>
-                            <!--//panel-->
-                            <div class="panel">
-                                <div class="panel-heading">
-                                    <h4 class="panel-title"><a data-parent="#accordion" data-toggle="collapse"
-                                                               class="panel-toggle" href="#faq3"><i
-                                                    class="ti-info-alt"></i>How does lorem ipsum work?</a></h4>
-                                </div>
-                                <div class="panel-collapse collapse" id="faq3">
-                                    <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                        Etiam rutrum ut erat a ultricies. Phasellus non auctor nisi, id aliquet lectus.
-                                        Vestibulum libero eros, aliquet at tempus ut, scelerisque sit amet nunc. Vivamus
-                                        id porta neque, in pulvinar ipsum. Vestibulum sit amet quam sem. Pellentesque
-                                        accumsan consequat venenatis. Pellentesque sit amet justo dictum, interdum odio
-                                        non, dictum nisi. Fusce sit amet turpis eget nibh elementum sagittis. Nunc
-                                        consequat lacinia purus, in consequat neque consequat id.
-                                    </div>
-                                </div>
-                            </div>
-                            <!--//panel-->
-                            <div class="panel">
-                                <div class="panel-heading">
-                                    <h4 class="panel-title"><a data-parent="#accordion" data-toggle="collapse"
-                                                               class="panel-toggle" href="#faq4"><i
-                                                    class="ti-info-alt"></i>Can I ipsum dolor sit amet nascetur
-                                            ridiculus?</a></h4>
-                                </div>
-                                <div class="panel-collapse collapse" id="faq4">
-                                    <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                        Etiam rutrum ut erat a ultricies. Phasellus non auctor nisi, id aliquet lectus.
-                                        Vestibulum libero eros, aliquet at tempus ut, scelerisque sit amet nunc. Vivamus
-                                        id porta neque, in pulvinar ipsum. Vestibulum sit amet quam sem. Pellentesque
-                                        accumsan consequat venenatis. Pellentesque sit amet justo dictum, interdum odio
-                                        non, dictum nisi. Fusce sit amet turpis eget nibh elementum sagittis. Nunc
-                                        consequat lacinia purus, in consequat neque consequat id.
-                                    </div>
-                                </div>
-                            </div>
-                            <!--//panel-->
-                        </div>
-                    </div>
-                    <!--/row -->
+                    <?php
+                    $id++;
+                  }
+                    ?>
+                    
                 </div>
                 <!-- end:Bar -->
-                <div class="col-xs-12 col-md-12 col-lg-3">
+                <div class="col-xs-12 col-md-12 col-lg-4">
                     <div class="sidebar-wrap">
                         <div class="widget widget-cart">
                             <div class="widget-heading">
@@ -457,18 +249,24 @@
                             </div>
                             <div class="order-row bg-white">
                                 <div class="widget-body">
-                                    <div class="title-row">Pizza Quatro Stagione <a href="#"><i
-                                                    class="fa fa-trash pull-right"></i></a></div>
+                                    <!-- <div class="title-row">Pizza Quatro Stagione <a href="#"><i
+                                                    class="fa fa-trash pull-right"></i></a></div> -->
                                     <div class="form-group row no-gutter">
                                         <div class="col-xs-8">
+<<<<<<< HEAD
                                             <label>Quantity </label> 
                                                 
                                             
+=======
+                                            <div class="title-row">Pizza Quatro Stagione </div>
+>>>>>>> 3c29ff0be5852debf8a8ff83a5e302f2a2232cd3
                                         </div>
-                                        <div class="col-xs-4">
+                                        <div class="col-xs-3">
                                             <input class="form-control" type="number" value="2"
                                                    id="example-number-input">
+                                             
                                         </div>
+<<<<<<< HEAD
                                     </div>
                                 </div>
                             </div>
@@ -507,6 +305,17 @@
                                     </div>
                                 </form>
                             </div> -->
+=======
+                                        <div class="col-xs-1">
+																						<a href="#"><i class="fa fa-trash pull-right"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- end:Order row -->
+                            
+>>>>>>> 3c29ff0be5852debf8a8ff83a5e302f2a2232cd3
                             <div class="widget-body">
                                 <div class="price-wrap text-xs-center">
                                     <p>TOTAL</p>
