@@ -213,5 +213,13 @@ class User_model extends CI_Model{
 
 		return $query;
 	}
+	// add product cart 
+	public function add_cart($post){
+		$product_id = $post['product_id'];
+		$customer_id = $post['customer_id'];
+		$quantity = $post['quantity'];
+		$this->db->where('');
+
+	}
 }
 ?>

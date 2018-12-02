@@ -200,6 +200,7 @@ class Seller_model extends CI_Model
         return  $c->result_array();
     }
 
+    
     public function addNewProduct()
     {
         $rest_id = $this->session->userdata('email');

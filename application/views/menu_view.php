@@ -461,11 +461,9 @@
                                                     class="fa fa-trash pull-right"></i></a></div>
                                     <div class="form-group row no-gutter">
                                         <div class="col-xs-8">
-                                            <select class="form-control b-r-0" id="exampleSelect1">
-                                                <option>Size SM</option>
-                                                <option>Size LG</option>
-                                                <option>Size XL</option>
-                                            </select>
+                                            <label>Quantity </label> 
+                                                
+                                            
                                         </div>
                                         <div class="col-xs-4">
                                             <input class="form-control" type="number" value="2"
@@ -474,7 +472,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="order-row">
+                            <!-- <div class="order-row">
                                 <div class="widget-body">
                                     <div class="title-row">Carlsberg Beer <a href="#"><i
                                                     class="fa fa-trash pull-right"></i></a></div>
@@ -491,9 +489,9 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                             <!-- end:Order row -->
-                            <div class="widget-delivery clearfix">
+                            <!-- <div class="widget-delivery clearfix">
                                 <form>
                                     <div class="col-xs-6 col-sm-12 col-md-6 col-lg-6 b-t-0">
                                         <label class="custom-control custom-radio">
@@ -508,7 +506,7 @@
                                                     class="custom-control-description">Takeout</span> </label>
                                     </div>
                                 </form>
-                            </div>
+                            </div> -->
                             <div class="widget-body">
                                 <div class="price-wrap text-xs-center">
                                     <p>TOTAL</p>
