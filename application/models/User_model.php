@@ -234,27 +234,69 @@ class User_model extends CI_Model{
 		$customer_id = $post['customer_id'];
 		$quantity = $post['quantity'];
 		$restaurant_id = $post['restaurant_id'];
+		$date_time = date('d-M-Y h:i:s A');
 		$this->db->where('customer_id',$customer_id);
-		$query = $this->db->get('cart');
-		$result = $query->result_array();
-		$num_rows =$result->num_rows();
+		$query 		= $this->db->get('cart');
+		$result 	= $query->result_array();
+		$num_rows 	=$query->num_rows();
+		$rest_id 	= $result['restaurant_id'];
 		if($num_rows != 0){
 			$this->db->where('customer_id',$customer_id);
 			$this->db->where('restaurant_id',$restaurant_id);
-			$query2 = $this->db->get('cart');
-			$result2 = $query2->result2_array();
-			$num_rows2 = $result2->num_rows();
-			if($num_rows2 != 0){
+			$query2 	= $this->db->get('cart');
+			$result2 	= $query2->result_array();
+			$num_rows2 	= $query2->num_rows();
+			if($num_rows2 == 0){
 				$data['status'] = 'restaurant_id different';
 			}//inner if close
 			else{
 				if($num_rows != 0 && $num_rows2 !=0){
+					$this->db->where('product_id',$product_id);
+					$this->db->where('restaurant_id',$restaurant_id);
+					$this->db->where('customer_id',$customer_id);
+					$query3 	= $this->db->get('cart');
+					$result3  	= $query3->reset_array();
+					$cartQuantity 	= $result3['quantity'];
+					$num_rows3 	= $query3->num_rows();
+					if($num_rows3 == 0){
+						//if no records match with product_id, add one more record/product into cart table
+						$cartData = array("restaurant_id" => $restaurant_id,
+									   "product_id" => $product_id,
+									   "customer_id" => $customer_id,
+									   "date_time" => $date_time
+									);
+						$query4 			= $this->db->insert('cart',$cartData);
+						$insert_id 			= $this->db->insert_id();
+						$data['insert_id'] 	= $insert_id;
+						$data['status'] 	= 'New product added Successfully';
+					}else{
+						//if same product, to increase the quantity and update cart for sampe product
+						$updateQuantity = $quantity + $cartQuantity;
+						$cartUpdate  = array('quantity' => $updateQuantity);
+						$this->db->where('customer_id',$customer_id);
+						$this->db->where('restaurant_id',$restaurant_id);
+						$this->db->update('cart',$cartUpdate);
+						$data['status'] = 'Quantity updated.';
+					}
 
 				}
 			}
 		}//if close
 		else{
 			//store data into cart
+			$cartData = array("restaurant_id" => $restaurant_id,
+							   "product_id" => $product_id,
+							   "customer_id" => $customer_id,
+							   "quantity" => $quantity,
+							   "date_time" => $date_time
+							  );
+			$this->db->insert('cart',$cartData);
+			$last_id = $this->insert_id();
+			if($last_id != ''){
+				$data['status'] = 'New record/order inserted to cart.';
+			} else{
+				$data['status'] = 'Fail to insert record/product into cart.';
+			}
 		}
 
 	}
