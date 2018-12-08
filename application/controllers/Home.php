@@ -461,4 +461,11 @@ class Home extends CI_Controller
         $this->load->view('menu_view', $result);
 
     }
+
+    //for cart details
+    public function cart(){
+        $post = $this->input->post();
+        $this->load->model('User_model');
+        $data['result'] = $this->User_model->add_cart($post);
+    }
 }

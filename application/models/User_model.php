@@ -12,13 +12,14 @@ class User_model extends CI_Model{
 		$status = 'active';
 		
 		$data = array('username'=>$user['name'],
-			'email'=>$user['email'],
-			'phone'=>$user['mobile'],
-			'password'=>md5($user['password']),
-			'referal_code'=>$ref,
-			'token'=>$token,
-			'status'=>$status,
-			'datetime'=>$date);
+					  'email'=>$user['email'],
+					  'phone'=>$user['mobile'],
+					  'password'=>md5($user['password']),
+					  'referal_code'=>$ref,
+					  'token'=>$token,
+					  'status'=>$status,
+					  'datetime'=>$date
+				);
 		$query =$this->db->insert('user_registration',$data);
 		return $this->db->insert_id();		
 		
@@ -230,6 +231,7 @@ class User_model extends CI_Model{
 	}
 	// add product cart 
 	public function add_cart($post){
+		$data  = array();
 		$product_id = $post['product_id'];
 		$customer_id = $post['customer_id'];
 		$quantity = $post['quantity'];
@@ -239,8 +241,9 @@ class User_model extends CI_Model{
 		$query 		= $this->db->get('cart');
 		$result 	= $query->result_array();
 		$num_rows 	=$query->num_rows();
-		$rest_id 	= $result['restaurant_id'];
+		// $rest_id 	= $result['restaurant_id'];
 		if($num_rows != 0){
+			//if details found with customer id
 			$this->db->where('customer_id',$customer_id);
 			$this->db->where('restaurant_id',$restaurant_id);
 			$query2 	= $this->db->get('cart');
@@ -250,37 +253,37 @@ class User_model extends CI_Model{
 				$data['status'] = 'restaurant_id different';
 			}//inner if close
 			else{
-				if($num_rows != 0 && $num_rows2 !=0){
-					$this->db->where('product_id',$product_id);
-					$this->db->where('restaurant_id',$restaurant_id);
+				
+				$this->db->where('product_id',$product_id);
+				$this->db->where('restaurant_id',$restaurant_id);
+				$this->db->where('customer_id',$customer_id);
+				$query3 	= $this->db->get('cart');
+				$result3  	= $query3->result_array();
+				$data['details'] = $result3;
+				$cartQuantity 	= $result3['quantity'];
+				$num_rows3 	= $query3->num_rows();
+				if($num_rows3 == 0){
+					//if no records match with product_id, add one more record/product into cart table
+					$cartData = array("restaurant_id" => $restaurant_id,
+								   "product_id" => $product_id,
+								   "customer_id" => $customer_id,
+								   "date_time" => $date_time
+								);
+					$query4 			= $this->db->insert('cart',$cartData);
+					$insert_id 			= $this->db->insert_id();
+					$data['insert_id'] 	= $insert_id;
+					$data['status'] 	= 'New product added Successfully';
+				}else{
+					//if same product, to increase the quantity and update cart for sampe product
+					$updateQuantity = $quantity + $cartQuantity;
+					$cartUpdate  = array('quantity' => $updateQuantity);
 					$this->db->where('customer_id',$customer_id);
-					$query3 	= $this->db->get('cart');
-					$result3  	= $query3->reset_array();
-					$cartQuantity 	= $result3['quantity'];
-					$num_rows3 	= $query3->num_rows();
-					if($num_rows3 == 0){
-						//if no records match with product_id, add one more record/product into cart table
-						$cartData = array("restaurant_id" => $restaurant_id,
-									   "product_id" => $product_id,
-									   "customer_id" => $customer_id,
-									   "date_time" => $date_time
-									);
-						$query4 			= $this->db->insert('cart',$cartData);
-						$insert_id 			= $this->db->insert_id();
-						$data['insert_id'] 	= $insert_id;
-						$data['status'] 	= 'New product added Successfully';
-					}else{
-						//if same product, to increase the quantity and update cart for sampe product
-						$updateQuantity = $quantity + $cartQuantity;
-						$cartUpdate  = array('quantity' => $updateQuantity);
-						$this->db->where('customer_id',$customer_id);
-						$this->db->where('restaurant_id',$restaurant_id);
-						$this->db->update('cart',$cartUpdate);
-						$data['status'] = 'Quantity updated.';
-					}
+					$this->db->where('restaurant_id',$restaurant_id);
+					$this->db->update('cart',$cartUpdate);
+					$data['status'] = 'Quantity updated.';
+				}//else cose
 
-				}
-			}
+			} //inner else close
 		}//if close
 		else{
 			//store data into cart
@@ -297,8 +300,9 @@ class User_model extends CI_Model{
 			} else{
 				$data['status'] = 'Fail to insert record/product into cart.';
 			}
-		}
+		}//else close
+		return echo json_encode($data);
 
-	}
+	}//function close
 }
 ?>
