@@ -236,7 +236,7 @@ class User_model extends CI_Model{
 		$customer_id = $post['customer_id'];
 		$quantity = $post['quantity'];
 		$restaurant_id = $post['restaurant_id'];
-		if(check($customer_id,'customer_id','customers') && check($restaurant_id,'restaurant_id','restaurant_add'))
+		if(check($customer_id,'customer_id','user_registration') && check($restaurant_id,'restaurant_id','restaurant_add'))
 		{
 			$date_time = date('d-M-Y h:i:s A');
 			$this->db->where('customer_id',$customer_id);
