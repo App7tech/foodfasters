@@ -469,9 +469,13 @@ class Home extends CI_Controller
         $data = $this->User_model->add_cart($post);
         echo json_encode($data);
     }
+
+    public function getCart(){
+        $customer_id = $this->input->post();
+        $this->load->model('User_model');
+        $data = $this->User_model->getCart($post);
+    }
 }
 
-public function checkout(){
-    $this->load->view('checkout_view');
-}
+
 ?>

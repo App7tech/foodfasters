@@ -328,8 +328,32 @@ class User_model extends CI_Model{
 		}
 	}
 
-	function checkout(){
-		
+	function getCart($post){
+		$customer_id = $post['customer_id'];
+		//get cart details based on customer_Id
+		$this->db->where('customer_id',$customer_id);
+		$query 	= $this->db->get('cart');
+		$result = $query->result_array();
+		$this->db->where('customer_id',$customer_id);
+		$customerQuery = $this->db->get('user_registration');
+		$customer_data = $customer_data->result_array();
+		$restaurant_id = $result[0]['restaurant_id'];
+		$this->db->where('restaurant_id',$restaurant_id);
+		$restquery 			= $this->db->get('restaurant_add');
+		$restaurant_data 	= $restquery->result_array();
+		$productData = array();
+		$i =0;
+		foreach ($result as $data) {
+			$this->db->where('product_id',$data['product_id']);
+			$this->db->where('restaurant_id',$data['restaurant_id']);
+			$productData[$i] = $this->db->get('products'); 
+			$i++;
+		}
+		$cartData = array();
+		$cartData['customerData'] 		= $customer_data;
+		$cartData['reataurantData'] 	= $restaurant_data;
+		$cartData['productData'] 		= $productData;
+		return $cartData;
 	}
 }
 ?>
