@@ -236,7 +236,7 @@ class User_model extends CI_Model{
 		$customer_id = $post['customer_id'];
 		$quantity = $post['quantity'];
 		$restaurant_id = $post['restaurant_id'];
-		if(check($customer_id,'customer_id','user_registration') && check($restaurant_id,'restaurant_id','restaurant_add'))
+		if($this->check($customer_id,'id','user_registration') && $this->check($restaurant_id,'restaurant_id','restaurant_add'))
 		{
 			$date_time = date('d-M-Y h:i:s A');
 			$this->db->where('customer_id',$customer_id);
@@ -276,7 +276,7 @@ class User_model extends CI_Model{
 						$insert_id 			= $this->db->insert_id();
 						// $data['insert_id'] 	= $insert_id;
 						$data['status'] 	= true;
-						$data['message'] 	= $insert_id;
+						$data['message'] 	= "Item Added to Cart";
 					}else{
 						// $data['details'] = $result3;
 						$cartQuantity 	= $result3[0]['quantity'];
@@ -303,9 +303,11 @@ class User_model extends CI_Model{
 				$this->db->insert('cart',$cartData);
 				$last_id = $this->db->insert_id();
 				if($last_id != ''){
-					$data['status'] = 'New record/order inserted to cart.';
+					$data['status'] = true;
+					$data['message'] = 'Item Added to cart.';
 				} else{
-					$data['status'] = 'Fail to insert record/product into cart.';
+					$data['status'] = false;
+					$data['message'] = 'Failed to add in cart.';
 				}
 			}//else close
 			
@@ -317,7 +319,7 @@ class User_model extends CI_Model{
 		return $data;
 	}//function close
 
-	function check($data,$coloumn_name,$table_name){
+	public function check($data,$coloumn_name,$table_name){
 		$this->db->where($coloumn_name,$data);
 		$checkData = $this->db->get($table_name);
 		$rows = $checkData->num_rows();

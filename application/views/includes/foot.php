@@ -6,3 +6,4 @@
     <script src="<?=base_url();?>/main_assets/js/jquery.isotope.min.js"></script>
     <script src="<?=base_url();?>/main_assets/js/headroom.js"></script>
     <script src="<?=base_url();?>/main_assets/js/foodpicky.min.js"></script>
+    <script src="<?=base_url();?>/main_assets/js/custom.js"></script>
