@@ -14,3 +14,6 @@
     <!-- Custom styles for this template -->
     <link href="<?=base_url();?>/main_assets/css/style.css" rel="stylesheet"> 
     <link href="<?=base_url();?>/main_assets/css/custom.css" rel="stylesheet"> 
+    <script>
+      var baseUrl = '<?php echo base_url(); ?>';  
+    </script>

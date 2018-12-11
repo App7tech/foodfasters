@@ -207,6 +207,7 @@
 
                                     $ima = base_url() . 'images/restaurants/placeholder.jpg';
                                 }
+                                $cart_call = 'add_to_cart('.$food['product_id'].','.$rest['restaurant'][0]['restaurant_id'].','.$quant.','.$user_details[0]['id'].')';
                                 echo '<div class="food-item white">
                               <div class="row">
                                  <div class="col-xs-12 col-sm-12 col-lg-8">
@@ -221,7 +222,7 @@
                                     <!-- end:Description -->
                                  </div>
                                  <!-- end:col -->
-                                 <div class="col-xs-12 col-sm-12 col-lg-4 pull-right item-cart-info"> <span class="price pull-left">$' . $food['selling_price'] . '</span> <a class="btn btn-small btn btn-secondary pull-right" onclick="add_to_cart('.$food['product_id'].','.$rest['restaurant'][0]['restaurant_id'].','.$quant.','.$user_details[0]['id'].')" >&#43;</a> </div>
+                                 <div class="col-xs-12 col-sm-12 col-lg-4 pull-right item-cart-info"> <span class="price pull-left">$' . $food['selling_price'] . '</span> <a class="btn btn-small btn btn-secondary pull-right" onclick="'.$cart_call.'" >&#43;</a> </div>
                               </div>
                               <!-- end:row -->
                            </div>
