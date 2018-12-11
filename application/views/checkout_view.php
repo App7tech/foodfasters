@@ -46,29 +46,7 @@
                                             <!--/form-group-->
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-sm-6">
-                                            <div class="form-group">
-                                                <label>Country*</label>
-                                                <select class="form-control">
-                                                    <option>India</option>
-                                                    <option>USA</option>
-                                                    <option>UK</option>
-                                                    <option>Australia</option>
-                                                    <option>Japan</option>
-                                                    <option>Columbia</option>
-                                                    <option>Poland</option>
-                                                </select>
-                                            </div>
-                                            <!--/form-group-->
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <div class="form-group">
-                                                <label>Company Name</label>
-                                                <input type="text" class="form-control" placeholder="Lorem ipsum"> </div>
-                                            <!--/form-group-->
-                                        </div>
-                                    </div>
+                                    
                                     <div class="row">
                                         <div class="col-sm-12">
                                             <div class="form-group">
@@ -77,20 +55,7 @@
                                             <!--/form-group-->
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-sm-6">
-                                            <div class="form-group">
-                                                <label>City / State*</label>
-                                                <input type="text" class="form-control" placeholder="Jaipur"> </div>
-                                            <!--/form-group-->
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <div class="form-group">
-                                                <label>Zip/ Postal Code*</label>
-                                                <input type="text" class="form-control" placeholder="302012"> </div>
-                                            <!--/form-group-->
-                                        </div>
-                                    </div>
+                                    
                                     <div class="row">
                                         <div class="col-sm-6">
                                             <div class="form-group">
