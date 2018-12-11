@@ -470,3 +470,8 @@ class Home extends CI_Controller
         echo json_encode($data);
     }
 }
+
+public function checkout(){
+    $this->load->view('checkout_view');
+}
+?>
