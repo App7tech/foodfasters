@@ -303,9 +303,11 @@ class User_model extends CI_Model{
 				$this->db->insert('cart',$cartData);
 				$last_id = $this->db->insert_id();
 				if($last_id != ''){
-					$data['status'] = 'New record/order inserted to cart.';
+					$data['status'] = true;
+					$data['message'] = 'New record/order inserted to cart.';
 				} else{
-					$data['status'] = 'Fail to insert record/product into cart.';
+					$data['status'] = false;
+					$data['message'] = 'Fail to insert record/product into cart.';
 				}
 			}//else close
 			
