@@ -332,30 +332,44 @@ class User_model extends CI_Model{
 
 	function getCart($post){
 		$customer_id = $post['customer_id'];
+		$cartData = array();
 		//get cart details based on customer_Id
 		$this->db->where('customer_id',$customer_id);
 		$query 	= $this->db->get('cart');
 		$result = $query->result_array();
-		$this->db->where('customer_id',$customer_id);
-		$customerQuery = $this->db->get('user_registration');
-		$customer_data = $customer_data->result_array();
-		$restaurant_id = $result[0]['restaurant_id'];
-		$this->db->where('restaurant_id',$restaurant_id);
-		$restquery 			= $this->db->get('restaurant_add');
-		$restaurant_data 	= $restquery->result_array();
-		$productData = array();
-		$i =0;
-		foreach ($result as $data) {
-			$this->db->where('product_id',$data['product_id']);
-			$this->db->where('restaurant_id',$data['restaurant_id']);
-			$productData[$i] = $this->db->get('products'); 
-			$i++;
+		$rows = $query->num_rows();
+		if($rows == 0){
+			$cartData['status'] = false;
+			$cartData['message'] = 'customerid not found!';
+		}else{
+			$this->db->where('customer_id',$customer_id);
+			$customerQuery = $this->db->get('user_registration');
+			$customer_data = $customer_data->result_array();
+			$custrows = $customerQuery->num_rows(); 
+			if($custrows != 0){
+				$restaurant_id = $result[0]['restaurant_id'];
+				$this->db->where('restaurant_id',$restaurant_id);
+				$restquery 			= $this->db->get('restaurant_add');
+				$restaurant_data 	= $restquery->result_array();
+				$productData = array();
+				$i =0;
+				foreach ($result as $data) {
+					$this->db->where('product_id',$data['product_id']);
+					$this->db->where('restaurant_id',$data['restaurant_id']);
+					$productData[$i] = $this->db->get('products'); 
+					$i++;
+				}
+				
+				$cartData['customerData'] 		= $customer_data;
+				$cartData['reataurantData'] 	= $restaurant_data;
+				$cartData['productData'] 		= $productData;
+			}else{
+				$cartData['status'] = false;
+				$cartData['message'] = ''
+			}
+			
+			return $cartData;
 		}
-		$cartData = array();
-		$cartData['customerData'] 		= $customer_data;
-		$cartData['reataurantData'] 	= $restaurant_data;
-		$cartData['productData'] 		= $productData;
-		return $cartData;
 	}
 }
 ?>

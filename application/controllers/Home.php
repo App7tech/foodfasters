@@ -474,6 +474,7 @@ class Home extends CI_Controller
         $customer_id = $this->input->post();
         $this->load->model('User_model');
         $data = $this->User_model->getCart($post);
+        echo json_encode($data);
     }
 }
 
