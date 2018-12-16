@@ -226,7 +226,6 @@ class User_model extends CI_Model{
 		$this->db->where('log_active',1);
 		$c = $this->db->get('category');
 		$query['categories'] = $c->result_array();
-
 		return $query;
 	}
 	// add product cart 
@@ -236,6 +235,7 @@ class User_model extends CI_Model{
 		$customer_id = $post['customer_id'];
 		$quantity = $post['quantity'];
 		$restaurant_id = $post['restaurant_id'];
+		$update = $post['update'];
 		if($this->check($customer_id,'id','user_registration') && $this->check($restaurant_id,'restaurant_id','restaurant_add'))
 		{
 			$date_time = date('d-M-Y h:i:s A');
@@ -270,6 +270,7 @@ class User_model extends CI_Model{
 						$cartData = array("restaurant_id" => $restaurant_id,
 									   "product_id" => $product_id,
 									   "customer_id" => $customer_id,
+									   "quantity" => $quantity,
 									   "date_time" => $date_time
 									);
 						$query4 			= $this->db->insert('cart',$cartData);
@@ -281,10 +282,15 @@ class User_model extends CI_Model{
 						// $data['details'] = $result3;
 						$cartQuantity 	= $result3[0]['quantity'];
 						//if same product, to increase the quantity and update cart for sampe product
-						$updateQuantity = $quantity + $cartQuantity;
+						if($update == 1){
+							$updateQuantity = $quantity;
+						}else if($update == 0){
+							$updateQuantity = $quantity + $cartQuantity;
+						}
 						$cartUpdate  = array('quantity' => $updateQuantity);
 						$this->db->where('customer_id',$customer_id);
 						$this->db->where('restaurant_id',$restaurant_id);
+						$this->db->where('product_id',$product_id);
 						$this->db->update('cart',$cartUpdate);
 						$data['status'] = true;
 						$data['message'] = 'Quantity updated.';
@@ -330,46 +336,39 @@ class User_model extends CI_Model{
 		}
 	}
 
-	function getCart($post){
+	public function getCart($post){
 		$customer_id = $post['customer_id'];
+		// $customer_id = 1;
 		$cartData = array();
-		//get cart details based on customer_Id
-		$this->db->where('customer_id',$customer_id);
-		$query 	= $this->db->get('cart');
-		$result = $query->result_array();
-		$rows = $query->num_rows();
-		if($rows == 0){
-			$cartData['status'] = false;
-			$cartData['message'] = 'customerid not found!';
-		}else{
-			$this->db->where('customer_id',$customer_id);
-			$customerQuery = $this->db->get('user_registration');
-			$customer_data = $customer_data->result_array();
-			$custrows = $customerQuery->num_rows(); 
-			if($custrows != 0){
-				$restaurant_id = $result[0]['restaurant_id'];
-				$this->db->where('restaurant_id',$restaurant_id);
-				$restquery 			= $this->db->get('restaurant_add');
-				$restaurant_data 	= $restquery->result_array();
-				$productData = array();
-				$i =0;
-				foreach ($result as $data) {
-					$this->db->where('product_id',$data['product_id']);
-					$this->db->where('restaurant_id',$data['restaurant_id']);
-					$productData[$i] = $this->db->get('products'); 
-					$i++;
-				}
-				
-				$cartData['customerData'] 		= $customer_data;
-				$cartData['reataurantData'] 	= $restaurant_data;
-				$cartData['productData'] 		= $productData;
-			}else{
-				$cartData['status'] = false;
-				$cartData['message'] = ''
-			}
-			
-			return $cartData;
-		}
+		$this->db->select('c.*,
+							p.product_name,p.price,p.product_image,
+							r.restaurant_name,r.image,r.restaurant_address,r.restaurant_city,r.restaurant_state');
+	    $this->db->from('cart c'); 
+	    $this->db->join('user_registration u', 'u.id=c.customer_id', 'inner');
+	    $this->db->join('restaurant_add r', 'r.restaurant_id=c.restaurant_id', 'inner');
+	    $this->db->join('products p', 'p.product_id=c.product_id', 'inner');
+	    $this->db->where('c.customer_id',$customer_id);
+	    $query = $this->db->get();
+	    if($query->num_rows() != 0)
+	    {	
+	    	$i = 0;
+	    	$cartresult =  $query->result_array();
+	    	foreach ($cartresult as $result) {
+	    		$cartData['data'][$i] = $result;
+	    		$i ++;
+	    	}
+	        
+	        $cartData['status'] = true;
+	        $cartData['message'] = 'success';
+	        return $cartData;
+	    }
+	    else
+	    {
+	        $cartData['status'] = false;
+	        $cartData['message'] = 'Cart is Empty!';
+	        return $cartData;
+	    }
+
 	}
 }
 ?>

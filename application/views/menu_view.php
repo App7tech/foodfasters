@@ -199,6 +199,7 @@
 	
                             <?php
                             $user_details = $this->session->userdata('email');
+                            $update = 0;
                             $quant = 1;
                             foreach ($category['food'] as $food) {
                                 $im = '././images/products/' . $food["product_image"];
@@ -207,7 +208,7 @@
 
                                     $ima = base_url() . 'images/restaurants/placeholder.jpg';
                                 }
-                                $cart_call = 'add_to_cart('.$food['product_id'].','.$rest['restaurant'][0]['restaurant_id'].','.$quant.','.$user_details[0]['id'].')';
+                                $cart_call = 'add_to_cart('.$food['product_id'].','.$rest['restaurant'][0]['restaurant_id'].','.$quant.','.$user_details[0]['id'].',$update)';
                                 echo '<div class="food-item white">
                               <div class="row">
                                  <div class="col-xs-12 col-sm-12 col-lg-8">
@@ -254,18 +255,17 @@
                                 <div class="widget-body">
                                     <!-- <div class="title-row">Pizza Quatro Stagione <a href="#"><i
                                                     class="fa fa-trash pull-right"></i></a></div> -->
-                                    <div class="form-group row no-gutter">
-                                        <div class="col-xs-8">
-                                            
-                                            <div class="title-row">Pizza Quatro Stagione </div>
-                                        </div>
-                                        <div class="col-xs-3">
-                                            <input class="form-control" type="number" value="2"
-                                                   id="example-number-input">
-                                        </div>
-                                        <div class="col-xs-1">
-                                            <a href="#"><i class="fa fa-trash pull-right"></i></a>
-                                        </div>
+                                    <div class="form-group row no-gutter cartData">
+                                      <!-- <div class="col-xs-8">
+                                        <div class="title-row">Product Name</div>
+                                      </div>
+                                      <div class="col-xs-3">
+                                          <input class="form-control" type="number" value="2"
+                                                 id="example-number-input">
+                                      </div>
+                                      <div class="col-xs-1">
+                                          <a href="#"><i class="fa fa-trash pull-right"></i></a>
+                                      </div> -->
                                     </div>
                                 </div>
                             </div>
@@ -442,7 +442,7 @@
                         <div class="col-xs-12 col-sm-6 col-lg-6">
                             <div class="item-img pull-left">
                                 <a class="restaurant-logo pull-left" href="#"><img
-                                            src="<?= base_url(); ?>main_assets/images/fanta.jpg" alt="Food logo"></a>
+                                src="<?= base_url(); ?>main_assets/images/fanta.jpg" alt="Food logo"></a>
                             </div>
                             <!-- end:Logo -->
                             <div class="rest-descr">
@@ -475,8 +475,7 @@
                     <div class="row">
                         <div class="col-xs-12 col-sm-6 col-lg-6">
                             <div class="item-img pull-left">
-                                <a class="restaurant-logo pull-left" href="#"><img
-                                            src="<?= base_url(); ?>main_assets/images/beer.jpg" alt="Food logo"></a>
+                                <a class="restaurant-logo pull-left" href="#"><img src="<?= base_url(); ?>main_assets/images/beer.jpg" alt="Food logo"></a>
                             </div>
                             <!-- end:Logo -->
                             <div class="rest-descr">
@@ -514,6 +513,7 @@
     </div>
 </div>
 <?php include "includes/foot.php" ?>
+<script type="text/javascript" src="<?= base_url();?>main_assets/js/cart.js"></script>
 </body>
 
 </html>
