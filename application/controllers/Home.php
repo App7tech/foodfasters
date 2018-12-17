@@ -476,6 +476,14 @@ class Home extends CI_Controller
         $data = $this->User_model->getCart($customer_id);
         echo json_encode($data);
     }
+
+    //======deleting Cart Items====//
+    public function deleteCart(){
+        $customer_id = $this->input->post();
+        $this->load->model('User_model');
+        $data = $this->User_model->deleteCart($customer_id);
+        echo json_encode($data);
+    }
 }
 
 

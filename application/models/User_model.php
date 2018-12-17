@@ -39,6 +39,7 @@ class User_model extends CI_Model{
 				//success login
 				$result = $query->result_array();
 				$this->session->set_userdata('email',$result);
+				$this->session->set_userdata('customer_id',$rsult['id']);
 				$data['status'] = true;
 				$data['message'] = $result;
 				return $data;
@@ -338,6 +339,7 @@ class User_model extends CI_Model{
 
 	public function getCart($post){
 		$customer_id = $post['customer_id'];
+		// $customer_id = $this->session->userdata('customer_id');
 		// $customer_id = 1;
 		$cartData = array();
 		$this->db->select('c.*,
@@ -369,6 +371,23 @@ class User_model extends CI_Model{
 	        return $cartData;
 	    }
 
+	}
+	//function for deleting cart item
+	public function deleteCart($data){
+		$customer_id = $this->session->userdata('customer_id');
+		$cart_id = $post['cart_id'];
+		$data =  array();
+		$this->db->where('cart_id',$cart_id);
+		$this->db->where('id',$customer_id);
+		$this->db->delete('cart');
+		if($this->db->affected_rows()){
+			$data['status'] = true;
+			$data['message'] = 'Cart Item Deleted Successfully!';
+		}else{
+			$data['status'] = false;
+			$data['message'] = 'Fail to Deleted Cart Item !';
+		}
+		return $data;
 	}
 }
 ?>

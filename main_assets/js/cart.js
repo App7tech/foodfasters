@@ -29,10 +29,31 @@ function refreshCart(cartData){
 					data += ' 	<input class="form-control" type="number" value="'+cart['quantity']+'" id="number-input" onchange="add_to_cart('+product_id+','+restaurant_id+',this.value,'+customer_id+','+update+')">';
 					data += ' </div>';
 					data += ' <div class="col-xs-1">';
-					data += ' 	<a href="#"><i class="fa fa-trash pull-right"></i></a>';
+					data += ' 	<a href="#" onclick="deleteItem('+cart['cart_id']+');"><i class="fa fa-trash pull-right"></i></a>';
 					data += ' </div>';
 				});
 				$('.cartData').html(data);
+			}
+		}
+	});
+}
+//function for deleting cart idems
+function deleteItem(cart_id){
+	var cartData = {};
+	cartData['cart_id'] = cart_id;
+	$.ajax({
+		data:cartData,
+		url:baseUrl+'home/deleteCart',
+		type:'POST',
+		dataType:'JSON',
+		success:function(response){
+			var data = '';
+			console.log(response);
+			if(response.status){
+				var jsonData = response.data;
+				alert(response.message);
+				console.log(response.message);
+				// $('.cartData').html(data);
 			}
 		}
 	});
