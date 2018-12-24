@@ -471,9 +471,9 @@ class Home extends CI_Controller
     }
 
     public function getCart(){
-        $customer_id = $this->input->post();
+        // $customer_id = $this->input->post();
         $this->load->model('User_model');
-        $data = $this->User_model->getCart($customer_id);
+        $data = $this->User_model->getCart();
         echo json_encode($data);
     }
 

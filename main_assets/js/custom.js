@@ -13,7 +13,12 @@ function add_to_cart(product_id,restaurant_id,quantity,customer_id,update){
 		dataType:'JSON',
 		success:function(response){
 			console.log(response);
-			refreshCart(cartData);
+			if(response.status){
+				refreshCart();
+			}else{
+				alert(response.message);
+			}
+			
 		}
 	});
 }

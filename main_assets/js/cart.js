@@ -1,15 +1,15 @@
 $(document).ready(function(){
 	var cartData = {};
 	// cartData['customer_id'] = customer_id; 
-	cartData['customer_id'] = 1; 
-	refreshCart(cartData);
+	// cartData['customer_id'] = 1; 
+	refreshCart();
 });
 
-function refreshCart(cartData){
+function refreshCart(){
 	$.ajax({
-		data:cartData,
+		// data:cartData,
 		url:baseUrl+'home/getCart',
-		type:'POST',
+		// type:'POST',
 		dataType:'JSON',
 		success:function(response){
 			var data = '';
@@ -33,6 +33,8 @@ function refreshCart(cartData){
 					data += ' </div>';
 				});
 				$('.cartData').html(data);
+			}else{
+				$('.cartData').html(response.message);
 			}
 		}
 	});

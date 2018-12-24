@@ -199,6 +199,12 @@
 	
                             <?php
                             $user_details = $this->session->userdata('email');
+                            $customer_id = '';
+                            if($user_details[0]['id'] ==''){
+                              $customer_id = 0;
+                            }else{
+                              $customer_id = $user_details[0]['id'];
+                            }
                             $update = 0;
                             $quant = 1;
                             foreach ($category['food'] as $food) {
@@ -208,7 +214,7 @@
 
                                     $ima = base_url() . 'images/restaurants/placeholder.jpg';
                                 }
-                                $cart_call = 'add_to_cart('.$food['product_id'].','.$rest['restaurant'][0]['restaurant_id'].','.$quant.','.$user_details[0]['id'].',$update)';
+                                $cart_call = 'add_to_cart('.$food['product_id'].','.$rest['restaurant'][0]['restaurant_id'].','.$quant.','.$customer_id.','.$update.')';
                                 echo '<div class="food-item white">
                               <div class="row">
                                  <div class="col-xs-12 col-sm-12 col-lg-8">
