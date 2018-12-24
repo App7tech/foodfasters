@@ -1,5 +1,5 @@
 $(document).ready(function(){
-	var cartData = {};
+	// var cartData = {};
 	// cartData['customer_id'] = customer_id; 
 	// cartData['customer_id'] = 1; 
 	refreshCart();
@@ -53,7 +53,7 @@ function deleteItem(cart_id){
 			console.log(response);
 			if(response.status){
 				var jsonData = response.data;
-				alert(response.message);
+				refreshCart();
 				console.log(response.message);
 				// $('.cartData').html(data);
 			}

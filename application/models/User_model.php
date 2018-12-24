@@ -382,18 +382,19 @@ class User_model extends CI_Model{
 		}// customer_id if close 
 		else{
 			$cartData['status'] = false;
-			$cartData['message'] = "Login To view Cart.".$customer_id;
-			return $cartData;
+			$cartData['message'] = "Login To view Cart.";
+			
 		}
-
+		return $cartData;
 	}
 	//function for deleting cart item
 	public function deleteCart($data){
-		$customer_id = $this->session->userdata('customer_id');
-		$cart_id = $post['cart_id'];
+		$user_details = $this->session->userdata('email');
+		$customer_id = $user_details[0]['id'];
+		$cart_id = $data['cart_id'];
 		$data =  array();
 		$this->db->where('cart_id',$cart_id);
-		$this->db->where('id',$customer_id);
+		$this->db->where('customer_id',$customer_id);
 		$this->db->delete('cart');
 		if($this->db->affected_rows()){
 			$data['status'] = true;

@@ -259,64 +259,19 @@
                             </div>
                             <div class="order-row bg-white">
                                 <div class="widget-body">
-                                    <!-- <div class="title-row">Pizza Quatro Stagione <a href="#"><i
-                                                    class="fa fa-trash pull-right"></i></a></div> -->
+                                    
                                     <div class="form-group row no-gutter cartData">
-                                      <!-- <div class="col-xs-8">
-                                        <div class="title-row">Product Name</div>
-                                      </div>
-                                      <div class="col-xs-3">
-                                          <input class="form-control" type="number" value="2"
-                                                 id="example-number-input">
-                                      </div>
-                                      <div class="col-xs-1">
-                                          <a href="#"><i class="fa fa-trash pull-right"></i></a>
-                                      </div> -->
+                                      
                                     </div>
                                 </div>
                             </div>
-                            <!-- <div class="order-row">
-                                <div class="widget-body">
-                                    <div class="title-row">Carlsberg Beer <a href="#"><i
-                                                    class="fa fa-trash pull-right"></i></a></div>
-                                    <div class="form-group row no-gutter">
-                                        <div class="col-xs-8">
-                                            <select class="form-control b-r-0">
-                                                <option>Size SM</option>
-                                                <option>Size LG</option>
-                                                <option>Size XL</option>
-                                            </select>
-                                        </div>
-                                        <div class="col-xs-4">
-                                            <input class="form-control" value="4" id="quant-input">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> -->
-                            <!-- end:Order row -->
-                            <!-- <div class="widget-delivery clearfix">
-                                <form>
-                                    <div class="col-xs-6 col-sm-12 col-md-6 col-lg-6 b-t-0">
-                                        <label class="custom-control custom-radio">
-                                            <input id="radio4" name="radio" type="radio" class="custom-control-input"
-                                                   checked=""> <span class="custom-control-indicator"></span> <span
-                                                    class="custom-control-description">Delivery</span> </label>
-                                    </div>
-                                    <div class="col-xs-6 col-sm-12 col-md-6 col-lg-6 b-t-0">
-                                        <label class="custom-control custom-radio">
-                                            <input id="radio3" name="radio" type="radio" class="custom-control-input">
-                                            <span class="custom-control-indicator"></span> <span
-                                                    class="custom-control-description">Takeout</span> </label>
-                                    </div>
-                                </form>
-                            </div> -->
-                                        
+                            
                                     </div>
                                 </div>
                             </div>
                             
                             <!-- end:Order row -->
-                            <div class="widget-body">
+                            <!-- <div class="widget-body">
                                 <div class="price-wrap text-xs-center">
                                     <p>TOTAL</p>
                                     <h3 class="value"><strong>$ 25,49</strong></h3>
@@ -325,7 +280,7 @@
                                             class="btn theme-btn btn-lg">Checkout
                                     </button>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>
@@ -335,33 +290,7 @@
         </div>
         <!-- end:Container -->
 
-        <!-- <section class="app-section">
-               <div class="app-wrap">
-                  <div class="container">
-                     <div class="row text-img-block text-xs-left">
-                        <div class="container">
-                           <div class="col-xs-12 col-sm-6 hidden-xs-down right-image text-center">
-                              <figure> <img src="<?= base_url(); ?>main_assets/images/app.png" alt="Right Image"> </figure>
-                           </div>
-                           <div class="col-xs-12 col-sm-6 left-text">
-                              <h3>The Best Food Delivery App</h3>
-                              <p>Now you can make food happen pretty much wherever you are thanks to the free easy-to-use Food Delivery &amp; Takeout App.</p>
-                              <div class="social-btns">
-                                 <a href="#" class="app-btn apple-button clearfix">
-                                    <div class="pull-left"><i class="fa fa-apple"></i> </div>
-                                    <div class="pull-right"> <span class="text">Available on the</span> <span class="text-2">App Store</span> </div>
-                                 </a>
-                                 <a href="#" class="app-btn android-button clearfix">
-                                    <div class="pull-left"><i class="fa fa-android"></i> </div>
-                                    <div class="pull-right"> <span class="text">Available on the</span> <span class="text-2">Play store</span> </div>
-                                 </a>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-            </section> -->
+        
         <?php include "includes/footer.php" ?>
 
     </div>
