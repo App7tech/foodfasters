@@ -101,7 +101,7 @@
         <!-- //results show -->
         <div class="container m-t-30">
             <div class="row">
-                <div class="col-xs-12 col-sm-4 col-md-4 col-lg-3">
+                <div class="col-xs-12 col-sm-3 col-md-3 col-lg-2">
                     <div class="sidebar clearfix m-b-20">
                         <div class="main-block">
                             <div class="sidebar-title white-txt">
@@ -248,7 +248,7 @@
                     
                 </div>
                 <!-- end:Bar -->
-                <div class="col-xs-12 col-md-12 col-lg-4">
+                <div class="col-xs-12 col-md-12 col-lg-5">
                     <div class="sidebar-wrap">
                         <div class="widget widget-cart">
                             <div class="widget-heading">
@@ -260,7 +260,7 @@
                             <div class="order-row bg-white">
                                 <div class="widget-body">
                                     
-                                    <div class="form-group row no-gutter cartData">
+                                    <div class="form-group no-gutter cartData" style="font-weight:700;">
                                       
                                     </div>
                                 </div>

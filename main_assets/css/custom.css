@@ -6,3 +6,10 @@
 	display: inline-flex !important;
 	height: 51px !important;
 }
+
+.cart-quant-input{
+	padding: 2px !important;
+	border: none !important;
+	border-bottom: 2px solid black !important;
+	width: 100% !important;
+}

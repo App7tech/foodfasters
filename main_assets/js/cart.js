@@ -16,22 +16,44 @@ function refreshCart(){
 			console.log(response);
 			if(response.status){
 				var jsonData = response.data;
+				var totalAmount = 0;
 				jsonData.forEach(function(cart){
 					var update = 1;
 					var product_id = cart['product_id'];
 					var restaurant_id = cart['restaurant_id'];
 					var customer_id = cart['customer_id'];
 					// var quantity = $('#number-input').val();
-					data += ' <div class="col-xs-8">';
-					data += ' 	<div class="title-row">'+cart['product_name']+'</div>';
+					data += ' <div class="row">';
+					data += ' <div class="col-xs-3">';
+					data += ' 	<div class="title-row" style="text-transform:capitalize">'+cart['product_name']+'</div>';
 					data += ' </div>';
 					data += ' <div class="col-xs-3">';
-					data += ' 	<input class="form-control" type="number" value="'+cart['quantity']+'" id="number-input" onchange="add_to_cart('+product_id+','+restaurant_id+',this.value,'+customer_id+','+update+')">';
+					data += '₹ '+cart['price']+' X ';
+					data += ' </div>';
+					data += ' <div class="col-xs-2">';
+					data += ' 	<input class="form-control cart-quant-input" type="number" value="'+cart['quantity']+'" id="number-input" onchange="add_to_cart('+product_id+','+restaurant_id+',this.value,'+customer_id+','+update+')">';
+					data += ' </div>';
+					data += ' <div class="col-xs-3">';
+					data += ' = '+parseFloat(cart['price']*cart['quantity']);
 					data += ' </div>';
 					data += ' <div class="col-xs-1">';
 					data += ' 	<a href="#" onclick="deleteItem('+cart['cart_id']+');"><i class="fa fa-trash pull-right"></i></a>';
 					data += ' </div>';
+					data += ' </div>';
+					totalAmount += parseFloat(cart['price']*cart['quantity']);
+					console.log(totalAmount);
 				});
+				data += '<hr> <div class="row">';
+					data += ' <div class="col-xs-8">';
+					data += ' Total:';
+					data += ' </div>';
+					data += ' <div class="col-xs-3">';
+					data += ' = '+totalAmount;
+					data += ' </div>';
+					data += ' <div class="col-xs-1">';
+					data += ' </div>';
+				data += ' </div>';
+
 				$('.cartData').html(data);
 			}else{
 				$('.cartData').html(response.message);
