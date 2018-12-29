@@ -343,7 +343,10 @@ class User_model extends CI_Model{
 			return false;
 		}
 	}
-
+	//====checkout page data====//
+	public function checkout(){
+		return $data = $this->getCart();
+	}
 	public function getCart(){
 		// $customer_id = $post['customer_id'];
 		$user_details = $this->session->userdata('email');

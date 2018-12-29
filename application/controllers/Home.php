@@ -42,7 +42,8 @@ class Home extends CI_Controller
             $fdd = $this->get_address($latlng);
             $full_address = explode(',', $fdd);
             // print_r($full_address);exit();
-            $faddress2 = $full_address[2];
+            // $faddress2 = $full_address[2];
+            $faddress2 = $fdd;
         }
         $adrs = $faddress2;
         $this->session->set_userdata('address', $adrs);
@@ -133,7 +134,9 @@ class Home extends CI_Controller
 
     public function checkout()
     {
-        $this->load->view('checkout_view');
+        $this->load->model('User_model');
+        $data = $this->User_model->checkout();
+        $this->load->view('checkout_view',$data);
     }
 
     public function login()

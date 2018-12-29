@@ -43,7 +43,7 @@ function refreshCart(){
 					totalAmount += parseFloat(cart['price']*cart['quantity']);
 					console.log(totalAmount);
 				});
-				data += '<hr> <div class="row">';
+					data += '<hr> <div class="row">';
 					data += ' <div class="col-xs-8">';
 					data += ' Total:';
 					data += ' </div>';
@@ -52,7 +52,17 @@ function refreshCart(){
 					data += ' </div>';
 					data += ' <div class="col-xs-1">';
 					data += ' </div>';
-				data += ' </div>';
+					data += ' </div>';
+
+					data += '<hr> <div class="row">';
+					data += ' <div class="col-xs-4">';
+					data += ' </div>';
+					data += ' <div class="col-xs-4">';
+					data += ' <a href="" class="btn theme-btn btn-lg">Checkout</a>';
+					data += ' </div>';
+					data += ' <div class="col-xs-4">';
+					data += ' </div>';
+					data += ' </div>';
 
 				$('.cartData').html(data);
 			}else{

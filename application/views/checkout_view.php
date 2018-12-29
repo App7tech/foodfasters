@@ -2,7 +2,10 @@
 <html lang="en">
 
 <head>
-	<?php include"includes/head.php" ?>
+	<?php include"includes/head.php";
+    $user_details = $this->session->userdata('email');
+    $address = $this->session->userdata('address');
+    ?>
 </head>
 <body>
      <div class="site-wrapper animsition" data-animsition-in="fade-in" data-animsition-out="fade-out">
@@ -36,7 +39,7 @@
                                         <div class="col-sm-6">
                                             <div class="form-group">
                                                 <label>First Name*</label>
-                                                <input type="text" class="form-control" placeholder="John"> </div>
+                                                <input type="text" class="form-control" placeholder="John" value="<?php echo $user_details[0]['username']?>" required=""> </div>
                                             <!--/form-group-->
                                         </div>
                                         <div class="col-sm-6">
@@ -51,7 +54,7 @@
                                         <div class="col-sm-12">
                                             <div class="form-group">
                                                 <label>Full Address*</label>
-                                                <input type="text" class="form-control" placeholder="124, Lorem Street.."> </div>
+                                                <input type="text" class="form-control" placeholder="124, Lorem Street.." required="" value="<?php echo $this->session->userdata('address');?>"> </div>
                                             <!--/form-group-->
                                         </div>
                                     </div>
@@ -60,13 +63,13 @@
                                         <div class="col-sm-6">
                                             <div class="form-group">
                                                 <label>Email Address*</label>
-                                                <input type="text" class="form-control" placeholder="john@doe.com"> </div>
+                                                <input type="email" class="form-control" placeholder="john@doe.com" value="<?php echo $user_details[0]['email']?>" required=""> </div>
                                             <!--/form-group-->
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="form-group">
                                                 <label>phone*</label>
-                                                <input type="text" class="form-control" placeholder="123-345-3322"> </div>
+                                                <input type="text" class="form-control" placeholder="123-345-3322" required="" value="<?php echo $user_details[0]['phone']?>"> </div>
                                             <!--/form-group-->
                                         </div>
                                     </div>
@@ -77,18 +80,23 @@
                                             <h4>Cart Summary</h4> </div>
                                         <div class="cart-totals-fields">
                                             <table class="table">
-                                                <tbody>
-                                                    <tr>
-                                                        <td>Cart Subtotal</td>
-                                                        <td>$29.00</td>
+                                                 <tbody>
+                                                <?php
+                                                $total =0;
+                                                    foreach ($data as $cart) {
+                                                        $total = $total + $cart['price'];
+                                                        echo '
+                                                            <tr>
+                                                        <td>'.ucfirst($cart['product_name']).'</td>
+                                                        <td>'.$cart['price'].'</td>
                                                     </tr>
-                                                    <tr>
-                                                        <td>Shipping &amp; Handling</td>
-                                                        <td>$2.00</td>
-                                                    </tr>
+                                                        ';
+                                                    }
+                                                ?>
+                                               
                                                     <tr>
                                                         <td class="text-color"><strong>Total</strong></td>
-                                                        <td class="text-color"><strong>$31.00</strong></td>
+                                                        <td class="text-color"><strong><?php echo $total?></strong></td>
                                                     </tr>
                                                 </tbody>
                                             </table>
