@@ -58,7 +58,7 @@ function refreshCart(){
 					data += ' <div class="col-xs-4">';
 					data += ' </div>';
 					data += ' <div class="col-xs-4">';
-					data += ' <a href="" class="btn theme-btn btn-lg">Checkout</a>';
+					data += ' <a href="'+baseUrl+'home/checkout" class="btn theme-btn btn-lg">Checkout</a>';
 					data += ' </div>';
 					data += ' <div class="col-xs-4">';
 					data += ' </div>';

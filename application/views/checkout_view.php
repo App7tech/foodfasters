@@ -36,16 +36,10 @@
                             <div class="row">
                                 <div class="col-sm-6 margin-b-30">
                                     <div class="row">
-                                        <div class="col-sm-6">
+                                        <div class="col-sm-12">
                                             <div class="form-group">
-                                                <label>First Name*</label>
+                                                <label>Full Name*</label>
                                                 <input type="text" class="form-control" placeholder="John" value="<?php echo $user_details[0]['username']?>" required=""> </div>
-                                            <!--/form-group-->
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <div class="form-group">
-                                                <label>Last Name*</label>
-                                                <input type="text" class="form-control" placeholder="Doe"> </div>
                                             <!--/form-group-->
                                         </div>
                                     </div>
